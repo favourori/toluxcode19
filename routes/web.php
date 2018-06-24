@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/deploy', function () {
+    dd("Auto deploy test");
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
