@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-user"></i>
-                                    <input type="text" id="sender-email" class="form-control" name="email" placeholder="Username">
+                                    <input type="text" id="sender-email" class="form-control" name="email" required placeholder="Username">
                                 </div>
                                 @csrf
                                 @if ($errors->has('email'))
@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-lock"></i>
-                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                    <input type="password" class="form-control" name="password" required placeholder="Password">
                                 </div>
                                 @if ($errors->has('password'))
                                     <span class="error">

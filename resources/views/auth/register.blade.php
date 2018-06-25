@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-user"></i>
-                                    <input type="text" class="form-control" value="{{old('firstname')}}" name="firstname" placeholder="Firstname">
+                                    <input type="text" class="form-control"  value="{{old('firstname')}}" name="firstname" placeholder="Firstname" required>
                                     
                                 </div>
                                 @if ($errors->has('firstname'))
@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-user"></i>
-                                    <input type="text" class="form-control" value="{{old('lastname')}}" name="lastname" placeholder="Last name">
+                                    <input type="text" class="form-control" value="{{old('lastname')}}" name="lastname" placeholder="Last name" required>
                                     
                                 </div>
                                 @if ($errors->has('lastname'))
@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-user"></i>
-                                    <input type="text" class="form-control" value="{{old('username')}}" name="username" placeholder="Username">
+                                    <input type="text" class="form-control" value="{{old('username')}}" name="username" placeholder="Username" required>
                                     
                                 </div>
                                 @if ($errors->has('username'))
@@ -71,7 +71,7 @@
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-envelope"></i>
-                                    <input type="text" class="form-control" value="{{old('email')}}" name="email" placeholder="Email">
+                                    <input type="text" class="form-control" value="{{old('email')}}" name="email" placeholder="Email" required>
                                     
                                 </div>
                                 @if ($errors->has('email'))
@@ -84,7 +84,7 @@
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-lock"></i>
-                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                    <input type="password" class="form-control" name="password" placeholder="Password" required>
                                     
                                 </div>
                                 @if ($errors->has('password'))
@@ -96,7 +96,7 @@
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-lock"></i>
-                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Retype Password">
+                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Retype Password" required>
                                 </div>
                             </div>
                             <div class="form-group mb-3">
