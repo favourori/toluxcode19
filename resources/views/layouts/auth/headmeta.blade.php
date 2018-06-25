@@ -22,5 +22,5 @@
 
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}?version={{md5(date(H:i:s))}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}?version={{md5(date('H:i:s'))}}">
 </head>
