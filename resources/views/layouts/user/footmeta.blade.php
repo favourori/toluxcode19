@@ -13,3 +13,8 @@
     <script src="{{asset('js/form-validator.min.js')}}"></script>
     <script src="{{asset('js/contact-form-script.min.js')}}"></script>
     <script src="{{asset('js/summernote.js')}}"></script>
+    <script src="{{asset('js/iziToast.js')}}"></script>
+    <script src="{{asset('js/iziwrapper.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+    <script src="{{asset('js/root.js')}}"></script>

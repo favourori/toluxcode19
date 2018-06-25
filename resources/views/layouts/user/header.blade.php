@@ -73,7 +73,7 @@
             
             <ul class="sign-in">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('account')}}">
+                    <a class="nav-link" href="{{url('account/dashboard')}}">
                         <i class="lni-user"></i> My Account
                     </a>
                 

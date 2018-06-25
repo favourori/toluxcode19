@@ -24,7 +24,6 @@
 
 @section('content')
 
-    @include('layouts.user.dashboard')
 
 @stop
 

@@ -9,7 +9,7 @@
                         <h2 class="product-title">Login</h2>
                         <ol class="breadcrumb">
                             <li>
-                                <a href="index.html">Home /</a>
+                                <a href="/">Home /</a>
                             </li>
                             <li class="current">Login</li>
                         </ol>

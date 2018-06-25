@@ -23,11 +23,23 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('countries','LocationController@getCountries');
+Route::get('states/{country_id}','LocationController@getStates');
+Route::get('lgas/{state_id}','LocationController@getLgas');
+
 // Admin Route
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
 
     // Skill routes
-    Route::get('account','UserController@account');
+    Route::get('dashboard','UserController@dashboard');
+    Route::get('profile','UserController@profile');
+    Route::get('apiprofile','UserController@apiProfile');
+    Route::get('apiuser','UserController@apiUser');
+
+    Route::post('profile/update','UserController@updateProfile');
+    Route::get('contact','UserController@contact');
+    
+    
     Route::post('skill/create','Api\Admin\SkillController@createSkill');
     Route::patch('skill/edit/{skill_id}','Api\Admin\SkillController@editSkill');
     Route::delete('skill/delete/{skill_id}','Api\Admin\SkillController@deleteSkill');

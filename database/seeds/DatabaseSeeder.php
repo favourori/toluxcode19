@@ -15,5 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleTableSeeder::class);
         $this->call(StatusTableSeeder::class);
         $this->call(SubscriptionTableSeeder::class);
+        $this->call(CountryTableSeeder::class);
+        $this->call(StateTableSeeder::class);
+        $this->call(LgaTableSeeder::class);
     }
 }

@@ -9,7 +9,7 @@
                         <h2 class="product-title">Join Us</h2>
                         <ol class="breadcrumb">
                             <li>
-                                <a href="#">Home /</a>
+                                <a href="/">Home /</a>
                             </li>
                             <li class="current">Register</li>
                         </ol>
