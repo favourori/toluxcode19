@@ -46,6 +46,11 @@
                                     <i class="lni-lock"></i>
                                     <input type="password" class="form-control" name="password" placeholder="Password">
                                 </div>
+                                @if ($errors->has('password'))
+                                    <span class="error">
+                                        {{ $errors->first('password') }}
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group mb-3">
                                 <div class="checkbox">
