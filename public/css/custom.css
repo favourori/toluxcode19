@@ -1,3 +1,7 @@
 .btn-primary{
     background: #0d79bf;
 }
+
+.error{
+    color: red;
+}

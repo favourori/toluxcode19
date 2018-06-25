@@ -28,29 +28,75 @@
                         <h3>
                             Register
                         </h3>
-                        <form class="login-form">
+                        <form action="{{Route('register')}}" class="login-form" method="post">
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-user"></i>
-                                    <input type="text" id="Name" class="form-control" name="email" placeholder="Username">
+                                    <input type="text" class="form-control" value="{{old('firstname')}}" name="firstname" placeholder="Firstname">
+                                    
                                 </div>
+                                @if ($errors->has('firstname'))
+                                    <span class="error">
+                                        {{ $errors->first('firstname') }}
+                                    </span>
+                                @endif
                             </div>
+                            @csrf
+                            <div class="form-group">
+                                <div class="input-icon">
+                                    <i class="lni-user"></i>
+                                    <input type="text" class="form-control" value="{{old('lastname')}}" name="lastname" placeholder="Last name">
+                                    
+                                </div>
+                                @if ($errors->has('lastname'))
+                                    <span class="error">
+                                        {{ $errors->first('lastname') }}
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-icon">
+                                    <i class="lni-user"></i>
+                                    <input type="text" class="form-control" value="{{old('username')}}" name="username" placeholder="Username">
+                                    
+                                </div>
+                                @if ($errors->has('username'))
+                                    <span class="error">
+                                        {{ $errors->first('username') }}
+                                    </span>
+                                @endif
+                            </div>
+
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-envelope"></i>
-                                    <input type="text" id="sender-email" class="form-control" name="email" placeholder="Email Address">
+                                    <input type="text" class="form-control" value="{{old('email')}}" name="email" placeholder="Email">
+                                    
                                 </div>
+                                @if ($errors->has('email'))
+                                    <span class="error">
+                                        {{ $errors->first('email') }}
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-icon">
+                                    <i class="lni-lock"></i>
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                    
+                                </div>
+                                @if ($errors->has('password'))
+                                    <span class="error">
+                                        {{ $errors->first('password') }}
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-lock"></i>
-                                    <input type="password" class="form-control" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-icon">
-                                    <i class="lni-lock"></i>
-                                    <input type="password" class="form-control" placeholder="Retype Password">
+                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Retype Password">
                                 </div>
                             </div>
                             <div class="form-group mb-3">
@@ -60,7 +106,11 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-common log-btn">Register</button>
+                                <button type="submit" class="btn btn-common btn-block log-btn">Register</button>
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <button class="btn btn-common btn-primary btn-block"><i class="lni-facebook-filled"> </i> Login with facebook</button>
                             </div>
                         </form>
                     </div>

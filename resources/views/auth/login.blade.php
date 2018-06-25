@@ -28,22 +28,28 @@
                         <h3>
                             Login Now
                         </h3>
-                        <form role="form" class="login-form">
+                        <form role="form" class="login-form" method="post" action="{{route('login')}}">
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-user"></i>
                                     <input type="text" id="sender-email" class="form-control" name="email" placeholder="Username">
                                 </div>
+                                @csrf
+                                @if ($errors->has('email'))
+                                    <span class="error">
+                                        {{ $errors->first('email') }}
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-lock"></i>
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
                                 </div>
                             </div>
                             <div class="form-group mb-3">
                                 <div class="checkbox">
-                                    <input type="checkbox" name="rememberme" value="rememberme">
+                                    <input type="checkbox" name="remember" value="remember">
                                     <label>Keep me logged in</label>
                                 </div>
                                 <a class="forgetpassword" href="forgot-password.html">Forgot Password?</a>
