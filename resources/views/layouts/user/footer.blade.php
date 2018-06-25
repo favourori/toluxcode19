@@ -114,22 +114,22 @@
                     <ul class="bottom-card">
                         <li>
                             <a href="#">
-                                <img src="assets/img/footer/card1.jpg" alt="card">
+                                <img src="/img/footer/card1.jpg" alt="card">
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="assets/img/footer/card2.jpg" alt="card">
+                                <img src="/img/footer/card2.jpg" alt="card">
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="assets/img/footer/card3.jpg" alt="card">
+                                <img src="/img/footer/card3.jpg" alt="card">
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="assets/img/footer/card4.jpg" alt="card">
+                                <img src="/img/footer/card4.jpg" alt="card">
                             </a>
                         </li>
                     </ul>

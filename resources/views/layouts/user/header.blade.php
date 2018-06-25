@@ -83,11 +83,11 @@
                 <i class="lni-pencil-alt"></i> Post An Ad
             </a>
 
-            <a class="tg-btn" href="{{ route('logout') }}"
+            <a title="Logout" class="tg-btn" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                 
-                <i class="lni-power-alt"></i> out
+                <i class="lni-enter"></i>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
