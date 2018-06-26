@@ -22,5 +22,5 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/iziToast.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}?version={{md5(date('H:i:s'))}}">
 </head>
