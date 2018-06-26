@@ -30,11 +30,16 @@ Route::get('lgas/{state_id}','LocationController@getLgas');
 // Admin Route
 Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
 
+    Route::get('apiprofile','UserController@apiProfile');
+    Route::get('apiuser','UserController@apiUser');
+
     // Skill routes
     Route::get('dashboard','UserController@dashboard');
     Route::get('profile','UserController@profile');
-    Route::get('apiprofile','UserController@apiProfile');
-    Route::get('apiuser','UserController@apiUser');
+    Route::get('social','UserController@social');
+    
+    Route::post('address/update','UserController@updateContact');
+    Route::post('social/update','UserController@updateSocial');
 
     Route::post('profile/update','UserController@updateProfile');
     Route::get('contact','UserController@contact');

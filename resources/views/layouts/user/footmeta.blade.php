@@ -10,6 +10,8 @@
     <script src="{{asset('js/nivo-lightbox.js')}}"></script>
     <script src="{{asset('js/jquery.slicknav.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{asset('js/map.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?radius=100&key=AIzaSyBCtk1wRKll07gVjp_AU76DBKts6jbrnyA&libraries=places&callback=initAutocomplete" async defer></script>
     <script src="{{asset('js/form-validator.min.js')}}"></script>
     <script src="{{asset('js/contact-form-script.min.js')}}"></script>
     <script src="{{asset('js/summernote.js')}}"></script>

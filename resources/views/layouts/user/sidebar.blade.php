@@ -32,6 +32,13 @@
                                             <span>Contact</span>
                                         </a>
                                     </li>
+
+                                    <li>
+                                        <a href="/account/social">
+                                            <i class="lni-heart"></i>
+                                            <span>Socials</span>
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="account-myads.html">
                                             <i class="lni-layers"></i>

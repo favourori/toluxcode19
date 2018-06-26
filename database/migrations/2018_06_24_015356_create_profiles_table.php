@@ -26,6 +26,7 @@ class CreateProfilesTable extends Migration
             $table->string('address')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
             $table->string('instagram')->nullable();
             $table->string('google')->nullable();
             $table->string('snapchat')->nullable();
