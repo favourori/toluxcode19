@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use App\Model\User;
 
 class LoginController extends Controller
 {
@@ -39,6 +40,15 @@ class LoginController extends Controller
     {
         $this->username = $this->findUsername();
         $this->middleware('guest')->except('logout');
+    }
+
+    public function adminLogin(Request $request){
+        $this->validateLogin($request);
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role_id' => 2])) {
+            return redirect('/admin/dashboard');
+        }else{
+            return $this->sendFailedLoginResponse($request); 
+        }
     }
 
     /**

@@ -17,6 +17,7 @@ class CreateTypesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->enum('form_type', ['radio', 'checkbox', 'select', 'input', 'textarea', 'map'])->default('input');
+            $table->string('subcategory')->nullable();
             $table->timestamps();
         });
     }

@@ -9,3 +9,7 @@
 select.form-control:not([size]):not([multiple]){
     height: calc(2.25rem + 6px);
 }
+
+.clickable-icon{
+    cursor: pointer;
+}
