@@ -25,7 +25,7 @@ class AdvertController extends ApiController
         if($validate->fails()){
             return $this->validationFailed("Advert Creation Failed", $validate->errors());
         }
-
+        
         $advert = new Advert;
         $advert->longitude = $request->longitude;
         $advert->latitude = $request->latitude;
@@ -41,7 +41,7 @@ class AdvertController extends ApiController
         $advert->lga_id = $request->lga_id;
         $advert->advert_hash = md5(Carbon::now());
         $advert->user_id = auth()->user()->id;
-        // $advert->attributes = $request->attributes;
+        $advert->attributes = $request->attr;
 
         if($advert->save()){
             for($i = 1; $i <= 4; $i++){
@@ -88,10 +88,10 @@ class AdvertController extends ApiController
             'description' => 'required|string',
             'price' => 'required|numeric|min:50',
             'phone1' => 'required|string',
-            'image1' => 'required|image|max:1024',
-            'image2' => 'required|image|max:1024',
-            'image3' => 'required|image|max:1024',
-            'image4' => 'required|image|max:1024',
+            // 'image1' => 'required|image|max:1024',
+            // 'image2' => 'required|image|max:1024',
+            // 'image3' => 'required|image|max:1024',
+            // 'image4' => 'required|image|max:1024',
             'country_id' => 'required|numeric|min:1',
             'state_id' => 'required|numeric|min:1',
             'lga_id' => 'required|numeric|min:1',
@@ -103,7 +103,7 @@ class AdvertController extends ApiController
         'phone1.required' => 'Phone number is required',
         'image1.required' => 'Image  is required',
         'address1.required' => 'Address  is required',
-        'image2.required' => 'Image  is required',
+    'image2.required' => 'Image  is required',
         'image3.required' => 'Image  is required',
         'image4.required' => 'Image  is required',
 

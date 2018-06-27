@@ -369,7 +369,9 @@ var vapp = new Vue({
                 attributes[this.replaceSpace(types[i].name)] = name;
 
             }
+            attributes = JSON.stringify(attributes).replace(new RegExp("\"", 'g'), '\'');
             console.log(attributes);
+
             file.append('title', this.title);
             file.append('description', this.description);
             file.append('phone', this.phone);
@@ -383,7 +385,7 @@ var vapp = new Vue({
             file.append('address1', this.address1);
             file.append('price', this.price);
             file.append('phone1', this.phone1);
-            file.append('attributes', JSON.stringify(attributes));
+            file.append('attr', attributes);
 
             axios.post('/account/advert/create', file)
                 .then(response => {
