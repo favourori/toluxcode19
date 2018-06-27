@@ -3,7 +3,7 @@ function login() {
     var data = $('#login').serialize();
     axios.post('/login', data)
         .then(response => {
-            success('Success', 'Login Successfully');
+            success('Success', 'Login Successful');
             location.href = "/account/dashboard";
         })
         .catch(err => {

@@ -108,13 +108,13 @@
                         <div class="share">
                             <span>Share: </span>
                             <div class="social-link">
-                                <a class="facebook" target="_blank" href="https://web.facebook.com/sharer/sharer.php?u={{url('advertdetail')}}/{{$advert->id}}">
+                                <a class="facebook" target="_blank" href="https://web.facebook.com/sharer/sharer.php?u={{url('advertdetail')}}/{{$advert->encoded_id}}">
                                     <i class="lni-facebook-filled"></i>
                                 </a>
-                                <a class="twitter" target="_blank" href="https://twitter.com/intent/tweet?url={{url('advertdetail')}}/{{$advert->id}}">
+                                <a class="twitter" target="_blank" href="https://twitter.com/intent/tweet?url={{url('advertdetail')}}/{{$advert->encoded_id}}">
                                     <i class="lni-twitter-filled"></i>
                                 </a>
-                                <a class="linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?title={{$advert->title}}&url={{url('advertdetail')}}/{{$advert->id}}">
+                                <a class="linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?title={{$advert->title}}&url={{url('advertdetail')}}/{{$advert->encoded_id}}">
                                     <i class="lni-linkedin-fill"></i>
                                 </a>
                                 <!-- <a class="google" href="#">
