@@ -17,6 +17,9 @@ var vapp = new Vue({
         lgas: [],
         lga_off: true,
         state_off: true,
+        subcategory_off: true,
+        type_off: true,
+        subtype_off: true,
         latitude: 0,
         longitude: 0,
         address: '',
@@ -26,14 +29,28 @@ var vapp = new Vue({
         instagram: '',
         google: '',
         snapchat: '',
-        linkedin: ''
+        linkedin: '',
+        categories: [],
+        subcategories: [],
+        types: [],
+        subtypes: [],
+        category_id: 0,
+        subcategory_id: 0,
+        type_id: 0,
+        subtype_id: 0,
+        specifications: [],
+        title: '',
+        price: 0,
+        phone1: '',
+        address1: '',
+        description: ''
     },
 
     watch: {
 
         country_id: function (oldval, newval) {
             if (oldval != 0) {
-                this.getStates(oldval);
+                this.getStates();
                 this.state_off = false;
             } else {
                 this.state_off = true;
@@ -42,10 +59,40 @@ var vapp = new Vue({
         },
         state_id: function (oldval, newval) {
             if (oldval != 0) {
-                this.getLgas(oldval);
+                this.getLgas();
                 this.lga_off = false;
             } else {
                 this.lga_off = true;
+            }
+
+        },
+
+        category_id: function (oldval, newval) {
+            if (oldval != 0) {
+                this.getSubCategories();
+                this.subcategory_off = false;
+            } else {
+                this.subcategory_off = true;
+            }
+
+        },
+
+        subcategory_id: function (oldval, newval) {
+            if (oldval != 0) {
+                this.getTypes();
+                this.type_off = false;
+            } else {
+                this.type_off = true;
+            }
+
+        },
+
+        type_id: function (oldval, newval) {
+            if (oldval != 0) {
+                this.getSubTypes();
+                this.type_off = false;
+            } else {
+                this.type_off = true;
             }
 
         }
@@ -55,6 +102,7 @@ var vapp = new Vue({
         this.getUserProfile();
         this.getCountries();
         this.getUser();
+        this.getCategories();
     },
 
     methods: {
@@ -156,6 +204,57 @@ var vapp = new Vue({
                 });
         },
 
+        // gets user
+        getCategories() {
+
+            axios.get('/api/v1/categories')
+                .then(response => {
+                    this.categories = response.data.data;
+
+                })
+                .catch(err => {
+
+                });
+        },
+
+        // gets user
+        getSubCategories() {
+
+            axios.get('/api/v1/subcategories/' + this.category_id)
+                .then(response => {
+                    this.subcategories = response.data.data;
+                })
+                .catch(err => {
+
+                });
+        },
+
+        // gets user
+        getTypes() {
+
+            axios.get('/api/v1/types/' + this.subcategory_id)
+                .then(response => {
+                    this.types = response.data.data;
+
+                })
+                .catch(err => {
+
+                });
+        },
+
+        // gets user
+        getSubType() {
+
+            axios.get('/api/v1/subtypes/' + this.type_id)
+                .then(response => {
+                    this.subtypes = response.data.data;
+
+                })
+                .catch(err => {
+
+                });
+        },
+
         // Gets user profile
         getUserProfile() {
 
@@ -193,7 +292,7 @@ var vapp = new Vue({
 
         //  Gets countries
         getCountries() {
-            axios.get('/countries')
+            axios.get('/api/v1/countries')
                 .then(response => {
                     this.countries = response.data.data;
                 })
@@ -204,7 +303,7 @@ var vapp = new Vue({
 
         // Gets states
         getStates() {
-            axios.get('/states/' + this.country_id)
+            axios.get('/api/v1/states/' + this.country_id)
                 .then(response => {
                     this.states = response.data.data;
                 })
@@ -215,13 +314,117 @@ var vapp = new Vue({
 
         // Gets lgas
         getLgas() {
-            axios.get('/lgas/' + this.state_id)
+            axios.get('/api/v1/lgas/' + this.state_id)
                 .then(response => {
                     this.lgas = response.data.data;
                 })
                 .catch(err => {
 
                 });
+        },
+
+        createAdvert() {
+            let file = new FormData();
+            let files = document.querySelector('#image1').files;
+            $.each(files, function (key, value) {
+                file.append('image1', value);
+            });
+
+            files = document.querySelector('#image2').files;
+            $.each(files, function (key, value) {
+                file.append('image2', value);
+            });
+
+            files = document.querySelector('#image3').files;
+            $.each(files, function (key, value) {
+                file.append('image3', value);
+            });
+
+            files = document.querySelector('#image4').files;
+            $.each(files, function (key, value) {
+                file.append('image4', value);
+            });
+
+            let types = this.types;
+            let attributes = {};
+            // console.log($("#" + this.replaceSpace(types[0].name)));
+            for (var i = 0; i < types.length; i++) {
+                var name = {};
+                if (types[i].form_type == 'select') {
+                    name['value'] = [$("#" + this.replaceSpace(types[i].name) + " :selected").val()];
+                }
+
+                if (types[i].form_type == 'radio') {
+                    name['value'] = [$("#" + this.replaceSpace(types[i].name) + ":checked").val()];
+                }
+
+                if (types[i].form_type == 'checkbox') {
+                    var temp = $("#" + this.replaceSpace(types[i].name) + ":checked");
+                    secondtemp = [];
+                    temp.each(function (i) {
+                        secondtemp.push($(this).val());
+                    });
+                    name['value'] = secondtemp;
+                }
+                attributes[this.replaceSpace(types[i].name)] = name;
+
+            }
+            console.log(attributes);
+            file.append('title', this.title);
+            file.append('description', this.description);
+            file.append('phone', this.phone);
+            file.append('state_id', this.state_id);
+            file.append('country_id', this.country_id);
+            file.append('lga_id', this.lga_id);
+            file.append('category_id', this.category_id);
+            file.append('subcategory_id', this.subcategory_id);
+            file.append('latitude', this.latitude);
+            file.append('longitude', this.longitude);
+            file.append('address1', this.address1);
+            file.append('price', this.price);
+            file.append('phone1', this.phone1);
+            file.append('attributes', JSON.stringify(attributes));
+
+            axios.post('/account/advert/create', file)
+                .then(response => {
+                    success('Success', 'Advert Created Successfully');
+                })
+                .catch(err => {
+                    if (err.response.data.response == 422) {
+                        error('Oops!', 'Check required fields')
+                        this.errors = err.response.data.errors;
+                    }
+                    if (err.response.data.response == 401) {
+                        error('Oops!', err.response.data.message)
+                    }
+                    if (err.response.data.response == 404) {
+                        error('Oops!', err.response.data.message)
+                    }
+                });
+        },
+
+        replaceSpace(value) {
+            return value.replace(" ", "_");
+        },
+
+        triggerFile(idname) {
+
+            $("#" + idname).trigger('click');
+        },
+
+
+
+        readIMG(idname) {
+            let input = $("#" + idname)
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#' + idname).attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
         }
 
 

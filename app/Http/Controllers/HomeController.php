@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Category;
+use App\Model\Advert;
+// use App\Model\Category;
+
 
 class HomeController extends Controller
 {
@@ -13,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,6 +27,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $adverts = Advert::all();
+        $adverts->load('image');
+        $categories = Category::all();
+
+        return view('index', compact('adverts', 'categories'));
+    }
+
+    public function categories()
+    {
+        $adverts = Advert::all();
+        $adverts->load('image');
+        $categories = Category::all();
+
+        $categories->load('advert.subcategory');
+        // dd($categories);
+        return view('categories', compact('adverts', 'categories'));
     }
 }

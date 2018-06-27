@@ -23,11 +23,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="category.html">
+                    <a class="nav-link" href="/categories">
                         Categories
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Listings
                     </a>
@@ -62,9 +62,9 @@
                         <a class="dropdown-item" href="blog-grid-full-width.html"> Blog full width </a>
                         <a class="dropdown-item" href="single-post.html">Blog Details</a>
                     </div>
-                </li>
+                </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">
+                    <a class="nav-link" href="/contact">
                         Contact
                     </a>
                 </li>
@@ -79,7 +79,7 @@
                 
                 </li>
             </ul>
-            <a class="tg-btn" href="post-ads.html">
+            <a class="tg-btn" href="{{url('account/advert')}}">
                 <i class="lni-pencil-alt"></i> Post An Ad
             </a>
 

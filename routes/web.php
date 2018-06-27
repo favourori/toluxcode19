@@ -15,23 +15,35 @@ Route::get('/admin/login', function () {
     return view('admin.login');
 });
 
-Route::get('/deploy', function () {
-    dd("Auto deploy test");
+Route::get('/contact', function () {
+    return view('contact');
 });
 
-Route::get('/', function () {
-    return view('index');
-});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/categories', 'HomeController@categories')->name('categories');
+
+Route::post('/newsletter/subscribe', 'NewsLetterController@subscribe')->name('newsletter.subscribe');
+Route::get('/newsletter/unsubscribe/{email}/{hash}', 'NewsLetterController@unsubscribe')->name('newsletter.unsubscribe');
+
 
 Route::post('/admin/login', 'Auth\LoginController@adminLogin')->name('admin.login');
 
-Route::get('countries','LocationController@getCountries');
-Route::get('states/{country_id}','LocationController@getStates');
-Route::get('lgas/{state_id}','LocationController@getLgas');
+Route::group(['prefix' => 'api/v1/'], function () {
+    Route::get('countries','LocationController@getCountries');
+    Route::get('states/{country_id}','LocationController@getStates');
+    Route::get('lgas/{state_id}','LocationController@getLgas');
+
+    Route::get('categories','CategoryController@getCategories');
+    Route::get('subcategories/{category_id}','CategoryController@getSubCategories');
+
+    Route::get('types/{subcategory_id}','TypeController@getTypes');
+    Route::get('subtype/{type_id}','TypeController@getSubTypes');
+
+});
+
 
 // Admin Route
 Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
@@ -43,12 +55,16 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
     Route::get('dashboard','UserController@dashboard');
     Route::get('profile','UserController@profile');
     Route::get('social','UserController@social');
+
+    Route::get('advert','AdvertController@advert');
     
     Route::post('address/update','UserController@updateContact');
     Route::post('social/update','UserController@updateSocial');
 
     Route::post('profile/update','UserController@updateProfile');
     Route::get('contact','UserController@contact');
+
+    Route::post('advert/create','AdvertController@createAdvert');
     
     
     Route::post('skill/create','Api\Admin\SkillController@createSkill');
@@ -65,7 +81,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
 
 
 // Admin Route
-Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
 
     Route::get('dashboard','Admin\AdminController@dashboard');
     Route::get('manage/categories','Admin\CategoryController@category');

@@ -19,4 +19,15 @@ class Category extends Model
     public function subcategory(){
         return $this->hasMany(SubCategory::class);
     }
+
+    public function advert(){
+        return $this->hasMany(Advert::class);
+    }
+
+    public function oneadvert(){
+        return $this->advert();
+    }
+
+    
+
 }

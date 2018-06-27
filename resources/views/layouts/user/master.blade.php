@@ -12,7 +12,7 @@
         <div id="content" class="section-padding">
         <div class="container">
             <div class="row">
-                @include('layouts.user.sidebar')
+                @yield('sidebar')
                 @yield('dashboard-space')
             </div>
         </div>
@@ -22,6 +22,8 @@
         @include('layouts.user.footer')
 
         @include('layouts.user.footmeta')
+        
+        @yield('custom-script')
     </body>
 
 </html>

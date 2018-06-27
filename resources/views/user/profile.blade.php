@@ -22,6 +22,10 @@
 
 @endsection
 
+@section('sidebar')
+@include('layouts.user.sidebar')
+@endsection
+
 @section('dashboard-space')
 
     <div class="col-sm-12 col-md-8 col-lg-9">

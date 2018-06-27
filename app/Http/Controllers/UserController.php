@@ -7,7 +7,6 @@ use App\Model\User;
 use App\Model\Profile;
 use App\Http\Resources\GenericResource;
 use Illuminate\Support\Facades\Validator;
-// use App\Http\Controllers\ApiController;
 
 class UserController extends ApiController
 {

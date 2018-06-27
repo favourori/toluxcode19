@@ -15,14 +15,21 @@ class CreateAdvertsTable extends Migration
     {
         Schema::create('adverts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->string('title');
-            $table->string('attributes');
+            $table->text('attributes')->nullable();
             $table->text('description');
             $table->string('phone');
+            $table->string('advert_hash', 100)->unique();
             $table->integer('user_id')->unsigned();
-            $table->string('state_id');
-            $table->string('lga_id');
+            $table->integer('state_id')->unsigned();
+            $table->integer('country_id')->unsigned();
+            $table->integer('category_id')->unsigned();
+            $table->integer('subcategory_id')->unsigned();
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('address')->nullable();
+
+            $table->integer('lga_id')->unsigned()->nullable();
             $table->double('price', 15, 5);
             $table->timestamps();
 

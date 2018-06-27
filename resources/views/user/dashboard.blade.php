@@ -22,6 +22,10 @@
 
 @stop
 
+@section('sidebar')
+@include('layouts.user.sidebar')
+@endsection
+
 @section('content')
 
 

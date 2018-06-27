@@ -40,9 +40,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="account-myads.html">
+                                        <a href="/account/advert">
                                             <i class="lni-layers"></i>
-                                            <span>My Ads</span>
+                                            <span>My Adverts</span>
                                         </a>
                                     </li>
                                     <li>

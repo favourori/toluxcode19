@@ -20,3 +20,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
     <script src="{{asset('js/root.js')}}?version={{md5(date('H:i:s'))}}"></script>
+
+     @if(Session::has('success'))   
+            <script>
+            success('Good', "{{Session::get('success')}}")
+            </script>
+        @endif
+
+        @if(Session::has('error'))
+        <script>
+            error('Oops!', "{{Session::get('error')}}")
+        </script>
+        @endif
