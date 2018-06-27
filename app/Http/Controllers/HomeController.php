@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Category;
 use App\Model\Advert;
-// use App\Model\Category;
+use App\Model\Subtype;
 
 
 class HomeController extends Controller
@@ -30,7 +30,10 @@ class HomeController extends Controller
         $adverts = Advert::all();
         $adverts->load('image');
         $categories = Category::all();
-
+        $adverts->each(function ($item, $key){
+            $item->encoded_id = $this->encode($item->id);
+        });
+        // dd($adverts);
         return view('index', compact('adverts', 'categories'));
     }
 
@@ -43,5 +46,27 @@ class HomeController extends Controller
         $categories->load('advert.subcategory');
         // dd($categories);
         return view('categories', compact('adverts', 'categories'));
+    }
+
+    public function advertDetail(Request $request, $advert_id, $name)
+    {
+
+        $advert = Advert::find($this->decode($advert_id));
+        if(is_null($advert)){
+            return "";
+        }
+        $raw = str_replace("'","\"",$advert->attributes);
+        $decoded = json_decode($raw, true) == null ? [] : json_decode($raw, true);
+        
+        $specification = [];
+        
+        foreach($decoded as $key => $value){
+            $temp = Subtype::whereIn('id', $value)->get();
+            $specification[$key] = $temp;
+            
+        }
+        
+        $advert->load('image','category','subcategory');
+        return view('singleadvert', compact('advert', 'specification'));
     }
 }

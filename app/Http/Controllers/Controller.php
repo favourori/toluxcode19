@@ -23,4 +23,35 @@ class Controller extends BaseController
         }
         return $enum;
     }
+
+    public function decode($value){
+        $multiplier = 6;
+        $advertid_decoded = substr($value, ($multiplier), strlen($value) - ($multiplier * 2));
+        if(is_numeric($advertid_decoded)){
+            return $advertid_decoded;
+        }else{
+            return false;
+        }
+        
+    }
+
+    public function encode($value){
+        $start = "";
+        $end = "";
+        $multiplier = 6;
+        $alpha = "ABCDEFGHIJKLMNOPQRSTUPWXYZabcdefghijklmanopqrstuvwxyz";
+        
+        for($i = 0; $i < $multiplier; $i++){
+            $rand = rand(0,strlen($alpha));
+            $start .= substr($alpha,$rand, 1);
+        }
+
+        for($i = 0; $i < $multiplier; $i++){
+            $rand = rand(0,strlen($alpha));
+            $end .= substr($alpha,$rand, 1);
+        }
+        
+        return $start.$value.$end;
+        
+    }
 }

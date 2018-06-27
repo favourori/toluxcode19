@@ -95,7 +95,7 @@
                             <div class="icon">
                                 <i class="lni-heart"></i>
                             </div>
-                            <a href="{{url('advert')}}/{{str_replace(' ', '-', $advert->title)}}">
+                            <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
                                 <img class="img-fluid center-block" src="{{asset($advert->image->first()->image)}}" alt="">
                             </a>
                         </figure>
@@ -127,7 +127,7 @@
                             </ul>
                             <div class="btn-list">
                                 <a class="btn-price" href="#">&#8358; {{$advert->price}}</a>
-                                <a class="btn btn-common" href="{{url('advert')}}/{{str_replace(' ', '-', $advert->title)}}">
+                                <a class="btn btn-common" href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
                                     <i class="lni-list"></i>
                                     View Details
                                 </a>
@@ -142,7 +142,7 @@
     </section>
 
 
-    <section class="featured-lis section-padding">
+    <!-- <section class="featured-lis section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 wow fadeIn" data-wow-delay="0.5s">
@@ -515,5 +515,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 @endsection

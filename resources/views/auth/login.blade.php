@@ -28,7 +28,7 @@
                         <h3>
                             Login Now
                         </h3>
-                        <form role="form" class="login-form" method="post" action="{{route('login')}}">
+                        <form role="form" class="login-form" onsubmit="login" id="login" method="post" action="{{route('login')}}">
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-user"></i>
@@ -64,7 +64,7 @@
                             </div>
                             <br>
                             <div class="text-center">
-                                <button class="btn btn-common btn-primary btn-block"><i class="lni-facebook-filled"> </i> Login with facebook</button>
+                                <button type="submit" class="btn btn-common btn-primary btn-block"><i class="lni-facebook-filled"> </i> Login with facebook</button>
                             </div>
                             
                             

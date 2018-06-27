@@ -14,6 +14,7 @@ class AdvertController extends ApiController
 {
     public function advert(){
         $adverts = auth()->user()->advert;
+        
         return view('user.advert', $adverts);
     }
 
