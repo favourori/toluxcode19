@@ -11,23 +11,23 @@
                         <span class="lni-menu"></span>
                         <span class="lni-menu"></span>
                     </button>
-                    <a href="index.html" class="navbar-brand">
-                        <img src="assets/img/logo.png" alt="">
+                    <a href="/" class="navbar-brand">
+                        <img src="{{asset('/img/property-logo.png')}}" alt="">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="main-navbar">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="/">
                                 Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="category.html">
+                            <a class="nav-link" href="/categories">
                                 Categories
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Listings
                             </a>
@@ -36,11 +36,11 @@
                                 <a class="dropdown-item" href="adlistinglist.html">Ad Listing</a>
                                 <a class="dropdown-item" href="ads-details.html">Listing Detail</a>
                             </div>
-                        </li>
+                        </li> -->
                         
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">
+                            <a class="nav-link" href="/contact">
                                 Contact
                             </a>
                         </li>
@@ -58,12 +58,12 @@
 
             <ul class="mobile-menu">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="category.html">Categories</a>
+                    <a href="/category">Categories</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#">
                         Listings
                     </a>
@@ -127,42 +127,30 @@
                 </li>
                 <li>
                     <a href="contact.html">Contact Us</a>
-                </li>
+                </li> -->
                 <li>
                     <a class="active">My Account</a>
                     <ul class="dropdown">
-                        <li>
-                            <a href="account-profile-setting.html">
-                                <i class="lni-home"></i> Account Home</a>
-                        </li>
-                        <li>
-                            <a href="account-myads.html">
-                                <i class="lni-wallet"></i> My Ads</a>
-                        </li>
-                        <li>
-                            <a href="account-favourite-ads.html">
-                                <i class="lni-heart"></i> Favourite ads</a>
-                        </li>
-                        <li>
-                            <a href="account-archived-ads.html">
-                                <i class="lni-folder"></i> Archived</a>
-                        </li>
-                        <li>
-                            <a class="active" href="login.html">
-                                <i class="lni-lock"></i> Log In</a>
-                        </li>
-                        <li>
-                            <a href="signup.html">
-                                <i class="lni-user"></i> Signup</a>
-                        </li>
-                        <li>
-                            <a href="forgot-password.html">
-                                <i class="lni-reload"></i> Forgot Password</a>
-                        </li>
-                        <li>
-                            <a href="account-close.html">
-                                <i class="lni-close"></i>Account close</a>
-                        </li>
+                        @if(Auth::check())
+                            <li>
+                                <a href="/account/dashboard">
+                                    <i class="lni-home"></i> Account Home</a>
+                            </li>
+                            <li>
+                                <a href="/account/advert">
+                                    <i class="lni-wallet"></i> My Ads</a>
+                            </li>
+                        @else
+                            <li>
+                                <a class="active" href="/login">
+                                    <i class="lni-lock"></i> Log In</a>
+                            </li>
+                            <li>
+                                <a href="/register">
+                                    <i class="lni-user"></i> Signup</a>
+                            </li>
+                        @endif
+                      
                     </ul>
                 </li>
             </ul>

@@ -78,11 +78,11 @@
                                 </ul>
                             </nav>
                         </div>
-                        <div class="widget">
+                        <!-- <div class="widget">
                             <h4 class="widget-title">Advertisement</h4>
                             <div class="add-box">
                                 <img class="img-fluid" src="/img/img1.jpg" alt="">
                             </div>
-                        </div>
+                        </div> -->
                     </aside>
                 </div>

@@ -6,6 +6,7 @@ use App\Model\User;
 use App\Model\Profile;
 use App\Model\Company;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,7 +14,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Carbon\Carbon;
-class RegisterController extends Controller
+
+class RegisterController extends ApiController
 {
     /*
     |--------------------------------------------------------------------------
@@ -53,9 +55,43 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
-        $this->validator($request->all())->validate();
-
+        $validate = $this->validator($request->all());
+        if($validate->fails()){
+            if($validate->fails()){
+                return $this->validationFailed('Registration Failed', $validate->errors());
+            }
+        }
         event(new Registered($user = $this->create($request->all())));
+ 
+        $profile = new Profile;
+        $user->profile()->save($profile);
+
+        $company = new Company;
+        $user->company()->save($company);
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function facebookRegister(Request $request)
+    {
+        // $validate = $this->validator($request->all());
+        // if($validate->fails()){
+        //     if($validate->fails()){
+        //         return $this->validationFailed('Registration Failed', $validate->errors());
+        //     }
+        // }
+        $data = $request->all();
+        $data['password'] = md5(date('Y h:i'));
+        event(new Registered($user = $this->create($data)));
  
         $profile = new Profile;
         $user->profile()->save($profile);
@@ -115,7 +151,7 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {   
         return User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],

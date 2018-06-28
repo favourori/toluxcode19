@@ -28,7 +28,7 @@
                         <h3>
                             Register
                         </h3>
-                        <form action="{{Route('register')}}" class="login-form" method="post">
+                        <form action="{{Route('register')}}" id="register" onsubmit="register()" class="login-form" method="post">
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-user"></i>
@@ -101,16 +101,16 @@
                             </div>
                             <div class="form-group mb-3">
                                 <div class="checkbox">
-                                    <input type="checkbox" name="rememberme" value="rememberme">
+                                    <input type="checkbox" id="agree">
                                     <label>By registering, you accept our Terms & Conditions</label>
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-common btn-block log-btn">Register</button>
+                                <button type="submit" id="register-button" class="btn btn-common btn-block log-btn">Register</button>
                             </div>
                             <br>
                             <div class="text-center">
-                                <button class="btn btn-common btn-primary btn-block"><i class="lni-facebook-filled"> </i> Login with facebook</button>
+                                <button type="button" onclick="fbRegister()" class="btn btn-common btn-primary btn-block"><i class="lni-facebook-filled"> </i> Login with facebook</button>
                             </div>
                         </form>
                     </div>

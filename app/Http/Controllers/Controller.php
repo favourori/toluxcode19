@@ -39,7 +39,7 @@ class Controller extends BaseController
         $start = "";
         $end = "";
         $multiplier = 6;
-        $alpha = "ABCDEFGHIJKLMNOPQRSTUPWXYZabcdefghijklmanopqrstuvwxyz";
+        $alpha = "ABCDEFGHIJKLMNOPQRSTUPWXYZabcdefghijklmanopqrstuvwxyz0123456789";
         
         for($i = 0; $i < $multiplier; $i++){
             $rand = rand(0,strlen($alpha));

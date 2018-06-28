@@ -28,7 +28,7 @@
                         <h3>
                             Login Now
                         </h3>
-                        <form role="form" class="login-form" onsubmit="login" id="login" method="post" action="{{route('login')}}">
+                        <form  class="login-form" onsubmit="login()" id="login" method="post">
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-user"></i>
@@ -57,14 +57,14 @@
                                     <input type="checkbox" name="remember" value="remember">
                                     <label>Keep me logged in</label>
                                 </div>
-                                <a class="forgetpassword" href="forgot-password.html">Forgot Password?</a>
+                                <a class="forgetpassword" href="/password/reset">Forgot Password?</a>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-common btn-block log-btn">Submit</button>
                             </div>
                             <br>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-common btn-primary btn-block"><i class="lni-facebook-filled"> </i> Login with facebook</button>
+                                <button type="submit" onclick="fbLogin()" class="btn btn-common btn-primary btn-block"><i class="lni-facebook-filled"> </i> Login with facebook</button>
                             </div>
                             
                             

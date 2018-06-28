@@ -40,8 +40,9 @@
                                     <i class="lni-layers"></i>
                                     <div class="tg-select">
                                         <select>
-                                        @foreach($categories as $key => $category)
                                         <option value="none">Select a Category</option>
+                                        @foreach($categories as $key => $category)
+                                        
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                         </select>
@@ -126,7 +127,7 @@
                                 </li>
                             </ul>
                             <div class="btn-list">
-                                <a class="btn-price" href="#">&#8358; {{$advert->price}}</a>
+                                <a class="btn-price" href="#">&#8358; {{number_format($advert->price, 2)}}</a>
                                 <a class="btn btn-common" href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
                                     <i class="lni-list"></i>
                                     View Details

@@ -39,8 +39,11 @@
                                     <i class="lni-layers"></i>
                                     <div class="tg-select">
                                         <select>
-                                        <option value="none">Select a Category</option>
-                                        
+                                            <option value="none">Select a Category</option>
+                                              
+                                            @foreach($categories as $key => $category)
+                                              <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

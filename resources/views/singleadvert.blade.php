@@ -1,6 +1,17 @@
 
 @extends('layouts.user.master')
 
+@section('socials')
+    <meta name="author" content="Classially">
+    <meta name="description" content="your advert site">
+    <meta property="og:url"   content="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}" />
+    <meta property="og:type"   content="article" />
+    <meta property="og:title"  content="{{$advert->title}}"/>
+    <meta property="og:description"  content="{{$advert->description}}" />
+    <meta property="og:image"  content="{{$advert->image[0]->image}}" />
+
+@endsection
+
 @section('landing')
 <div class="page-header" style="background: url({{asset('/img/banner1.jpg')}});">
         <div class="container">
