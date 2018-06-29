@@ -66,7 +66,7 @@
                     <div class="details-box">
                         <div class="ads-details-info">
                             <h2>{{$advert->title}}</h2>
-                            <p class="mb-2">{{$advert->description}}</p>
+                            <p class="mb-2">{{substr($advert->description, 0, 80)}}</p>
                             <div class="details-meta">
                                 <span>
                                     <a href="#">
@@ -79,7 +79,7 @@
                                 </span>
                             </div>
                             @foreach($specification as $key => $specs)
-                                <h4 class="title-small mb-3">{{str_replace('_', ' ',$key)}}:</h4>
+                                <h4 class="title-small mb-3" style="color: grey">{{str_replace('_', ' ',$key)}}:</h4>
                                 <ul class="list-specification">
                                     @foreach($specs as $key1 => $value)
                                     <li>

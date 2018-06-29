@@ -32,7 +32,7 @@
         <div class="page-content">
             <div class="inner-box">
                 <div class="dashboard-box">
-                    <h2 class="dashbord-title">Adverts</h2>
+                    <h2 class="dashbord-title">Create Advert</h2>
                 </div>
                 <div class="dashboard-wrapper">
                     <div id="root">
@@ -86,25 +86,25 @@
 
                                         <div class="form-group mb-3">
                                             <label class="control-label">Title<span class="error">*</span></label>
-                                            <input class="form-control input-md" @focus="errors = {}" v-model="title" type="text">
+                                            <input class="form-control input-md" placeholder="Enter the title of the product" @focus="errors = {}" required v-model="title" type="text">
                                             <span class="error" v-if="errors.hasOwnProperty('title')">@{{errors['title'][0]}}</span>
                                         </div>
 
                                         <div class="form-group mb-3">
                                             <label class="control-label">Price<span class="error">*</span></label>
-                                            <input class="form-control input-md" @focus="errors = {}" v-model="price" type="number">
+                                            <input class="form-control input-md" placeholder="Enter the price" @focus="errors = {}" required v-model="price" type="number">
                                             <span class="error" v-if="errors.hasOwnProperty('price')">@{{errors['price'][0]}}</span>
                                         </div>
 
                                         <div class="form-group mb-3">
                                             <label class="control-label">Phone<span class="error">*</span></label>
-                                            <input class="form-control input-md" @focus="errors = {}" v-model="phone1" type="text">
+                                            <input class="form-control input-md" type="number" placeholder="Enter Phone number" required @focus="errors = {}" v-model="phone1" type="text">
                                             <span class="error" v-if="errors.hasOwnProperty('phone1')">@{{errors['phone1'][0]}}</span>
                                         </div>
 
                                         <div class="form-group mb-3">
                                             <label class="control-label">Description</label>
-                                            <textarea class="form-control input-md" @focus="errors = {}" v-model="description"></textarea>
+                                            <textarea class="form-control input-md" rows="6" placeholder="Describe your product, use appropriate keywords as that would aid advert search" @focus="errors = {}" requires minLength="30" v-model="description"></textarea>
                                             <span class="error" v-if="errors.hasOwnProperty('description')">@{{errors['description'][0]}}</span>
                                         </div>
                                         
@@ -159,7 +159,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
                                         <label class="control-label">Address</label>
-                                        <textarea class="form-control input-md" @focus="errors = {}" v-model="address1"></textarea>
+                                        <textarea class="form-control input-md" placeholder="Enter your address" @focus="errors = {}" v-model="address1"></textarea>
                                         <span class="error" v-if="errors.hasOwnProperty('address1')">@{{errors['address1'][0]}}</span>
                                     </div>
                                 </div>
@@ -167,48 +167,60 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                     <div class="col-md-4">
-                                            <label class="tg-fileuploadlabel" @click="triggerFile('image1')" for="tg-photogallery">
+                                            <label class="tg-fileuploadlabel" style="position: relative;" @click="triggerFile('image1')" for="tg-photogallery">
+                                                <div class="overlay-image text-center">
+                                                    <img src="" width="100%" id="image-show1">
+                                                </div>
                                                 <span></span>
                                                 <span>Upload Image</span>
                                                 <span><i class="lni-plus" style="font-size: 45px; color: grey"></i></span>
                                                 <span>Maximum upload file size: 500 KB</span>
-                                                <input style="visibility: hidden" class="tg-fileinput" id="image1" type="file" name="file">
+                                                <input style="visibility: hidden" @change="readIMG('image1', 'image-show1')" class="tg-fileinput" id="image1" type="file" name="file">
                                             </label>
                                             <span class="error" v-if="errors.hasOwnProperty('image1')">@{{errors['image1'][0]}}</span>
                                     
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label class="tg-fileuploadlabel" @click="triggerFile('image2')" for="tg-photogallery">
+                                            <label class="tg-fileuploadlabel" style="position: relative;" @click="triggerFile('image2')" for="tg-photogallery">
+                                                <div class="overlay-image text-center">
+                                                    <img src="" width="100%" id="image-show2">
+                                                </div>    
                                                 <span></span>
                                                 <span>Upload Image</span>
                                                 <span><i class="lni-plus" style="font-size: 45px; color: grey"></i></span>
                                                 <span>Maximum upload file size: 500 KB</span>
-                                                <input style="visibility: hidden" class="tg-fileinput" id="image2" type="file" name="file">
+                                                <input style="visibility: hidden" @change="readIMG('image2', 'image-show2')" class="tg-fileinput" id="image2" type="file" name="file">
                                             </label>
                                             <span class="error" v-if="errors.hasOwnProperty('image2')">@{{errors['image2'][0]}}</span>
                                     
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label class="tg-fileuploadlabel" @click="triggerFile('image3')" for="tg-photogallery">
-                                                <span></span>
+                                            <label class="tg-fileuploadlabel" style="position: relative;" @click="triggerFile('image3')" for="tg-photogallery">
+                                            <div class="overlay-image text-center">
+                                                <img src="" width="100%" id="image-show3">
+                                            </div>    
+                                            <span></span>
                                                 <span>Upload Image</span>
                                                 <span><i class="lni-plus" style="font-size: 45px; color: grey"></i></span>
                                                 <span>Maximum upload file size: 500 KB</span>
-                                                <input style="visibility: hidden" class="tg-fileinput" id="image3" type="file" name="file">
+                                                <input style="visibility: hidden" @change="readIMG('image3', 'image-show3')" class="tg-fileinput" id="image3" type="file" name="file">
                                             </label>
                                             <span class="error" v-if="errors.hasOwnProperty('image3')">@{{errors['image3'][0]}}</span>
                                     
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label class="tg-fileuploadlabel" @click="triggerFile('image4')" for="tg-photogallery">
+                                            <label class="tg-fileuploadlabel" style="position: relative;" @click="triggerFile('image4')" for="tg-photogallery">
+                                            <div class="overlay-image text-center">
+                                                <img src="" width="100%" id="image-show4">
+                                            </div>
                                                 <span></span>
                                                 <span>Upload Image</span>
                                                 <span><i class="lni-plus" style="font-size: 45px; color: grey"></i></span>
                                                 <span>Maximum upload file size: 500 KB</span>
-                                                <input style="visibility: hidden" class="tg-fileinput" id="image4" type="file" name="file">
+                                                <input style="visibility: hidden" @change="readIMG('image4', 'image-show4')" class="tg-fileinput" id="image4" type="file" name="file">
                                             </label>
                                             <span class="error" v-if="errors.hasOwnProperty('image4')">@{{errors['image4'][0]}}</span>
                                     
@@ -278,18 +290,3 @@
         }
 </script>
 @endsection
-
-
-
-<!-- <div class="overlay" style="
-    position:  absolute;
-    background-color:  black;
-    width: 100%;
-    top: 0;
-    bottom:  0;
-    display:  block;
-    opacity: 0.6;
-    /* margin: 2px 15px 2px 15px; */
-    /* padding: 10px; */
-    z-index: 2000;
-"></div> -->

@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/owl.carousel.css')}}">
 
     <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/iziToast.css')}}?version=efefer>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/iziToast.css')}}?version=efefer">
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}?version={{md5(date('H:i:s'))}}">
 </head>

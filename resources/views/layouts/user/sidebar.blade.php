@@ -9,7 +9,7 @@
                                 </figure>
                                 <div class="usercontent">
                                     <h3>User</h3>
-                                    <h4>Administrator</h4>
+                                    <h4>{{auth()->user()->username}}</h4>
                                 </div>
                             </div>
                             <nav class="navdashboard">
@@ -42,10 +42,18 @@
                                     <li>
                                         <a href="/account/advert">
                                             <i class="lni-layers"></i>
+                                            <span>Create Advert</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/account/myadvert">
+                                            <i class="lni-layers"></i>
                                             <span>My Adverts</span>
                                         </a>
                                     </li>
-                                    <li>
+
+                                    <!-- <li>
                                         <a href="offermessages.html">
                                             <i class="lni-envelope"></i>
                                             <span>Offers/Messages</span>
@@ -68,11 +76,16 @@
                                             <i class="lni-star"></i>
                                             <span>Privacy Settings</span>
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li>
-                                        <a href="#">
+                                        <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                             <i class="lni-enter"></i>
                                             <span>Logout</span>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+										@csrf
+									</form>
                                         </a>
                                     </li>
                                 </ul>

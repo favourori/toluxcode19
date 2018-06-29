@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
     Route::get('social','UserController@social');
 
     Route::get('advert','AdvertController@advert');
+    Route::get('myadvert','AdvertController@myAdvert');
     
     Route::post('address/update','UserController@updateContact');
     Route::post('social/update','UserController@updateSocial');
@@ -70,6 +71,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
     Route::get('contact','UserController@contact');
 
     Route::post('advert/create','AdvertController@createAdvert');
+    Route::delete('advert/delete/{advert_id}','AdvertController@deleteAdvert');
     
     
     Route::post('skill/create','Api\Admin\SkillController@createSkill');
@@ -92,7 +94,10 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::get('manage/categories','Admin\CategoryController@category');
     Route::get('manage/subcategories','Admin\CategoryController@subcategory');
     Route::post('manage/category/create','Admin\CategoryController@createCategory')->name('admin.category.create');
+    Route::patch('manage/category/edit/{category_id}','Admin\CategoryController@editCategory')->name('admin.category.edit');
     Route::post('manage/subcategory/create','Admin\CategoryController@createSubCategory')->name('admin.subcategory.create');
+    Route::patch('manage/subcategory/edit/{subcategory_id}','Admin\CategoryController@editSubCategory')->name('admin.subcategory.edit');
+    
     Route::delete('manage/category/delete/{id}','Admin\CategoryController@deleteCategory')->name('admin.category.delete');
     Route::delete('manage/subcategory/delete/{id}','Admin\CategoryController@deleteSubCategory')->name('admin.subcategory.delete');
 
@@ -100,10 +105,13 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::get('manage/types','Admin\TypeController@type');
     Route::get('manage/subtypes','Admin\TypeController@subtype');
     Route::post('manage/type/create','Admin\TypeController@createType')->name('admin.type.create');
+    Route::patch('manage/type/edit/{type_id}','Admin\TypeController@editType')->name('admin.type.edit');
+    
     Route::post('manage/subtype/create','Admin\TypeController@createSubType')->name('admin.subtype.create');
     Route::delete('manage/type/delete/{id}','Admin\TypeController@deleteType')->name('admin.type.delete');
     Route::delete('manage/subtype/delete/{id}','Admin\TypeController@deleteSubType')->name('admin.subtype.delete');
-
+    Route::patch('manage/subtype/edit/{subtype_id}','Admin\TypeController@editSubType')->name('admin.subtype.edit');
+    
     Route::get('manage/users','Admin\UserController@user');
     Route::post('manage/user/create','Admin\UserController@createUser')->name('admin.user.create');
     Route::delete('manage/user/delete/{id}','Admin\UserController@deleteUser')->name('admin.user.delete');

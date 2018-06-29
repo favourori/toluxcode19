@@ -55,6 +55,24 @@ class CategoryController extends ApiController
         }
     }
 
+    public function editCategory(Request $request, $category_id){
+        $this->validator($request->all())->validate();
+        $category = Category::find($category_id);
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $image = $this->processImage($request);
+        if(!is_null($image)){
+            @unlink(public_path().$category->image);
+            $category->image = $image;
+        }
+        
+        if($category->save()){
+            return back()->with('success', 'Category Edited Successfully');
+        }else{
+            return back()->with('error', 'Category Edit failed');
+        }
+    }
+
     public function createSubCategory(Request $request){
         $this->validateSubCategory($request->all())->validate();
         $subcategory = new SubCategory;
@@ -65,6 +83,19 @@ class CategoryController extends ApiController
             return back()->with('success', 'SubCategory Created Successfully');
         }else{
             return back()->with('error', 'SubCategory Creation failed');
+        }
+    }
+
+    public function editSubCategory(Request $request, $subcategory_id){
+        $this->validateSubCategory($request->all())->validate();
+        $subcategory = SubCategory::find($subcategory_id);
+        $subcategory->name = $request->name;
+        $subcategory->category_id = $request->category_id;
+
+        if($subcategory->save()){
+            return back()->with('success', 'SubCategory Updated Successfully');
+        }else{
+            return back()->with('error', 'SubCategory Update failed');
         }
     }
 

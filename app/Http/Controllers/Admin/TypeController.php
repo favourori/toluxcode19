@@ -60,6 +60,20 @@ class TypeController extends ApiController
         }
     }
 
+    public function editType(Request $request, $type_id){
+        $this->validator($request->all())->validate();
+        $type = Type::find($type_id);
+        $type->name = $request->name;
+        $type->form_type = $request->form_type;
+        $type->subcategory = $request->subcategory;
+
+        if($type->save()){
+            return back()->with('success', 'Type Edited Successfully');
+        }else{
+            return back()->with('error', 'Type Edit failed');
+        }
+    }
+
     public function createSubType(Request $request){
         $this->validateSubType($request->all())->validate();
         $subtype = new SubType;
@@ -70,6 +84,19 @@ class TypeController extends ApiController
             return back()->with('success', 'SubType Created Successfully');
         }else{
             return back()->with('error', 'SubType Creation failed');
+        }
+    }
+
+    public function editSubType(Request $request, $subtype_id){
+        $this->validateSubType($request->all())->validate();
+        $subtype = SubType::find($subtype_id);
+        $subtype->name = $request->name;
+        $subtype->type_id = $request->type_id;
+
+        if($subtype->save()){
+            return back()->with('success', 'SubType Edited Successfully');
+        }else{
+            return back()->with('error', 'SubType Edit failed');
         }
     }
 

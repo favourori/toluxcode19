@@ -14,7 +14,7 @@
                     <div class="card-title text-center">
                         <i onclick="deleteCategory({{$category->id}})" style="padding-right: 5px; padding-top: 5px; color: red" class="clickable-icon pull-left la la-trash"></i> 
                             {{$category->name}}
-                        <i style="padding-top: 5px;" class="clickable-icon pull-right la la-edit"></i>
+                        <i style="padding-top: 5px;" onclick="triggerModal({{$category->id}},'{{$category->name}}','{{$category->description}}','{{$category->image}}')" data-toggle="modal" data-target='#edit-category' class="clickable-icon pull-right la la-edit"></i>
                     </div>
                 </div>
                 <div class="card-body">
@@ -78,6 +78,58 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="edit-category">
+        <div class="modal-dialog" style="border-radius: 0em;">
+            <div class="modal-content" style="padding: 15px;">
+                <div class="">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h6 class="modal-title">Edit Category</h6>
+                    <hr>
+                </div>
+                <div class="modal-body">
+                    
+                    <form action="" enctype="multipart/form-data" id="edit-category-form" method="POST" role="form">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" class="form-control input-square" id="name" value="{{old('name')}}" name="name" required placeholder="Name of category">
+                            @if ($errors->has('name'))
+                                <span class="error">
+                                    {{ $errors->first('name') }}
+                                </span>
+                            @endif
+                        </div>
+
+                        <input type="hidden" id="id">
+
+                        <div class="form-group">
+                           <textarea type="text" class="form-control input-square" id="description"  name="description" required placeholder="Category description">{{old('description')}}</textarea>
+                           @if ($errors->has('description'))
+                                <span class="error">
+                                    {{ $errors->first('description') }}
+                                </span>
+                            @endif
+                       </div>
+
+                       <div class="text-center">
+                            <img src="" id="editdrawimage" class="img-responsive" width="300px" style="max-height: 350px;">
+                       </div>
+                        
+                       <div class="form-group">
+                            <button type="button" onclick="triggerEditFile()" id="button-image" class="btn btn-round btn-default">Edit Category Image</button>
+                       </div>
+                       <input type="file" style="visibility: hidden" id="editimage" name="image">
+                        {{method_field('patch')}}
+                       <div class="form-group text-right">
+                            <button type="submit" class="btn btn-info">Update</button>
+                        </div>
+                    </form>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -88,6 +140,19 @@
 @section('custom-script')
 
 <script>
+
+    function triggerModal(id, name, description, image){
+        $("#name").val(name);
+        $("#description").val(description);
+        $("#id").val(id);
+        $("#edit-category-form").attr('action', '/admin/manage/category/edit/'+id);
+        $('#editdrawimage').attr('src', image);
+    }
+
+    function triggerEditFile(){
+           $("#editimage").trigger('click');
+       }
+
     function triggerFile(){
            $("#image").trigger('click');
        }
@@ -103,9 +168,24 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+        function editReadIMG(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#editdrawimage').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
         $("#image").change(function(){
             readIMG(this);
+        });
+
+        $("#editimage").change(function(){
+            editReadIMG(this);
         });
 
         function deleteCategory(id){

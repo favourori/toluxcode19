@@ -70,8 +70,10 @@ var vapp = new Vue({
         category_id: function (oldval, newval) {
             if (oldval != 0) {
                 this.getSubCategories();
+
                 this.subcategory_off = false;
             } else {
+                this.getSubCategories();
                 this.subcategory_off = true;
             }
 
@@ -82,6 +84,7 @@ var vapp = new Vue({
                 this.getTypes();
                 this.type_off = false;
             } else {
+                this.getTypes();
                 this.type_off = true;
             }
 
@@ -416,13 +419,16 @@ var vapp = new Vue({
 
 
 
-        readIMG(idname) {
-            let input = $("#" + idname)
+        readIMG(idname, imgshow) {
+
+            let input = document.querySelector('#' + idname);
+
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#' + idname).attr('src', e.target.result);
+                    $('#' + imgshow).attr('src', e.target.result);
+
                 }
 
                 reader.readAsDataURL(input.files[0]);

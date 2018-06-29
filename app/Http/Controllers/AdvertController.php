@@ -13,11 +13,39 @@ use Carbon\Carbon;
 class AdvertController extends ApiController
 {
     public function advert(){
-        $adverts = auth()->user()->advert;
         
-        return view('user.advert', $adverts);
+        return view('user.advert');
     }
 
+    public function myAdvert(){
+        $adverts = auth()->user()->advert;
+        $adverts->each(function ($item, $key){
+            $item->encoded_id = $this->encode($item->id);
+        });
+        return view('user.myadvert', compact('adverts'));
+    }
+
+    public function deleteAdvert(Request $request, $advert_id){
+        $advert = Advert::find($advert_id);
+
+        if(is_null($advert)){
+            return $this->notFound('Advert does not exist', []);
+        }
+
+        if($advert->user_id != auth()->user()->id){
+            return $this->unauthorized('You are not authorized to delete this ad');
+        }
+        
+        $advert_images = $advert->image;
+        $advert_images->each(function ($item, $key){
+            @unlink(public_path().$item->image);
+            $item->delete();
+        });
+        $advert->delete();
+        
+
+        return $this->actionSuccess('Advert has been deleted');
+    }
 
     public function createAdvert(Request $request){
         

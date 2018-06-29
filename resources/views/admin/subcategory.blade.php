@@ -32,7 +32,7 @@
                                     <th scope="row">{{$loop->index + 1}}</th>
                                     <td>{{$subcategory->name}}</td>
                                     <td><button title="Delete this subcategory" onclick="deleteSubCategory({{$subcategory->id}})" class="btn btn-danger btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-trash"></i></button></td>
-                                    <td><button title="Edit this subcategory" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-edit"></i></button></td>
+                                    <td><button title="Edit this subcategory" onclick="triggerModal({{$subcategory->id}}, '{{$subcategory->name}}',{{$subcategory->category_id}})" data-toggle="modal" data-target='#edit-subcategory'  class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-edit"></i></button></td>
                                 </tr>
                                @endforeach
                             </tbody>
@@ -89,6 +89,54 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="edit-subcategory">
+        <div class="modal-dialog" style="border-radius: 0em;">
+            <div class="modal-content" style="padding: 15px;">
+                <div class="">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h6 class="modal-title">Edit Category</h6>
+                    <hr>
+                </div>
+                <div class="modal-body">
+                    
+                    <form action="" enctype="multipart/form-data" id="edit-subcategory-form" method="POST" role="form">
+                        @csrf
+                        <div class="form-group">
+                            <label>SubCategory name</label>
+                            <input type="text" class="form-control input-square" id="name" value="{{old('name')}}" name="name" required placeholder="Name of category">
+                            @if ($errors->has('name'))
+                                <span class="error">
+                                    {{ $errors->first('name') }}
+                                </span>
+                            @endif
+                        </div>
+                        {{method_field('patch')}}
+                        <div class="form-group">
+                            <label>Select Category</label>
+                           <select type="text" class="form-control input-square" id="category_id"  name="category_id" required>
+                            @foreach($categories as $key => $category)
+                                    <option>Select Category</option>
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                            </select>
+                           @if ($errors->has('category_id'))
+                                <span class="error">
+                                    {{ $errors->first('category_id') }}
+                                </span>
+                            @endif
+                       </div>
+
+                       <div class="form-group text-right">
+                            <button type="submit" class="btn btn-info">Update</button>
+                        </div>
+                    </form>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -99,6 +147,13 @@
 @section('custom-script')
 
 <script>
+function triggerModal(id, name, category_id){
+        $("#name").val(name);
+        $("#category_id").val(category_id);
+        // alert(category_id);
+        $("#edit-subcategory-form").attr('action', '/admin/manage/subcategory/edit/'+id);
+    }
+
     function triggerFile(){
            $("#image").trigger('click');
        }
