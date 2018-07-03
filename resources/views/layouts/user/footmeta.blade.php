@@ -2,7 +2,7 @@
     <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/popper.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/color-switcher.js')}}"></script>
+    <!-- <script src="{{asset('js/color-switcher.js')}}"></script> -->
     <script src="{{asset('js/jquery.counterup.min.js')}}"></script>
     <script src="{{asset('js/waypoints.min.js')}}"></script>
     <script src="{{asset('js/wow.js')}}"></script>
