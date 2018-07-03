@@ -10,8 +10,8 @@
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xs-12 text-center" style="margin-bottom:40px">
                 <div class="contents">
-                    <h1 class="head-title">Welcome to
-                        <span class="year">ClassiAlly</span>
+                    <h1 class="head-title">Welcome to Property
+                        <span class="year"> Warri</span>
                     </h1>
                     <p>Buy And Sell Everything From Used Cars To Mobile Phones And Computers,
                         <br> Or Search For Property, Jobs And More</p>
