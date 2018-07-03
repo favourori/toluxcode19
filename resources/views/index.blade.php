@@ -24,20 +24,7 @@
                                     <input type="text" v-model="param" class="form-control" placeholder="What are you looking for">
                                 </div>
                                 @csrf
-                                <div class="form-group tg-inputwithicon">
-                                    <i class="lni-map-marker"></i>
-                                    <div class="tg-select">
-                                        <select>
-                                            <option value="none">All Locations</option>
-                                            <option value="none">New York</option>
-                                            <option value="none">California</option>
-                                            <option value="none">Washington</option>
-                                            <option value="none">Birmingham</option>
-                                            <option value="none">Chicago</option>
-                                            <option value="none">Phoenix</option>
-                                        </select>
-                                    </div>
-                                </div>
+                             
                                 <div class="form-group tg-inputwithicon">
                                     <i class="lni-layers"></i>
                                     <div class="tg-select">
@@ -59,8 +46,10 @@
                                 <div style="color: grey" class="text-left" v-for="query in search.query">
                                     <a :href="/advertdetail/+query.encoded_id +'/'+ query.title.replace(/ /g, '-')">    
                                         <img :src="query.image[0].image" width="80px">
-                                        &nbsp; &nbsp; @{{query.title}}
+                                        &nbsp; &nbsp; <span>@{{query.title}}  &nbsp; &nbsp;</span>
+                                        
                                     </a>
+                                    <span style="color: grey"> By @{{query.user.username}} @{{query.user.profile.phone}}</span>
                                     <hr>
                                 </div>
                             </div>

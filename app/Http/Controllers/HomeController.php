@@ -44,7 +44,15 @@ class HomeController extends Controller
         $categories = Category::all();
 
         $categories->load('advert.subcategory');
-        // dd($categories);
+      
+
+        $categories->each(function ($item, $key){
+            $item->advert->each(function ($item1, $key1){
+                $item1->encoded_id = $this->encode($item1->id);
+            });
+            
+        });
+        
         return view('categories', compact('adverts', 'categories'));
     }
 

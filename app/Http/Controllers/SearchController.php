@@ -18,7 +18,7 @@ class SearchController extends Controller
                     ->where('title', 'like',"%$param%")
                     ->orWhere('description', 'like', "%$param%");
                  })->orderBy('verified_seller', 'desc')->get();
-        $advert->load('image');      
+        $advert->load('image', 'user.profile');      
         $advert->each(function ($item, $key){
             $item->encoded_id = $this->encode($item->id);
         });

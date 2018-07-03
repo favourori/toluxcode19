@@ -16,42 +16,44 @@
                     -->
                     <div class="search-bar">
                         <fieldset>
-                            <form class="search-form">
+                        <div id="root">
+                            <form method="post" @submit.prevent="searchAdvert()" action="{{route('advert.search')}}" class="search-form">
                                 <div class="form-group tg-inputwithicon">
                                     <i class="lni-tag"></i>
-                                    <input type="text" name="customword" class="form-control" placeholder="What are you looking for">
+                                    <input type="text" v-model="param" class="form-control" placeholder="What are you looking for">
                                 </div>
-                                <div class="form-group tg-inputwithicon">
-                                    <i class="lni-map-marker"></i>
-                                    <div class="tg-select">
-                                        <select>
-                                            <option value="none">All Locations</option>
-                                            <option value="none">New York</option>
-                                            <option value="none">California</option>
-                                            <option value="none">Washington</option>
-                                            <option value="none">Birmingham</option>
-                                            <option value="none">Chicago</option>
-                                            <option value="none">Phoenix</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                @csrf
+                             
                                 <div class="form-group tg-inputwithicon">
                                     <i class="lni-layers"></i>
                                     <div class="tg-select">
-                                        <select>
-                                            <option value="none">Select a Category</option>
-                                              
+                                        <select name="category_id" v-model="search.category_id">
+                                            <option value="0">Select a Category</option>
                                             @foreach($categories as $key => $category)
-                                              <option value="{{$category->id}}">{{$category->name}}</option>
+                                            
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <button class="btn btn-common" type="button">
+                                <button class="btn btn-common" type="submit">
                                     <i class="lni-search"></i>
                                 </button>
+                                
                             </form>
+                            <div v-if="search.result" style="background-color: white; padding: 20px; " class="">
+                                <div style="color: grey" class="text-left" v-for="query in search.query">
+                                    <a :href="/advertdetail/+query.encoded_id +'/'+ query.title.replace(/ /g, '-')">    
+                                        <img :src="query.image[0].image" width="80px">
+                                        &nbsp; &nbsp; <span>@{{query.title}}  &nbsp; &nbsp;</span>
+                                        
+                                    </a>
+                                    <span style="color: grey"> By @{{query.user.username}} @{{query.user.profile.phone}}</span>
+                                    <hr>
+                                </div>
+                            </div>
                         </fieldset>
+                        
                     </div>
                 </div>
             </div>
@@ -70,9 +72,9 @@
 
                     <div class="product-filter">
                         <div class="short-name">
-                            <span>Showing (1 - 12 products of 7371 products)</span>
+                            <span>Showing (1 - {{$adverts->count() < 12 ? $adverts->count() : 12}} product(s) of {{$adverts->count()}} products)</span>
                         </div>
-                        <div class="Show-item">
+                        <!-- <div class="Show-item">
                             <span>Show Items</span>
                             <form class="woocommerce-ordering" method="post">
                                 <label>
@@ -85,7 +87,7 @@
                                     </select>
                                 </label>
                             </form>
-                        </div>
+                        </div> -->
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#grid-view">
@@ -129,24 +131,24 @@
                                                     <ul class="address">
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-map-marker"></i>New York</a>
+                                                                <i class="lni-map-marker"></i>{{$category->advert[0]->state->name}} | {{$category->advert[0]->country->name}}</a>
                                                         </li>
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-alarm-clock"></i> 7 Jan, 10:10 pm</a>
+                                                                <i class="lni-alarm-clock"></i> {{$category->advert[0]->updated_at->toFormattedDateString()}}</a>
                                                         </li>
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-user"></i> John Smith</a>
+                                                                <i class="lni-user"></i> {{$category->advert[0]->user->username}}</a>
                                                         </li>
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-tag"></i> Mobile</a>
+                                                                <i class="lni-tag"></i> {{$category->advert[0]->phone}}</a>
                                                         </li>
                                                     </ul>
                                                     <div class="btn-list">
-                                                        <a class="btn-price" href="#">$ 25</a>
-                                                        <a class="btn btn-common" href="ads-details.html">
+                                                        <a class="btn-price" href="#">&#8358; {{$category->advert[0]->price}}</a>
+                                                        <a class="btn btn-common" href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">
                                                             <i class="lni-list"></i>
                                                             View Details
                                                         </a>
@@ -182,11 +184,11 @@
                                                     <ul class="address">
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-map-marker"></i>New York</a>
+                                                                <i class="lni-map-marker"></i>{{$category->advert[0]->state->name}} | {{$category->advert[0]->country->name}}</a>
                                                         </li>
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-alarm-clock"></i> 7 Jan, 10:10 pm</a>
+                                                                <i class="lni-alarm-clock"></i> {{$category->advert[0]->updated_at->toFormattedDateString()}}</a>
                                                         </li>
                                                         <li>
                                                             <a href="#">
@@ -199,7 +201,7 @@
                                                     </ul>
                                                     <div class="btn-list">
                                                         <a class="btn-price" href="#">&#8358; {{$category->advert[0]->price}}</a>
-                                                        <a class="btn btn-common" href="{{url('advert')}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">
+                                                        <a class="btn btn-common" href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">
                                                             <i class="lni-list"></i>
                                                             View Details
                                                         </a>

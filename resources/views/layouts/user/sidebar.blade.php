@@ -53,6 +53,13 @@
                                         </a>
                                     </li>
 
+                                    <li>
+                                        <a href="/account/adverts/reported">
+                                            <i class="lni-layers"></i>
+                                            <span>Reported Adverts</span>
+                                        </a>
+                                    </li>
+
                                     <!-- <li>
                                         <a href="offermessages.html">
                                             <i class="lni-envelope"></i>

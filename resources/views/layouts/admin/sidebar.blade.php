@@ -3,6 +3,7 @@
 @php($type_count = \App\Model\Type::count())
 @php($subtype_count = \App\Model\Subtype::count())
 @php($user_count = \App\Model\User::count())
+@php($report_count = \App\Model\ReportAdvert::count())
 
 <div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
@@ -63,6 +64,14 @@
 					<i class="la la-th"></i>
 					<p>SubTypes</p>
 					<span class="badge badge-count">{{$subtype_count}}</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a href="{{url('admin/manage/adverts/reports')}}">
+					<i class="la la-bar-chart"></i>
+					<p>Reports</p>
+					<span class="badge badge-count">{{$report_count}}</span>
 				</a>
 			</li>
 

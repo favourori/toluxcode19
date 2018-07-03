@@ -166,10 +166,12 @@
                                     <a href="#">
                                         <i class="lni-reply"></i> Send to a friend</a>
                                 </li> -->
+                                @if(Auth::check())
                                 <li>
                                     <a data-toggle="modal" href='#report-advert'>
                                         <i class="lni-warning"></i> Report this ad</a>
                                 </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -181,7 +183,7 @@
 
     
     <div id="root">
-    <div class="modal fade" id="report-advert" style="z-index; 500760550">
+    <div class="modal fade" id="report-advert">
         <div class="modal-dialog" >
             <div class="modal-content" style="padding: 15px; border-radius: 0.1em;">
                 <div class="">

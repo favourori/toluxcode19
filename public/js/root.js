@@ -58,11 +58,11 @@ var vapp = new Vue({
         param: function (oldval, newval) {
             this.search.result = false;
             this.search.query = [];
-            if (this.param.length == 0) {
+            if (this.param.trim().length == 0) {
 
             } else {
                 var self = this;
-                setTimeout(function () { self.searchAdvert() }, 1000);
+                setTimeout(function () { self.searchAdvert() }, 500);
 
             }
 

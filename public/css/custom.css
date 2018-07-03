@@ -38,3 +38,28 @@ select.form-control:not([size]):not([multiple]){
         padding: 160px 0 167px;
     }
 }
+
+@media (min-width: 992px){
+    .search-bar .form-group {
+        width: 45%;
+    }
+}
+
+
+@media (max-width: 767px){
+    .search-bar .form-group {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 991px){
+    .search-bar .form-group {
+        width: 100%;
+    }
+}
+
+
+.modal{
+    z-index: 1054564;
+}

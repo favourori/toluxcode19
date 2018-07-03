@@ -59,6 +59,11 @@ Route::group(['middleware' => ['auth']], function () {
 
 // Admin Route
 Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
+    
+
+    Route::get('adverts/reported','ReportController@myreport');
+    Route::get('advert/reports/{id}','ReportController@reportsOnAdvert');
+
 
     Route::get('apiprofile','UserController@apiProfile');
     Route::get('apiuser','UserController@apiUser');
@@ -125,6 +130,11 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::post('manage/user/create','Admin\UserController@createUser')->name('admin.user.create');
     Route::delete('manage/user/delete/{id}','Admin\UserController@deleteUser')->name('admin.user.delete');
   
+    Route::get('manage/adverts/reports','Admin\ReportController@report');
+    // Route::post('manage/user/create','Admin\UserController@createUser')->name('admin.user.create');
+    // Route::delete('manage/user/delete/{id}','Admin\UserController@deleteUser')->name('admin.user.delete');
+  
+
     
     // Skill routes
     // Route::get('dashboard','UserController@dashboard');
