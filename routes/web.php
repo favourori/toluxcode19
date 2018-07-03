@@ -128,6 +128,8 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     
     Route::get('manage/users','Admin\UserController@user');
     Route::post('manage/user/create','Admin\UserController@createUser')->name('admin.user.create');
+    Route::post('manage/user/ban/{id}','Admin\UserController@banUser')->name('admin.user.ban');
+    Route::post('manage/user/unban/{id}','Admin\UserController@unbanUser')->name('admin.user.unban');
     Route::delete('manage/user/delete/{id}','Admin\UserController@deleteUser')->name('admin.user.delete');
   
     Route::get('manage/adverts/reports','Admin\ReportController@report');

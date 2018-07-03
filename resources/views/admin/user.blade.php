@@ -36,7 +36,12 @@
                                     <td>{{$user->firstname}} {{$user->lastname}}</td>
                                     <td><span class="badge badge-default">{{$user->email}}</span></td>
                                     <td><span class="badge badge-default">{{$user->profile->phone}}</span></td>
-                                    <td><button title="View this user" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> Ban</button></td>  
+                                    @if(is_null($user->deleted_at))
+                                    <td><button title="Ban this user" {{$user->id == auth()->user()->id ? 'disabled' : ''}} onclick="banUser({{$user->id}})" class="btn btn-warning btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> Ban</button></td>  
+                                    @else
+                                    <td><button title="Unban this user" onclick="unbanUser({{$user->id}})" class="btn btn-success btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> unBan</button></td>  
+                                    
+                                    @endif
                                     <td><a href="{{url('admin/manage/user/view')}}/{{$user->id}}" title="View this user" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> View</a></td>                             
                                     <td><button title="Delete this user" onclick="deleteUser({{$user->id}})" {{$user->id == auth()->user()->id ? 'disabled' : ''}} class="btn btn-danger btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-trash"></i></button></td>
                                 </tr>
@@ -105,25 +110,41 @@
 @section('custom-script')
 
 <script>
-    function triggerFile(){
-           $("#image").trigger('click');
-       }
 
-         function readIMG(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#drawimage').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
+        function banUser(id){
+            var complete = confirm('Are you sure you want to ban this user?');
+            // console.log(complete);
+            if(!complete){
+                return;
             }
+
+            axios.post('/admin/manage/user/ban/'+id)
+                .then(response => {
+                    success('Success', response.data.message);
+                    location.reload();
+                })
+                .catch(err => {
+                    error('Error', response.data.message);
+                });
         }
 
-        $("#image").change(function(){
-            readIMG(this);
-        });
+
+        function unbanUser(id){
+            var complete = confirm('Are you sure you want to unban this user?');
+            // console.log(complete);
+            if(!complete){
+                return;
+            }
+
+            axios.post('/admin/manage/user/unban/'+id)
+                .then(response => {
+                    success('Success', response.data.message);
+                    location.reload();
+                })
+                .catch(err => {
+                    error('Error', response.data.message);
+                });
+        }
 
         function deleteUser(id){
             var complete = confirm('Are you sure you want to delete this user?');

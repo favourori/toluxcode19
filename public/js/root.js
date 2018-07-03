@@ -180,6 +180,7 @@ var vapp = new Vue({
                     }
                 });
         },
+
         // Update Profile
         updateProfile() {
             let data = {

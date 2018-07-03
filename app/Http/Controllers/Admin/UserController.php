@@ -13,7 +13,7 @@ class UserController extends ApiController
 {
     
     public function User(){
-        $users = User::all();
+        $users = User::withTrashed()->get();
         $users->load('profile', 'advert.image');
         return view('admin.user', compact('users'));
     }
@@ -31,11 +31,30 @@ class UserController extends ApiController
 
     
     public function deleteUser(Request $request, $id){
-        $User = User::find($id);
-        if($User->delete()){
+        $user = User::find($id);
+        if($user->forceDelete()){
             return $this->actionSuccess('User has been deleted');
         }else{
-            return back()->with('error', 'User delete failed');
+            return $this->actionFailure('error', 'User delete failed');
+        }
+    }
+
+    public function banUser(Request $request, $id){
+        $user = User::find($id);
+        if($user->delete()){
+            return $this->actionSuccess('User has been banned');
+        }else{
+            return back()->with('error', 'User ban failed');
+        }
+    }
+
+    public function unbanUser(Request $request, $id){
+        $user = User::withTrashed()->where('id', $id)->first();
+        
+        if($user->restore()){
+            return $this->actionSuccess('User has been restored');
+        }else{
+            return back()->with('error', 'User ban failed');
         }
     }
 
