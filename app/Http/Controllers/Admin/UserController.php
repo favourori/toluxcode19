@@ -20,7 +20,7 @@ class UserController extends ApiController
 
 
     public function viewUser(Request $request, $id){
-        $user = User::find($id);
+        $user = User::withTrashed()->where('id', $id)->first();
         if(is_null($user)){
             return "Wrong page";
         }
@@ -55,6 +55,26 @@ class UserController extends ApiController
             return $this->actionSuccess('User has been restored');
         }else{
             return back()->with('error', 'User ban failed');
+        }
+    }
+
+    public function verifyUser(Request $request, $id){
+        $user = User::find($id);
+        $user->verified_seller = true;
+        if($user->save()){
+            return $this->actionSuccess('Seller has been verified');
+        }else{
+            return back()->with('error', 'Seller Verification failed');
+        }
+    }
+
+    public function unverifyUser(Request $request, $id){
+        $user = User::find($id);
+        $user->verified_seller = false;
+        if($user->save()){
+            return $this->actionSuccess('Seller Verification has been cancelled');
+        }else{
+            return back()->with('error', 'Seller Verification Cancellation failed');
         }
     }
 

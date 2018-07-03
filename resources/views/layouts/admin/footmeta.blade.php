@@ -12,6 +12,7 @@
 <script src="{{asset('assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
 <script src="{{asset('assets/js/ready.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
 <!-- <script src="{{asset('assets/js/demo.js')}}"></script> -->
 <script src="{{asset('js/iziToast.js')}}"></script>
 <script src="{{asset('js/iziwrapper.js')}}"></script>

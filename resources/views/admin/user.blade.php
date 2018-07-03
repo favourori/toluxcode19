@@ -16,7 +16,7 @@
                 <div class="card-body">
                     
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="user-table">
                             <thead>
                                 <tr>
                                     <th>S/N</th>
@@ -41,6 +41,11 @@
                                     @else
                                     <td><button title="Unban this user" onclick="unbanUser({{$user->id}})" class="btn btn-success btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> unBan</button></td>  
                                     
+                                    @endif
+                                    @if(!$user->verified_seller)
+                                    <td><button title="Verify this user" {{$user->deleted_at != null ? 'disabled' : ''}} onclick="verifyUser({{$user->id}})" class="btn btn-success btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> Verify as Seller</button></td>  
+                                    @else
+                                    <td><button title="Demote this seller" {{$user->deleted_at != null ? 'disabled' : ''}} onclick="unverifyUser({{$user->id}})" class="btn btn-primary btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> Cancel Verification</button></td>
                                     @endif
                                     <td><a href="{{url('admin/manage/user/view')}}/{{$user->id}}" title="View this user" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> View</a></td>                             
                                     <td><button title="Delete this user" onclick="deleteUser({{$user->id}})" {{$user->id == auth()->user()->id ? 'disabled' : ''}} class="btn btn-danger btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-trash"></i></button></td>
@@ -110,7 +115,7 @@
 @section('custom-script')
 
 <script>
-
+    $("#user-table").DataTable();
         function banUser(id){
             var complete = confirm('Are you sure you want to ban this user?');
             // console.log(complete);
@@ -119,6 +124,38 @@
             }
 
             axios.post('/admin/manage/user/ban/'+id)
+                .then(response => {
+                    success('Success', response.data.message);
+                    location.reload();
+                })
+                .catch(err => {
+                    error('Error', response.data.message);
+                });
+        }
+
+        function verifyUser(id){
+            var complete = confirm('Are you sure you want to verify this user as a seller?');
+            if(!complete){
+                return;
+            }
+
+            axios.post('/admin/manage/user/verify/'+id)
+                .then(response => {
+                    success('Success', response.data.message);
+                    location.reload();
+                })
+                .catch(err => {
+                    error('Error', response.data.message);
+                });
+        }
+
+        function unverifyUser(id){
+            var complete = confirm('Are you sure you want to cancel seller verification?');
+            if(!complete){
+                return;
+            }
+
+            axios.post('/admin/manage/user/unverify/'+id)
                 .then(response => {
                     success('Success', response.data.message);
                     location.reload();

@@ -9,4 +9,6 @@
 	<link rel="stylesheet" href="{{asset('assets/css/demo.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/iziToast.css')}}">
 	<link rel="stylesheet" href="{{asset('css/custom.css')}}">
+	
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
 </head>
