@@ -23,8 +23,9 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Ban</th>
+                                    <th>View User</th>
                                     <th>Delete</th>
-                                    <!-- <th>Edit</th> -->
                                     
                                 </tr>
                             </thead>
@@ -35,8 +36,9 @@
                                     <td>{{$user->firstname}} {{$user->lastname}}</td>
                                     <td><span class="badge badge-default">{{$user->email}}</span></td>
                                     <td><span class="badge badge-default">{{$user->profile->phone}}</span></td>
+                                    <td><button title="View this user" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> Ban</button></td>  
+                                    <td><a href="{{url('admin/manage/user/view')}}/{{$user->id}}" title="View this user" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> View</a></td>                             
                                     <td><button title="Delete this user" onclick="deleteUser({{$user->id}})" {{$user->id == auth()->user()->id ? 'disabled' : ''}} class="btn btn-danger btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-trash"></i></button></td>
-                                    <!-- <td><button title="Edit this user" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-edit"></i></button></td> -->
                                 </tr>
                                @endforeach
                             </tbody>

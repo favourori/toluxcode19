@@ -48,9 +48,9 @@ class HomeController extends Controller
         return view('categories', compact('adverts', 'categories'));
     }
 
+
     public function advertDetail(Request $request, $advert_id, $name)
     {
-
         $advert = Advert::find($this->decode($advert_id));
         if(is_null($advert)){
             return "";
@@ -59,7 +59,7 @@ class HomeController extends Controller
         $decoded = json_decode($raw, true) == null ? [] : json_decode($raw, true);
         
         $specification = [];
-        
+        $advert->encoded_id = $advert_id;
         foreach($decoded as $key => $value){
             $temp = Subtype::whereIn('id', $value)->get();
             $specification[$key] = $temp;

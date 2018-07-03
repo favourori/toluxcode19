@@ -47,6 +47,7 @@ class AdvertController extends ApiController
         return $this->actionSuccess('Advert has been deleted');
     }
 
+    
     public function createAdvert(Request $request){
         
         $validate = $this->validateAdvert($request->all());
@@ -71,6 +72,7 @@ class AdvertController extends ApiController
         $advert->advert_hash = md5(Carbon::now());
         $advert->user_id = auth()->user()->id;
         $advert->attributes = $request->attr;
+        $advert->verified_seller = auth()->user()->verified_seller;
 
         if($advert->save()){
             for($i = 1; $i <= 4; $i++){
@@ -117,10 +119,10 @@ class AdvertController extends ApiController
             'description' => 'required|string',
             'price' => 'required|numeric|min:50',
             'phone1' => 'required|string',
-            // 'image1' => 'required|image|max:1024',
-            // 'image2' => 'required|image|max:1024',
-            // 'image3' => 'required|image|max:1024',
-            // 'image4' => 'required|image|max:1024',
+            'image1' => 'required|image|max:1024',
+            'image2' => 'required|image|max:1024',
+            'image3' => 'required|image|max:1024',
+            'image4' => 'required|image|max:1024',
             'country_id' => 'required|numeric|min:1',
             'state_id' => 'required|numeric|min:1',
             'lga_id' => 'required|numeric|min:1',
@@ -132,7 +134,7 @@ class AdvertController extends ApiController
         'phone1.required' => 'Phone number is required',
         'image1.required' => 'Image  is required',
         'address1.required' => 'Address  is required',
-    'image2.required' => 'Image  is required',
+        'image2.required' => 'Image  is required',
         'image3.required' => 'Image  is required',
         'image4.required' => 'Image  is required',
 
@@ -141,8 +143,6 @@ class AdvertController extends ApiController
         'image3.max' => 'Image  must be less than 1MB',
         'image4.max' => 'Image  must be less than 1MB',
 
-        'phone.required' => 'Phone number is required',
-        'phone.required' => 'Phone number is required',
         'phone.required' => 'Phone number is required',
         'lga_id.min' => 'Lga must be selected',
         'country_id.min' => 'Country must be selected',

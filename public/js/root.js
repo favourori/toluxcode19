@@ -43,11 +43,30 @@ var vapp = new Vue({
         price: 0,
         phone1: '',
         address1: '',
-        description: ''
+        description: '',
+        search: {
+            result: false,
+            query: [],
+            category_id: 0
+        },
+        param: '',
+        report: ''
     },
 
     watch: {
 
+        param: function (oldval, newval) {
+            this.search.result = false;
+            this.search.query = [];
+            if (this.param.length == 0) {
+
+            } else {
+                var self = this;
+                setTimeout(function () { self.searchAdvert() }, 1000);
+
+            }
+
+        },
         country_id: function (oldval, newval) {
             if (oldval != 0) {
                 this.getStates();
@@ -109,6 +128,58 @@ var vapp = new Vue({
     },
 
     methods: {
+
+        reportAdvert(id) {
+            let data = {
+                _token: this.csrf,
+                report: this.report
+            };
+            axios.post('/advert/report/' + id, data)
+                .then(response => {
+                    success('Success', 'You have reported this advert');
+                })
+                .catch(err => {
+                    if (err.response.data.response == 422) {
+                        error('Oops!', 'Check required fields')
+                        this.errors = err.response.data.errors;
+                    }
+                    if (err.response.data.response == 401) {
+                        error('Oops!', 'Not Authorized')
+                    }
+                    if (err.response.data.response == 404) {
+                        error('Oops!', err.response.data.message)
+                    }
+                });
+        },
+
+        searchAdvert() {
+            if (this.search.category_id == 0) {
+                error('Oops!', 'Select a Category');
+                return;
+            }
+            data = {
+                category_id: this.search.category_id,
+                param: this.param,
+                _token: this.csrf
+            }
+            axios.post('/advert/search', data)
+                .then(response => {
+                    this.search.query = response.data.data;
+                    this.search.result = this.search.query.length > 0 ? true : false;
+                })
+                .catch(err => {
+                    if (err.response.data.response == 422) {
+                        error('Oops!', 'Check required fields')
+                        this.errors = err.response.data.errors;
+                    }
+                    if (err.response.data.response == 401) {
+                        error('Oops!', 'Not Authorized')
+                    }
+                    if (err.response.data.response == 404) {
+                        error('Oops!', err.response.data.message)
+                    }
+                });
+        },
         // Update Profile
         updateProfile() {
             let data = {

@@ -79,7 +79,8 @@
                                 </span>
                             </div>
                             @foreach($specification as $key => $specs)
-                                <h4 class="title-small mb-3" style="color: grey">{{str_replace('_', ' ',$key)}}:</h4>
+                                @if($specs->count() > 0)
+                                <h4 class="title-small mb-3" style="color: grey; font-size: 16px;">{{str_replace('_', ' ',$key)}}:</h4>
                                 <ul class="list-specification">
                                     @foreach($specs as $key1 => $value)
                                     <li>
@@ -89,6 +90,7 @@
                                     @endforeach
                                     
                                 </ul>
+                                @endif
                             @endforeach
                         </div>
                         <ul class="advertisement mb-4">
@@ -165,7 +167,7 @@
                                         <i class="lni-reply"></i> Send to a friend</a>
                                 </li> -->
                                 <li>
-                                    <a href="#">
+                                    <a data-toggle="modal" href='#report-advert'>
                                         <i class="lni-warning"></i> Report this ad</a>
                                 </li>
                             </ul>
@@ -176,6 +178,41 @@
 
         </div>
     </div>
+
+    
+    <div id="root">
+    <div class="modal fade" id="report-advert" style="z-index; 500760550">
+        <div class="modal-dialog" >
+            <div class="modal-content" style="padding: 15px; border-radius: 0.1em;">
+                <div class="">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h5 class="modal-title">Report Advert</h5>
+                </div>
+                <div class="modal-body">
+                    <form role="form" method="post" @submit.prevent="reportAdvert({{$advert->id}})" class="login-form">
+                        <div class="form-group">
+                            <div class="input-icon">
+                                
+                                <textarea type="text" required rows="4" v-model="report" class="form-control" name="report" placeholder="Why are you reporting this ad?"></textarea>
+                                <span class="error" v-if="errors.hasOwnProperty('report')">@{{errors['report'][0]}}</span>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="text-left">
+                            <button type="submit" class="btn btn-common log-btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
 
 
 @endsection

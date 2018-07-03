@@ -14,10 +14,22 @@ class UserController extends ApiController
     
     public function User(){
         $users = User::all();
-        $users->load('profile');
+        $users->load('profile', 'advert.image');
         return view('admin.user', compact('users'));
     }
 
+
+    public function viewUser(Request $request, $id){
+        $user = User::find($id);
+        if(is_null($user)){
+            return "Wrong page";
+        }
+
+        $user->load('profile');
+        return view('admin.viewuser', compact('user'));
+    }
+
+    
     public function deleteUser(Request $request, $id){
         $User = User::find($id);
         if($User->delete()){

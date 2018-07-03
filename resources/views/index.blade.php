@@ -8,7 +8,7 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-xs-12 text-center">
+            <div class="col-md-12 col-lg-12 col-xs-12 text-center" style="margin-bottom:40px">
                 <div class="contents">
                     <h1 class="head-title">Welcome to
                         <span class="year">ClassiAlly</span>
@@ -17,11 +17,13 @@
                         <br> Or Search For Property, Jobs And More</p>
                     <div class="search-bar">
                         <fieldset>
-                            <form class="search-form">
+                        <div id="root">
+                            <form method="post" @submit.prevent="searchAdvert()" action="{{route('advert.search')}}" class="search-form">
                                 <div class="form-group tg-inputwithicon">
                                     <i class="lni-tag"></i>
-                                    <input type="text" name="customword" class="form-control" placeholder="What are you looking for">
+                                    <input type="text" v-model="param" class="form-control" placeholder="What are you looking for">
                                 </div>
+                                @csrf
                                 <div class="form-group tg-inputwithicon">
                                     <i class="lni-map-marker"></i>
                                     <div class="tg-select">
@@ -39,21 +41,35 @@
                                 <div class="form-group tg-inputwithicon">
                                     <i class="lni-layers"></i>
                                     <div class="tg-select">
-                                        <select>
-                                        <option value="none">Select a Category</option>
-                                        @foreach($categories as $key => $category)
-                                        
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach
+                                        <select name="category_id" v-model="search.category_id">
+                                            <option value="0">Select a Category</option>
+                                            @foreach($categories as $key => $category)
+                                            
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <button class="btn btn-common" type="button">
+                                <button class="btn btn-common" type="submit">
                                     <i class="lni-search"></i>
                                 </button>
+                                
                             </form>
+                            <div v-if="search.result" style="background-color: white; padding: 20px; " class="">
+                                <div style="color: grey" class="text-left" v-for="query in search.query">
+                                    <a :href="/advertdetail/+query.encoded_id +'/'+ query.title.replace(/ /g, '-')">    
+                                        <img :src="query.image[0].image" width="80px">
+                                        &nbsp; &nbsp; @{{query.title}}
+                                    </a>
+                                    <hr>
+                                </div>
+                            </div>
                         </fieldset>
+                        
                     </div>
+                </div>
+                
+                    
                 </div>
             </div>
         </div>

@@ -33,6 +33,9 @@ Route::post('/register/facebook', 'Auth\RegisterController@facebookLogin')->name
 Route::post('/newsletter/subscribe', 'NewsLetterController@subscribe')->name('newsletter.subscribe');
 Route::get('/newsletter/unsubscribe/{email}/{hash}', 'NewsLetterController@unsubscribe')->name('newsletter.unsubscribe');
 
+//Advert route
+Route::post('/advert/search', 'SearchController@search')->name('advert.search');
+
 
 Route::post('/admin/login', 'Auth\LoginController@adminLogin')->name('admin.login');
 
@@ -49,6 +52,10 @@ Route::group(['prefix' => 'api/v1/'], function () {
 
 });
 
+//Report route
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('advert/report/{id}','ReportController@report');
+});
 
 // Admin Route
 Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
@@ -84,6 +91,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
     Route::patch('category/edit/{category_id}','Api\Admin\CategoryController@editCategory');
     Route::delete('category/delete/{category_id}','Api\Admin\CategoryController@deleteCategory');
 
+    
 });
 
 
@@ -103,6 +111,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
 
 
     Route::get('manage/types','Admin\TypeController@type');
+    Route::get('manage/user/view/{id}','Admin\UserController@viewUser');
     Route::get('manage/subtypes','Admin\TypeController@subtype');
     Route::post('manage/type/create','Admin\TypeController@createType')->name('admin.type.create');
     Route::patch('manage/type/edit/{type_id}','Admin\TypeController@editType')->name('admin.type.edit');

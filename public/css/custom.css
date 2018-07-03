@@ -24,3 +24,17 @@ select.form-control:not([size]):not([multiple]){
     opacity: 0.8;
     z-index: 5463456
 }
+
+@media (max-width: 767px){
+    #hero-area .contents {
+        padding: 5px 0;
+        width: 100%;
+        display: inline-block;
+    }
+}
+
+@media (min-width: 768px){
+    #hero-area .contents {
+        padding: 160px 0 167px;
+    }
+}
