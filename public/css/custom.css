@@ -63,3 +63,10 @@ select.form-control:not([size]):not([multiple]){
 .modal{
     z-index: 1054564;
 }
+
+#hero-area .contents .head-title {
+    
+    font-size: 48px;
+ 
+   
+}
