@@ -92,7 +92,7 @@
 
     <section class="featured section-padding">
         <div class="container">
-            <h1 class="section-title">Recommended For you</h1>
+            <h1 class="section-title">Ads By Verified Sellers</h1>
             <div class="row">
             @foreach($adverts as $key => $advert)                
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
