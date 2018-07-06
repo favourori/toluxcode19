@@ -61,6 +61,7 @@ class UserController extends ApiController
     public function verifyUser(Request $request, $id){
         $user = User::find($id);
         $user->verified_seller = true;
+        $user->advert()->update(['verified_seller' => 1]);
         if($user->save()){
             return $this->actionSuccess('Seller has been verified');
         }else{
@@ -71,6 +72,7 @@ class UserController extends ApiController
     public function unverifyUser(Request $request, $id){
         $user = User::find($id);
         $user->verified_seller = false;
+        $user->advert()->update(['verified_seller' => 0]);
         if($user->save()){
             return $this->actionSuccess('Seller Verification has been cancelled');
         }else{

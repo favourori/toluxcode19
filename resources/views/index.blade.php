@@ -116,11 +116,11 @@
                             <ul class="address">
                                 <li>
                                     <a href="#">
-                                        <i class="lni-map-marker"></i>New York</a>
+                                        <i class="lni-map-marker"></i>{{$advert->state->name}} | {{$advert->country->name}}</a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <i class="lni-alarm-clock"></i> 7 Jan, 10:10 pm</a>
+                                        <i class="lni-alarm-clock"></i> {{$advert->updated_at->format('jS F h:i A')}}</a>
                                 </li>
                                 <li>
                                     <a href="#">

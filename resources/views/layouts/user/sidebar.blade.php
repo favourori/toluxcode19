@@ -60,6 +60,21 @@
                                         </a>
                                     </li>
 
+                                    <li>
+                                        <a href="/account/seller/apply">
+                                            <i class="lni-layers"></i>
+                                            <span>Become a Verified Seller</span>
+                                        </a>
+                                    </li>
+                                    @if(Auth::user()->verified_seller)
+                                    <li>
+                                        <a href="/store/{{Auth::user()->store_url}}">
+                                            <i class="lni-layers"></i>
+                                            <span>My Store</span>
+                                        </a>
+                                    </li>
+                                    @endif
+
                                     <!-- <li>
                                         <a href="offermessages.html">
                                             <i class="lni-envelope"></i>

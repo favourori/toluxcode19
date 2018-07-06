@@ -50,7 +50,10 @@ var vapp = new Vue({
             category_id: 0
         },
         param: '',
-        report: ''
+        report: '',
+        store_name: '',
+        store_url: '',
+        store_description: ''
     },
 
     watch: {
@@ -465,6 +468,37 @@ var vapp = new Vue({
             axios.post('/account/advert/create', file)
                 .then(response => {
                     success('Success', 'Advert Created Successfully');
+                    setTimeout(function () { location.href = "/account/dashboard" }, 2000);
+                })
+                .catch(err => {
+                    if (err.response.data.response == 422) {
+                        error('Oops!', 'Check required fields')
+                        this.errors = err.response.data.errors;
+                    }
+                    if (err.response.data.response == 401) {
+                        error('Oops!', err.response.data.message)
+                    }
+                    if (err.response.data.response == 404) {
+                        error('Oops!', err.response.data.message)
+                    }
+                });
+        },
+
+        apply() {
+            let data = new FormData();
+            let files = document.querySelector('#image1').files;
+            $.each(files, function (key, value) {
+                data.append('business_docs', value);
+            });
+
+            data.append('store_name', this.store_name);
+            data.append('store_url', this.store_url);
+            data.append('store_description', this.store_description);
+
+            axios.post('/account/seller/apply', data)
+                .then(response => {
+                    success('Success', 'Application Successful');
+                    setTimeout(function () { location.href = '/account/dashboard' }, 2000);
                 })
                 .catch(err => {
                     if (err.response.data.response == 422) {
@@ -489,6 +523,21 @@ var vapp = new Vue({
             $("#" + idname).trigger('click');
         },
 
+        readDoc(idname, imgshow) {
+
+            let input = document.querySelector('#' + idname);
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#' + imgshow).attr('src', '/img/doc.jpg');
+
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        },
 
 
         readIMG(idname, imgshow) {

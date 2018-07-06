@@ -152,12 +152,14 @@
                         <div class="short-info">
                             <h4>Short Info</h4>
                             <ul>
+                                @if($advert->verified_seller)
                                 <li>
-                                    <a href="#">
+                                    <a href="{{url('store')}}/{{$advert->user->store_url}}">
                                         <i class="lni-users"></i> More ads by
                                         <span>User</span>
                                     </a>
                                 </li>
+                                @endif
                                 <!-- <li>
                                     <a href="#">
                                         <i class="lni-printer"></i> Print this ad</a>

@@ -4,7 +4,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     @yield('socials')
-    <title>ClassiAlly - Classified Ads Website Template</title>
+    <title>Property Warri - Buy And Sell Everything From Used Cars To Mobile Phones And Computers, 
+Or Search For Property, Jobs And More</title>
 
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
 

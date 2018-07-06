@@ -33,6 +33,9 @@ Route::post('/register/facebook', 'Auth\RegisterController@facebookLogin')->name
 Route::post('/newsletter/subscribe', 'NewsLetterController@subscribe')->name('newsletter.subscribe');
 Route::get('/newsletter/unsubscribe/{email}/{hash}', 'NewsLetterController@unsubscribe')->name('newsletter.unsubscribe');
 
+// Store url
+Route::get('/store/{store_url}', 'SellerController@store')->name('store');
+
 //Advert route
 Route::post('/advert/search', 'SearchController@search')->name('advert.search');
 
@@ -84,17 +87,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
 
     Route::post('advert/create','AdvertController@createAdvert');
     Route::delete('advert/delete/{advert_id}','AdvertController@deleteAdvert');
-    
-    
-    Route::post('skill/create','Api\Admin\SkillController@createSkill');
-    Route::patch('skill/edit/{skill_id}','Api\Admin\SkillController@editSkill');
-    Route::delete('skill/delete/{skill_id}','Api\Admin\SkillController@deleteSkill');
-
-    // Category routes
-    Route::get('categories','Api\Admin\CategoryController@getCategories');
-    Route::post('category/create','Api\Admin\CategoryController@createCategory');
-    Route::patch('category/edit/{category_id}','Api\Admin\CategoryController@editCategory');
-    Route::delete('category/delete/{category_id}','Api\Admin\CategoryController@deleteCategory');
+  
+    // Seller routes
+    Route::get('seller/apply','SellerController@apply');
+    Route::post('seller/apply','SellerController@postApply');
+    // Route::patch('category/edit/{category_id}','Api\Admin\CategoryController@editCategory');
+    // Route::delete('category/delete/{category_id}','Api\Admin\CategoryController@deleteCategory');
 
     
 });
@@ -138,13 +136,13 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::get('manage/adverts/reports','Admin\ReportController@report');
     // Route::post('manage/user/create','Admin\UserController@createUser')->name('admin.user.create');
     // Route::delete('manage/user/delete/{id}','Admin\UserController@deleteUser')->name('admin.user.delete');
-  
 
-    
-    // Skill routes
-    // Route::get('dashboard','UserController@dashboard');
-    // Route::get('profile','UserController@profile');
-    // Route::get('social','UserController@social');
+    Route::get('manage/sellers/applications','Admin\SellerController@application');
+    Route::get('manage/seller/application/{id}','Admin\SellerController@viewApplication');
+
+    Route::post('manage/seller/verify','Admin\SellerController@verifySeller')->name('admin.seller.verify');
+    Route::delete('manage/seller/application/delete/{id}','Admin\SellerController@deleteApplication')->name('admin.application.delete');
+
     
     Route::post('address/update','UserController@updateContact');
     Route::post('social/update','UserController@updateSocial');

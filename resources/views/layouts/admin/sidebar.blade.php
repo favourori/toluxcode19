@@ -5,6 +5,7 @@
 @php($user_count = \App\Model\User::count())
 @php($report_count = \App\Model\ReportAdvert::count())
 
+
 <div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
 		<div class="user">
@@ -72,6 +73,14 @@
 					<i class="la la-bar-chart"></i>
 					<p>Reports</p>
 					<span class="badge badge-count">{{$report_count}}</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a href="{{url('admin/manage/sellers/applications')}}">
+					<i class="la la-users"></i>
+					<p>Sellers Application</p>
+					<span class="badge badge-count">{{$user_count}}</span>
 				</a>
 			</li>
 
