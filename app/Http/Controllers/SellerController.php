@@ -139,3 +139,4 @@ class SellerController extends ApiController
     );
     }
 }
+//INSERT INTO `adverts` (`id`, `title`, `attributes`, `description`, `phone`, `advert_hash`, `user_id`, `state_id`, `country_id`, `category_id`, `verified_seller`, `subcategory_id`, `longitude`, `latitude`, `address`, `lga_id`, `price`, `created_at`, `updated_at`) VALUES (NULL, 'Hp probook 4540s laptop', NULL, 'Awesome laptop and all', '07037219055', '2f6571deb003ja2611108452e4a559e1e', '1', '513', '38', '1', '1', '1', '0', '0', 'Bethel Plaza Enugu', '75', '130000.00000', '2018-06-27 14:24:28', '2018-07-05 15:48:29');

@@ -109,7 +109,7 @@
                                 <div class="row">
                                     
                                     @foreach($categories as $key => $category)
-                                        
+                                        @if(count($category->advert) > 0)
                                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                             <div class="featured-box">
                                                 <figure>
@@ -117,38 +117,38 @@
                                                         <i class="lni-heart"></i>
                                                     </div>
                                                     <a href="#">
-                                                        <img class="img-fluid center-block" src="{{asset(is_null($category->advert[0]) ? '' : $category->advert[0]->image[0]->image)}}" alt="">
+                                                        <img class="img-fluid center-block" src="{{asset($category->advert[0]->image[0]->image)}}" alt="">
                                                     </a>
                                                 </figure>
                                                 <div class="feature-content">
                                                     <div class="tg-product">
-                                                        <a href="#">{{$category->name}} > {{is_null($category->advert[0]) ? '' : $category->advert[0]->subcategory->name}}</a>
+                                                        <a href="#">{{$category->name}} > {{$category->advert[0]->subcategory->name}}</a>
                                                     </div>
                                                     <h4>
                                                         <a href="ads-details.html">Apple iPhone X</a>
                                                     </h4>
-                                                    <span>Last Updated: {{is_null($category->advert[0]) ? '' : $category->advert[0]->updated_at->diffForHumans()}}</span>
+                                                    <span>Last Updated: {{$category->advert[0]->updated_at->diffForHumans()}}</span>
                                                     <ul class="address">
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-map-marker"></i>{{is_null($category->advert[0]) ? '' : $category->advert[0]->state->name}} | {{is_null($category->advert[0]) ? '' : $category->advert[0]->country->name}}</a>
+                                                                <i class="lni-map-marker"></i>{{$category->advert[0]->state->name}} | {{$category->advert[0]->country->name}}</a>
                                                         </li>
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-alarm-clock"></i> {{is_null($category->advert[0]) ? '' : $category->advert[0]->updated_at->toFormattedDateString()}}</a>
+                                                                <i class="lni-alarm-clock"></i> {{$category->advert[0]->updated_at->toFormattedDateString()}}</a>
                                                         </li>
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-user"></i> {{is_null($category->advert[0]) ? '' : $category->advert[0]->user->username}}</a>
+                                                                <i class="lni-user"></i> {{$category->advert[0]->user->username}}</a>
                                                         </li>
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-tag"></i> {{is_null($category->advert[0]) ? '' : $category->advert[0]->phone}}</a>
+                                                                <i class="lni-tag"></i> {{$category->advert[0]->phone}}</a>
                                                         </li>
                                                     </ul>
                                                     <div class="btn-list">
-                                                        <a class="btn-price" href="#">&#8358; {{is_null($category->advert[0]) ? '' : $category->advert[0]->price}}</a>
-                                                        <a class="btn btn-common" href="{{url('advertdetail')}}/{{is_null($category->advert[0]) ? '' : $category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">
+                                                        <a class="btn-price" href="#">&#8358; {{$category->advert[0]->price}}</a>
+                                                        <a class="btn btn-common" href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">
                                                             <i class="lni-list"></i>
                                                             View Details
                                                         </a>
@@ -156,13 +156,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
                                     @endforeach
                                                                     </div>
                             </div>
                             <div id="list-view" class="tab-pane fade active show">
                                 <div class="row">
                                 @foreach($categories as $key => $category)
-                                        
+                                @if(count($category->advert) > 0)
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="featured-box">
                                                 <figure>
@@ -175,33 +176,33 @@
                                                 </figure>
                                                 <div class="feature-content">
                                                     <div class="tg-product">
-                                                        <a href="#">{{$category->name}} > {{is_null($category->advert[0]) ? '' : $category->advert[0]->subcategory->name}}</a>
+                                                        <a href="#">{{$category->name}} > {{$category->advert[0]->subcategory->name}}</a>
                                                     </div>
                                                     <h4>
-                                                        <a href="ads-details.html">{{is_null($category->advert[0]) ? '' : $category->advert[0]->title}}</a>
+                                                        <a href="ads-details.html">{{$category->advert[0]->title}}</a>
                                                     </h4>
-                                                    <span>Last Updated: {{is_null($category->advert[0]) ? '' : $category->advert[0]->updated_at->diffForHumans()}}</span>
+                                                    <span>Last Updated: {{$category->advert[0]->updated_at->diffForHumans()}}</span>
                                                     <ul class="address">
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-map-marker"></i>{{is_null($category->advert[0]) ? '' : $category->advert[0]->state->name}} | {{is_null($category->advert[0]) ? '' : $category->advert[0]->country->name}}</a>
+                                                                <i class="lni-map-marker"></i>{{$category->advert[0]->state->name}} | {{$category->advert[0]->country->name}}</a>
                                                         </li>
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-alarm-clock"></i> {{is_null($category->advert[0]) ? '' : $category->advert[0]->updated_at->toFormattedDateString()}}</a>
+                                                                <i class="lni-alarm-clock"></i> {{$category->advert[0]->updated_at->toFormattedDateString()}}</a>
                                                         </li>
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-user"></i> {{is_null($category->advert[0]) ? '' : $category->advert[0]->user->username}}</a>
+                                                                <i class="lni-user"></i> {{$category->advert[0]->user->username}}</a>
                                                         </li>
                                                         <li>
                                                             <a href="#">
-                                                                <i class="lni-tag"></i> {{is_null($category->advert[0]) ? '' : $category->advert[0]->phone}}</a>
+                                                                <i class="lni-tag"></i> {{$category->advert[0]->phone}}</a>
                                                         </li>
                                                     </ul>
                                                     <div class="btn-list">
-                                                        <a class="btn-price" href="#">&#8358; {{is_null($category->advert[0]) ? '' : $category->advert[0]->price}}</a>
-                                                        <a class="btn btn-common" href="{{url('advertdetail')}}/{{is_null($category->advert[0]) ? '' : $category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">
+                                                        <a class="btn-price" href="#">&#8358; {{$category->advert[0]->price}}</a>
+                                                        <a class="btn btn-common" href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">
                                                             <i class="lni-list"></i>
                                                             View Details
                                                         </a>
@@ -209,6 +210,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
                                     @endforeach
                                  
                                 </div>
