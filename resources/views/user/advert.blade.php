@@ -143,13 +143,21 @@
                                         <label class="control-label">Longitude <span class="error">*</span></label>
                                         <input class="form-control input-md" disabled class="longitude" id="longitude" type="text">
                                         <span class="error" v-if="errors.hasOwnProperty('longitude')">@{{errors['longitude'][0]}}</span>
-                                    </div>
+                                    </div>  
 
                                     <div class="form-group mb-3">
                                         <label class="control-label">Latitude <span class="error">*</span></label>
                                         <input class="form-control input-md" disabled class="latitude" id="latitude" type="text">
                                         <span class="error" v-if="errors.hasOwnProperty('latitude')">@{{errors['latitude'][0]}}</span>
                                     </div>
+
+                                    <div class="form-group mb-3">
+                                        <button type="button" class="btn btn-info btn-xs log-btn" @click="addInput">Add Specs</button>
+                                        <div v-for="index,spec in specs">
+                                            <input  class="form-control input-md" placeholder="Describe your product" style="margin-top: 5px; width: 90%; display: inline-block" v-model="specifications[spec]" type="text">
+                                            <span class="cancel" style="display: inline-block" @click="removeInput(index)"><strong>X</strong></span>
+                                        </div>
+                                   </div>
                                     
                                     <input class="form-control input-md" v-model="latitude" type="hidden">
 
@@ -253,7 +261,11 @@
 
 
 @section('custom-script')
-
+<style>
+    .cancel:hover{
+        cursor: pointer;
+    }
+</style>
 <script>
    
          function readIMG(input) {

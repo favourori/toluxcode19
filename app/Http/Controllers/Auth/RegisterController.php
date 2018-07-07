@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+use App\Mail\Welcome;
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 
 class RegisterController extends ApiController
@@ -68,7 +70,9 @@ class RegisterController extends ApiController
 
         $company = new Company;
         $user->company()->save($company);
-
+        if($user){
+            Mail::to($user)->send(new Welcome($user));
+        }
         $this->guard()->login($user);
 
         return $this->registered($request, $user)
@@ -98,7 +102,9 @@ class RegisterController extends ApiController
 
         $company = new Company;
         $user->company()->save($company);
-
+        if($user){
+            Mail::to($user)->send(new Welcome($user));
+        }
         $this->guard()->login($user);
 
         return $this->registered($request, $user)
@@ -138,7 +144,7 @@ class RegisterController extends ApiController
         return Validator::make($data, [
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);

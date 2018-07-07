@@ -19,6 +19,9 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/email', function () {
+    return view('email.welcome');
+});
 
 Auth::routes();
 

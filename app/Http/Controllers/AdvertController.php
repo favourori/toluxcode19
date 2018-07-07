@@ -7,6 +7,7 @@ use App\Http\Resources\GenericResource;
 use Illuminate\Support\Facades\Validator;
 use App\Model\Advert;
 use App\Model\AdvertImage;
+use App\Model\AdvertSpecification;
 use Carbon\Carbon;
 
 
@@ -41,6 +42,7 @@ class AdvertController extends ApiController
             @unlink(public_path().$item->image);
             $item->delete();
         });
+        AdvertSpecification::where('advert_id',$advert->id)->delete();
         $advert->delete();
         
 
@@ -49,7 +51,7 @@ class AdvertController extends ApiController
 
     
     public function createAdvert(Request $request){
-        
+        // dd($request->specification);
         $validate = $this->validateAdvert($request->all());
         
         if($validate->fails()){
@@ -84,8 +86,19 @@ class AdvertController extends ApiController
                 }
                 
             }
+            $specifications = json_decode($request->specifications, true);
+            foreach($specifications as $key => $specs){
+                $specification = new AdvertSpecification;
+                $specification->specification = $specs;
+                $specification->advert_id = $advert->id;
+                $specification->save();
+            }
+
+            
 
         }
+
+        return $this->actionSuccess('Advert Created Successfuly');
         
     }
 

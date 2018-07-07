@@ -74,7 +74,7 @@ class HomeController extends Controller
             
         }
         
-        $advert->load('image','category','subcategory');
+        $advert->load('image','category','subcategory', 'specifications');
         return view('singleadvert', compact('advert', 'specification'));
     }
 }

@@ -53,7 +53,8 @@ var vapp = new Vue({
         report: '',
         store_name: '',
         store_url: '',
-        store_description: ''
+        store_description: '',
+        specs: []
     },
 
     watch: {
@@ -131,6 +132,15 @@ var vapp = new Vue({
     },
 
     methods: {
+
+        addInput() {
+            this.specs.push(1);
+        },
+
+        removeInput(index) {
+            this.specs.splice(index - 1, 1);
+            this.specifications.splice(index - 1, 1);
+        },
 
         reportAdvert(id) {
             let data = {
@@ -464,6 +474,7 @@ var vapp = new Vue({
             file.append('price', this.price);
             file.append('phone1', this.phone1);
             file.append('attr', attributes);
+            file.append('specifications', JSON.stringify(this.specifications));
 
             axios.post('/account/advert/create', file)
                 .then(response => {

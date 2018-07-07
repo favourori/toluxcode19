@@ -28,6 +28,10 @@ class Advert extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function specifications(){
+        return $this->hasMany(AdvertSpecification::class);
+    }
+
     public function subcategory(){
         return $this->belongsTo(SubCategory::class);
     }

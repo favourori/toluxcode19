@@ -18,12 +18,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcrumb-wrapper">
-                        <h2 class="product-title">Ad Details</h2>
+                        <h2 class="product-title">Advert Details</h2>
                         <ol class="breadcrumb">
                             <li>
                                 <a href="#">Home /</a>
                             </li>
-                            <li class="current">Ad Details</li>
+                            <li class="current">Advert Details</li>
                         </ol>
                     </div>
                 </div>
@@ -78,20 +78,36 @@
                                         <i class="lni-eye"></i> 299 View</a>
                                 </span>
                             </div>
-                            @foreach($specification as $key => $specs)
-                                @if($specs->count() > 0)
-                                <h4 class="title-small mb-3" style="color: grey; font-size: 16px;">{{str_replace('_', ' ',$key)}}:</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @foreach($specification as $key => $specs)
+                                        @if($specs->count() > 0)
+                                        <h4 class="title-small mb-3" style="color: grey; font-size: 16px;">{{str_replace('_', ' ',$key)}}:</h4>
+                                        <ul class="list-specification">
+                                            @foreach($specs as $key1 => $value)
+                                            <li>
+                                                <i class="lni-check-mark-circle"></i> 
+                                                {{$value->name}}
+                                            </li>
+                                            @endforeach
+                                            
+                                        </ul>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="col-md-6">
+                                <h4 class="title-small mb-3" style="color: grey; font-size: 16px;">Specifications</h4>
                                 <ul class="list-specification">
-                                    @foreach($specs as $key1 => $value)
+                                    @foreach($advert->specifications as $key2 => $value3)
                                     <li>
                                         <i class="lni-check-mark-circle"></i> 
-                                        {{$value->name}}
+                                        {{$value3->specification}}
                                     </li>
                                     @endforeach
                                     
                                 </ul>
-                                @endif
-                            @endforeach
+                                </div>
+                            </div>
                         </div>
                         <ul class="advertisement mb-4">
                             <li>

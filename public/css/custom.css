@@ -67,6 +67,13 @@ select.form-control:not([size]):not([multiple]){
 #hero-area .contents .head-title {
     
     font-size: 48px;
- 
-   
+}
+
+.details-box .ads-details-info .list-specification li {
+    width: 68%;
+    box-sizing: border-box;
+    float: left;
+    position: relative;
+    margin-bottom: 7px;
+    margin-right: 5px;
 }
