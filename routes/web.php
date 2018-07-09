@@ -19,10 +19,6 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-// Route::get('/404', function () {
-//     return view('404');
-// });
-
 Route::get('/email', function () {
     return view('email.welcome');
 });
@@ -65,8 +61,14 @@ Route::group(['prefix' => 'api/v1/'], function () {
     Route::get('types/{subcategory_id}','TypeController@getTypes');
     Route::get('subtype/{type_id}','TypeController@getSubTypes');
 
-    Route::get('messages/user/','MessageController@getSubTypes');
+    // Route::get('messages/user/','MessageController@getSubTypes');
 
+});
+
+Route::group(['prefix' => 'api/v1/', 'middleware' => ['auth']], function () {
+    Route::get('messages/related/{message_id}','MessageController@getRelatedMessages');
+    Route::post('chat/{message_id}','MessageController@chat');
+    Route::get('auth', 'HomeController@getAuthUser');
 });
 
 //Report route

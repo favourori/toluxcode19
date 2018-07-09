@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Model\Category;
 use App\Model\Advert;
 use App\Model\Subtype;
+use App\Http\Resources\GenericResource;
+use Auth;
 
 
 class HomeController extends Controller
@@ -96,5 +98,9 @@ class HomeController extends Controller
         
         $advert->load('image','category','subcategory', 'specifications');
         return view('singleadvert', compact('advert', 'specification'));
+    }
+
+    public function getAuthUser(){
+        return new GenericResource(Auth::user());
     }
 }

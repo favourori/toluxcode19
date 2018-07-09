@@ -6,52 +6,67 @@ function showNumber(num) {
 
 Vue.component('user-message', {
     mounted() {
-        // this.getMessages();
+        this.getAuthUser();
+        Event.$on('open', (id, firstname, lastname) => {
+            this.chatter_name = firstname + " " + lastname;
+            this.clicked = true;
+            this.getUserMessages(id);
+        });
     },
     data() {
         return {
             message: "",
-            messages: []
+            messages: [],
+            message_id: 0,
+            chatter_name: '',
+
+            auth: 0,
+            clicked: false
         }
     },
 
     methods: {
-        getUserMessages() {
-            axios.get('/api/v1/messages/user')
+        getAuthUser() {
+            axios.get('/api/v1/auth')
+                .then(response => {
+                    this.auth = response.data.data.id;
+
+                })
+                .catch(err => {
+
+                });
+        },
+        getUserMessages: function (id) {
+            axios.get('/api/v1/messages/related/' + id)
                 .then(response => {
                     this.messages = response.data.data;
-
+                    this.message_id = id;
                 })
                 .catch(err => {
 
                 });
+        },
+
+        proper(sender_id) {
+            return sender_id != this.auth;
+        },
+        chat() {
+            if (event.keyCode == '13') {
+                axios.post('/api/v1/chat/' + this.message_id, { message: this.message })
+                    .then(response => {
+                        this.messages.push(response.data.data);
+                        this.message = "";
+                    })
+                    .catch(err => {
+
+                    });
+            }
+
         }
     }
 });
 
-Vue.component('seller-message', {
-    mounted() {
-        // this.getMessages();
-    },
-    data() {
-        return {
-            message: ""
-        }
-    },
-
-    methods: {
-        getMessages() {
-            axios.get('/api/v1/messages')
-                .then(response => {
-                    this.categories = response.data.data;
-
-                })
-                .catch(err => {
-
-                });
-        }
-    }
-});
+window.Event = new Vue();
 
 var vapp = new Vue({
     el: '#root',
@@ -187,8 +202,8 @@ var vapp = new Vue({
 
     methods: {
 
-        showChat(id) {
-
+        emitValue(id, firstname, lastname) {
+            Event.$emit('open', id, firstname, lastname);
         },
 
         addInput() {

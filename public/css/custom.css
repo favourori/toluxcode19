@@ -84,3 +84,8 @@ select.form-control:not([size]):not([multiple]){
     background-color: #00cc67;
     border-color: #00cc67;
 }
+
+.proper{
+    display: inherit;
+    text-align: right;
+}
