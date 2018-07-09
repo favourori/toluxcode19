@@ -22,7 +22,7 @@
                                     <i class="lni-tag"></i>
                                     <input type="text" v-model="param" name="param" class="form-control" placeholder="What are you looking for">
                                 </div>
-                                @csrf
+                                
                              
                                 <div class="form-group tg-inputwithicon">
                                     <i class="lni-layers"></i>
