@@ -81,6 +81,13 @@
                                 </div>
                                 <h4>{{$category->name}}</h4>
                                 <strong>{{count($category->advert)}} Ads</strong>
+                                <!-- <hr> -->
+                                <ul>
+                                @foreach($category->subcategory as $key1 => $subcategory)
+                                    <li>{{$subcategory->name}}</li>
+
+                                @endforeach
+                                </ul>
                             </div>
                         </a>
                     </div>
