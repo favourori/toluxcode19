@@ -45,15 +45,7 @@
                             </a>
                         </div>
 
-                        <div class="col-md-6">
-                            <a href="#" class="card text-center">
-                                <img class="card-img-top" src="holder.js/100px180/" alt="">
-                                <div class="card-body" style="color: grey">
-                                    <h4 class="card-title">Total Ads</h4>
-                                    <h3 class="card-text">{{count(auth()->user()->advert)}}</h3>
-                                </div>
-                            </a>
-                        </div>
+                        
 
                        
                     </div>

@@ -128,22 +128,26 @@
                                 </p>
                             </li>
                         </ul>
+                        
+                        <p style="font-size: 15px;">{{substr($advert->phone,0, 4)}}<span id="show-number">XXXXXXX</span></p>
+                        <br>
+                        
                         <div class="ads-btn mb-4">
                             <a href="#" class="btn btn-common btn-reply">
                                 <i class="lni-envelope"></i> Email</a>
-                            <a href="#" class="btn btn-common">
-                                <i class="lni-phone-handset"></i> {{$advert->phone}}</a>
+                            <a href="#" class="btn btn-common" onclick="showNumber('{{substr($advert->phone,4, 40)}}')">
+                                <i class="lni-phone-handset"></i> Show Number</a>
                         </div>
                         <div class="share">
                             <span>Share: </span>
                             <div class="social-link">
-                                <a class="facebook" target="_blank" href="https://web.facebook.com/sharer/sharer.php?u={{url('advertdetail')}}/{{$advert->encoded_id}}">
+                                <a class="facebook" target="_blank" href="https://web.facebook.com/sharer/sharer.php?u={{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
                                     <i class="lni-facebook-filled"></i>
                                 </a>
-                                <a class="twitter" target="_blank" href="https://twitter.com/intent/tweet?url={{url('advertdetail')}}/{{$advert->encoded_id}}">
+                                <a class="twitter" target="_blank" href="https://twitter.com/intent/tweet?url={{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
                                     <i class="lni-twitter-filled"></i>
                                 </a>
-                                <a class="linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?title={{$advert->title}}&url={{url('advertdetail')}}/{{$advert->encoded_id}}">
+                                <a class="linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?title={{$advert->title}}&url={{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
                                     <i class="lni-linkedin-fill"></i>
                                 </a>
                                 <!-- <a class="google" href="#">
@@ -151,6 +155,25 @@
                                 </a> -->
                             </div>
                         </div>
+                        <br>
+                        @if(Auth::Check())
+                        <div class="ads-btn mb-4">
+                            
+                            <form method="post" action="{{route('message.seller', ['seller_id' => $advert->user_id])}}" method="POST" role="form">
+                              
+                                <div class="form-group">
+                                    <textarea rows="5" required type="text" class="form-control" name="message" placeholder="Send the seller a message"></textarea>
+                                </div>
+                                <input type="hidden" name="advert_id" value="{{$advert->id}}">
+                                <button type="submit" class="btn btn-common btn-reply">
+                                <i class="lni-envelope"></i> Reply to this Ad</button>
+                                @csrf
+                            </form>
+                            
+                            
+                        </div>
+                        @endif
+                        
                     </div>
                 </div>
             </div>

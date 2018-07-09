@@ -31,6 +31,7 @@ class CreateAdvertsTable extends Migration
 
             $table->integer('lga_id')->unsigned()->nullable();
             $table->double('price', 15, 5);
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')

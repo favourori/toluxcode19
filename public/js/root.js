@@ -1,4 +1,57 @@
+function showNumber(num) {
+    event.preventDefault();
+    // alert(num);
+    $("#show-number").text(num);
+}
 
+Vue.component('user-message', {
+    mounted() {
+        // this.getMessages();
+    },
+    data() {
+        return {
+            message: "",
+            messages: []
+        }
+    },
+
+    methods: {
+        getUserMessages() {
+            axios.get('/api/v1/messages/user')
+                .then(response => {
+                    this.messages = response.data.data;
+
+                })
+                .catch(err => {
+
+                });
+        }
+    }
+});
+
+Vue.component('seller-message', {
+    mounted() {
+        // this.getMessages();
+    },
+    data() {
+        return {
+            message: ""
+        }
+    },
+
+    methods: {
+        getMessages() {
+            axios.get('/api/v1/messages')
+                .then(response => {
+                    this.categories = response.data.data;
+
+                })
+                .catch(err => {
+
+                });
+        }
+    }
+});
 
 var vapp = new Vue({
     el: '#root',
@@ -54,7 +107,8 @@ var vapp = new Vue({
         store_name: '',
         store_url: '',
         store_description: '',
-        specs: []
+        specs: [],
+
     },
 
     watch: {
@@ -132,6 +186,10 @@ var vapp = new Vue({
     },
 
     methods: {
+
+        showChat(id) {
+
+        },
 
         addInput() {
             this.specs.push(1);
@@ -458,7 +516,7 @@ var vapp = new Vue({
 
             }
             attributes = JSON.stringify(attributes).replace(new RegExp("\"", 'g'), '\'');
-            console.log(attributes);
+            // console.log(attributes);
 
             file.append('title', this.title);
             file.append('description', this.description);
@@ -570,3 +628,4 @@ var vapp = new Vue({
 
     }
 });
+

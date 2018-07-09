@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Validator;
 use App\Model\User;
+use App\Model\Advert;
 use App\Model\SubCategory;
 
 class UserController extends ApiController

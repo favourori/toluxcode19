@@ -1,3 +1,7 @@
+@php($message_count = \App\Model\Message::where('user_id', Auth::user()->id)
+                                        ->orWhere('seller_id', Auth::user()->id)
+                                        ->where('read', false)->count()
+)
 <div class="col-sm-12 col-md-4 col-lg-3 page-sidebar">
                     <aside>
                         <div class="sidebar-box">
@@ -30,6 +34,13 @@
                                         <a href="/account/contact">
                                             <i class="lni-phone"></i>
                                             <span>Contact</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/account/messages">
+                                            <i class="lni-envelope"></i>
+                                            <span>Messages &nbsp;&nbsp;&nbsp;<span class="text-right" style="color: red">{{$message_count}}</span></span>
                                         </a>
                                     </li>
 

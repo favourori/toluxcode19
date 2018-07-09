@@ -128,7 +128,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <i class="lni-tag"></i> {{$advert->phone}}</a>
+                                        <i class="lni-tag"></i> {{substr($advert->phone, 0, 4)}} .....</a>
                                 </li>
                             </ul>
                             <div class="btn-list">

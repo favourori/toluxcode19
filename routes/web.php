@@ -56,6 +56,8 @@ Route::group(['prefix' => 'api/v1/'], function () {
     Route::get('types/{subcategory_id}','TypeController@getTypes');
     Route::get('subtype/{type_id}','TypeController@getSubTypes');
 
+    Route::get('messages/user/','MessageController@getSubTypes');
+
 });
 
 //Report route
@@ -69,8 +71,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
 
     Route::get('adverts/reported','ReportController@myreport');
     Route::get('advert/reports/{id}','ReportController@reportsOnAdvert');
-
-
+    Route::post('message/seller/{seller_id}','MessageController@sendMessage')->name('message.seller');
+    Route::get('messages','MessageController@messages');
     Route::get('apiprofile','UserController@apiProfile');
     Route::get('apiuser','UserController@apiUser');
 
