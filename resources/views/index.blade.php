@@ -18,12 +18,12 @@
                     <div class="search-bar">
                         <fieldset>
                         <div id="root">
-                            <form method="post" @submit.prevent="searchAdvert()" action="{{route('advert.search')}}" class="search-form">
+                            <form method="get"  action="{{route('advert.search.page')}}" class="search-form">
                                 <div class="form-group tg-inputwithicon">
                                     <i class="lni-tag"></i>
-                                    <input type="text" v-model="param" class="form-control" placeholder="What are you looking for">
+                                    <input type="text" v-model="param" name="param" class="form-control" placeholder="What are you looking for">
                                 </div>
-                                @csrf
+                                
                              
                                 <div class="form-group tg-inputwithicon">
                                     <i class="lni-layers"></i>

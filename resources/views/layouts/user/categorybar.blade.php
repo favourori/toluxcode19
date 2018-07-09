@@ -15,7 +15,7 @@
                             <ul class="categories-list">
                                 @foreach($categories as $key => $category)
                                 <li>
-                                    <a href="#">
+                                    <a href="{{url('categories/filter')}}?category={{$category->id}}">
                                         <i class="lni-dinner"></i>
                                         {{$category->name}}
                                         <span class="category-counter">({{count($category->advert)}})</span>

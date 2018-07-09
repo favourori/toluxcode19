@@ -77,3 +77,10 @@ select.form-control:not([size]):not([multiple]){
     margin-bottom: 7px;
     margin-right: 5px;
 }
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #00cc67;
+    border-color: #00cc67;
+}

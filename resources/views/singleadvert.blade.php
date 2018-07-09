@@ -129,7 +129,7 @@
                             </li>
                         </ul>
                         
-                        <p style="font-size: 15px;">{{substr($advert->phone,0, 4)}}<span id="show-number">XXXXXXX</span></p>
+                        <p style="font-size: 15px;"><i class="lni-phone-handset"></i> {{substr($advert->phone,0, 4)}}<span id="show-number">XXXXXXX</span></p>
                         <br>
                         
                         <div class="ads-btn mb-4">

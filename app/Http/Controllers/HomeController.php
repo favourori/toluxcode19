@@ -41,7 +41,7 @@ class HomeController extends Controller
     {
         $adverts = Advert::all();
         $adverts->load('image');
-        $categories = Category::all();
+        $categories = Category::paginate(8);
 
         $categories->load('advert.subcategory');
       
@@ -54,6 +54,26 @@ class HomeController extends Controller
         });
         
         return view('categories', compact('adverts', 'categories'));
+    }
+
+    public function categoriesFilter(Request $request)
+    {
+        $category_id = $request->get('category');
+        $adverts = collect([]);
+        $category = Category::find($category_id);
+        $categories = Category::all();
+        if(!is_null($category) ){
+            $adverts = $category->advert;
+        }
+
+        
+        $adverts->each(function ($item, $key){
+            $item->encoded_id = $this->encode($item->id);
+        });
+        
+        $cat = $category;
+        
+        return view('categoriesfilter', compact('adverts', 'categories', 'cat'));
     }
 
 

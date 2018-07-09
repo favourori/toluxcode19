@@ -27,6 +27,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/categories', 'HomeController@categories')->name('categories');
+Route::get('/categories/filter', 'HomeController@categoriesFilter')->name('categories.filter');
 Route::get('/advertdetail/{advert_id}/{name}', 'HomeController@advertDetail')->name('advertdetail');
 
 Route::post('/login/facebook', 'Auth\LoginController@facebookLogin')->name('facebook.login');
@@ -41,7 +42,7 @@ Route::get('/store/{store_url}', 'SellerController@store')->name('store');
 
 //Advert route
 Route::post('/advert/search', 'SearchController@search')->name('advert.search');
-
+Route::get('/advert/search', 'SearchController@searchPage')->name('advert.search.page');
 
 Route::post('/admin/login', 'Auth\LoginController@adminLogin')->name('admin.login');
 
