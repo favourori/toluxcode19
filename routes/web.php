@@ -19,11 +19,19 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+// Route::get('/404', function () {
+//     return view('404');
+// });
+
 Route::get('/email', function () {
     return view('email.welcome');
 });
 
 Auth::routes();
+
+Route::get('404',['as'=>'404','uses'=>'ErrorHandlerController@errorCode404']);
+Route::get('405',['as'=>'405','uses'=>'ErrorHandlerController@errorCode405']);
+
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/categories', 'HomeController@categories')->name('categories');
