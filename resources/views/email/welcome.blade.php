@@ -8,15 +8,10 @@
         <title>Welcome</title>
 
         <!-- Bootstrap CSS -->
-        <!-- <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
-        <link href='https://fonts.googleapis.com/css?family=Bonbon' rel='stylesheet'> -->
+        <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
+        <link href='https://fonts.googleapis.com/css?family=Bonbon' rel='stylesheet'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+       
     </head>
     <body>
         <div class="container" style="text-align: center; display:flex; align-items: center; justify-content: center;">
@@ -24,8 +19,8 @@
             <div class="col-md-6 col-md-offset-3 text-center" style="border: 1.3px solid #cecece; padding: 0;">
             <br>
             <img src="https://res.cloudinary.com/tribenigeria-com/image/upload/v1531248026/property-logo_leku6t.png" width="150px" height="63px">
-            <br><br>
-                
+            <br>
+                <h2 style="color: grey">Hi {{$user->username}}</h2>
                 <p style="color: grey; padding: 10px;">Welcome to {{env('APP_NAME')}}, One of the biggest advert sites in the country</p>
                 <br>
 
