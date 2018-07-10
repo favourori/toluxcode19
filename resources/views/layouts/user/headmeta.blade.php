@@ -6,7 +6,8 @@
     @yield('socials')
     <title>Property Warri - Buy And Sell Everything From Used Cars To Mobile Phones And Computers, 
 Or Search For Property, Jobs And More</title>
-
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
 
     <link rel="stylesheet" type="text/css" href="{{asset('fonts/line-icons.css')}}">

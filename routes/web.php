@@ -23,6 +23,10 @@ Route::get('/email', function () {
     return view('email.welcome');
 });
 
+Route::get('/message', function () {
+    return view('email.message');
+});
+
 Auth::routes();
 
 Route::get('404',['as'=>'404','uses'=>'ErrorHandlerController@errorCode404']);
