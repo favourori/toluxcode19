@@ -104,7 +104,7 @@
                         @csrf
                         <div class="form-group">
                             <label>SubCategory name</label>
-                            <input type="text" class="form-control input-square" id="name" value="{{old('name')}}" name="name" required placeholder="Name of category">
+                            <input type="text" class="form-control input-square" id="name" value="{{old('name')}}" name="name" required placeholder="Name of subcategory">
                             @if ($errors->has('name'))
                                 <span class="error">
                                     {{ $errors->first('name') }}
@@ -115,8 +115,9 @@
                         <div class="form-group">
                             <label>Select Category</label>
                            <select type="text" class="form-control input-square" id="category_id"  name="category_id" required>
+                           <option>Select Category</option>
                             @foreach($categories as $key => $category)
-                                    <option>Select Category</option>
+                                    
                                     <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                             </select>
