@@ -24,11 +24,11 @@
                 <br>
                 <h2 style="color: grey">Hi {{$seller_name}}</h2>
                 <p style="color: grey; padding: 10px;">
-                    <p style="font-size: 16px;">
+                    <p style="font-size: 16px; padding: 15px;">
                     {{$user->firstname}} {{$user->lastname}} 
                     contacted you about this advert {{$advert->title}}
                     </p>
-                    <img src="{{asset($advert->image->first()->image)}}" width="200px" height="250px">
+                    <img src="{{asset($advert->image->first()->image)}}" width="250px" height="250px">
                 </p>
                 <br>
                     <a href="#" style="font-family: san-serif; background-color: #00cc67; font-size: 14px; border-radius: 1.4em; text-decoration: none; color: white; padding: 8px; border-width: 1px;box-shadow:  none;border-color:  #00cc67;border-image:  none;">&nbsp;&nbsp;Reply&nbsp;&nbsp;</a href="#">
