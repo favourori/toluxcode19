@@ -24,8 +24,10 @@
                 <br>
                 <h2 style="color: grey">Hi {{$seller_name}}</h2>
                 <p style="color: grey; padding: 10px;">
+                    <p style="font-size: 16px;">
                     {{$user->firstname}} {{$user->lastname}} 
                     contacted you about this advert {{$advert->title}}
+                    </p>
                     <img src="{{asset($advert->image->first()->image)}}" width="200px" height="250px">
                 </p>
                 <br>
