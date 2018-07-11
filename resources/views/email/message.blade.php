@@ -26,7 +26,7 @@
                 <p style="color: grey; padding: 10px;">
                     {{$user->firstname}} {{$user->lastname}} 
                     contacted you about this advert {{$advert->title}}
-                    <img src="{{asset($advert->image->first()->image)}}" class="img-responsive">
+                    <img src="{{asset($advert->image->first()->image)}}" width="200px" height="250px">
                 </p>
                 <br>
                     <a href="#" style="font-family: san-serif; background-color: #00cc67; font-size: 14px; border-radius: 1.4em; text-decoration: none; color: white; padding: 8px; border-width: 1px;box-shadow:  none;border-color:  #00cc67;border-image:  none;">&nbsp;&nbsp;Reply&nbsp;&nbsp;</a href="#">
