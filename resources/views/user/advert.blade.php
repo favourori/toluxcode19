@@ -36,7 +36,7 @@
                 </div>
                 <div class="dashboard-wrapper">
                     <div id="root">
-                    <form method="post" enctype="multipart/form-data" @submit.prevent="createAdvert">
+                    <form method="post" enctype="multipart/form-data" id="advert-form" @submit.prevent="createAdvert">
                         <div class="row">
                         
                                 <div class="col-md-6">

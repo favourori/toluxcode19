@@ -1,5 +1,5 @@
 <?php
-
+// use Image;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('image/upload', function(){
+        // create new Intervention Image
+    $img = Image::make('img/productinfo/img1.jpg');
+
+    // create a new Image instance for inserting
+    $watermark = Image::make('img/property-logo.png');
+    $watermark->resize(100,45);
+    $img->insert($watermark, 'top-right', 10, 10);
+
+    $img->save('img/transform/'.md5(date('H:i:s')).'.jpg');
+});
+
 
 Route::get('/admin/login', function () {
     return view('admin.login');
@@ -36,6 +49,7 @@ Route::get('405',['as'=>'405','uses'=>'ErrorHandlerController@errorCode405']);
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/categories', 'HomeController@categories')->name('categories');
 Route::get('/categories/filter', 'HomeController@categoriesFilter')->name('categories.filter');
+Route::get('/subcategories', 'HomeController@subcategories')->name('categories.filter');
 Route::get('/advertdetail/{advert_id}/{name}', 'HomeController@advertDetail')->name('advertdetail');
 
 Route::post('/login/facebook', 'Auth\LoginController@facebookLogin')->name('facebook.login');

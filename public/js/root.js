@@ -485,6 +485,7 @@ var vapp = new Vue({
         },
 
         createAdvert() {
+            $("#advert-form").LoadingOverlay("show");
             let file = new FormData();
             let files = document.querySelector('#image1').files;
             $.each(files, function (key, value) {
@@ -551,10 +552,12 @@ var vapp = new Vue({
 
             axios.post('/account/advert/create', file)
                 .then(response => {
+                    $("#advert-form").LoadingOverlay("hide");
                     success('Success', 'Advert Created Successfully');
                     setTimeout(function () { location.href = "/account/dashboard" }, 2000);
                 })
                 .catch(err => {
+                    $("#advert-form").LoadingOverlay("hide");
                     if (err.response.data.response == 422) {
                         error('Oops!', 'Check required fields')
                         this.errors = err.response.data.errors;
@@ -566,6 +569,7 @@ var vapp = new Vue({
                         error('Oops!', err.response.data.message)
                     }
                 });
+
         },
 
         apply() {

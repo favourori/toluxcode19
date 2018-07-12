@@ -9,6 +9,7 @@ use App\Model\Advert;
 use App\Model\AdvertImage;
 use App\Model\AdvertSpecification;
 use Carbon\Carbon;
+use Image;
 
 
 class AdvertController extends ApiController
@@ -106,13 +107,24 @@ class AdvertController extends ApiController
         $filename = null;
 
         if($request->has($image_name)){
+            $img = Image::make($request->file($image_name));
+
+            // create a new Image instance for inserting
+            $watermark = Image::make('img/property-logo.png');
+            $img->resize(625, 415);
+            $watermark->resize(199,77);
+            $img->insert($watermark);
+
             $image = $request->file($image_name); 
             $path = public_path('/img/adverts/');
             $original = str_replace(' ', '_',$image->getClientOriginalName());
-            $filename = '/img/adverts/'.$image_name.$original.time().".".$image->getClientOriginalExtension();
-            $image->move($path,$filename);
+            $filename = 'img/adverts/'.$image_name.$original.time().".".$image->getClientOriginalExtension();
+            
+
+            $img->save($filename);
+
         }
-        return $filename;
+        return '/'.$filename;
     }
 
 

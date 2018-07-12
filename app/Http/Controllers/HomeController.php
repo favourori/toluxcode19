@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Category;
+use App\Model\SubCategory;
 use App\Model\Advert;
 use App\Model\Subtype;
 use App\Http\Resources\GenericResource;
@@ -56,6 +57,21 @@ class HomeController extends Controller
         });
         
         return view('categories', compact('adverts', 'categories'));
+    }
+
+    public function subcategories(Request $request){
+        $subcategory_id = $request->get('subcategory');
+        $subcategory = SubCategory::find($subcategory_id);
+        // dd($subcategory_id);
+        $adverts= Advert::where('subcategory_id', $subcategory_id)->orderBy('verified_seller', 'desc')->paginate(8);
+        $adverts->load('image', 'user.profile');      
+        $adverts->each(function ($item, $key){
+            $item->encoded_id = $this->encode($item->id);
+        });
+        $cat = $subcategory;
+       
+        $categories = Category::all();
+        return view('searchresult', compact('adverts', 'cat', 'categories'));
     }
 
     public function categoriesFilter(Request $request)
