@@ -74,21 +74,21 @@
             <div class="row">
                 @foreach($categories as $key => $category)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <a href="">
-                            <div class="box">
-                                <div class="icon">
-                                    <img class="img-fluid" src="{{asset($category->image)}}" alt="">
+                        <a href="{{url('categories/filter')}}?category={{$category->id}}">
+                            <div class="box" style="padding: 9px 0; margin: 0 0 0;">
+                                <div class="icon" style="text-align: left;">
+                                    <img class="img-fluid" src="{{asset($category->image)}}" style="display: inline-block; width: 40px; height: 40px;" alt="">
+                                    <h2 style="display: inline-block; font-size: 17px;">{{$category->name}} </h2>
                                 </div>
-                                <h4>{{$category->name}}</h4>
-                                <strong>{{count($category->advert)}} Ads</strong>
-                                <!-- <hr> -->
+                                <hr>
                                 
+                               
                             </div>
                         </a>
-                        <div class="text-center" style="background-color: white;">
+                        <div style="background-color: white; padding: 10px;">
                             <ul>
                                 @foreach($category->subcategory as $key1 => $subcategory)
-                                    <li>
+                                    <li style="font-size: 14px;">
                                     <a class="sub" href="{{url('subcategories')}}?subcategory={{$subcategory->id}}">{{$subcategory->name}}</a></li>
                                 @endforeach
                             </ul>

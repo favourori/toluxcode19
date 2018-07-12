@@ -42,12 +42,12 @@ class Controller extends BaseController
         $alpha = "ABCDEFGHIJKLMNOPQRSTUPWXYZabcdefghijklmanopqrstuvwxyz0123456789";
         
         for($i = 0; $i < $multiplier; $i++){
-            $rand = rand(0,strlen($alpha));
+            $rand = rand(0,strlen($alpha) - 1);
             $start .= substr($alpha,$rand, 1);
         }
 
         for($i = 0; $i < $multiplier; $i++){
-            $rand = rand(0,strlen($alpha));
+            $rand = rand(0,strlen($alpha) - 1);
             $end .= substr($alpha,$rand, 1);
         }
         
