@@ -76,7 +76,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <a href="{{url('categories/filter')}}?category={{$category->id}}">
                             <div class="box" style="padding: 9px 0; margin: 0 0 0;">
-                                <div class="icon" style="text-align: left;">
+                                <div class="icon" style="text-align: left; padding-left: 10px;">
                                     <img class="img-fluid" src="{{asset($category->image)}}" style="display: inline-block; width: 40px; height: 40px;" alt="">
                                     <h2 style="display: inline-block; font-size: 17px;">{{$category->name}} </h2>
                                 </div>
