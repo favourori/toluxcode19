@@ -85,7 +85,7 @@
                                
                             </div>
                         </a>
-                        <div style="background-color: white; padding: 10px;">
+                        <div style="background-color: white; padding: 10px; margin-bottom: 25px;">
                             <ul>
                                 @foreach($category->subcategory as $key1 => $subcategory)
                                     <li style="font-size: 14px;">
