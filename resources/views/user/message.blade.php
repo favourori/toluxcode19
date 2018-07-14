@@ -41,7 +41,7 @@
                                 @foreach($user_messages as $key => $message)
                                 <div class="card" @click="emitValue({{$message->id}}, '{{$message->user->firstname}}', '{{$message->user->lastname}}')"  style="padding: 12px 10px 10px;">
                                     <div style="display: inline-block">
-                                        <img class="" src="/img/author/img1.jpg" width="40px" alt="">
+                                        <img class="img-circle" src="{{$message->user->profile->avatar == null ? '/img/author/img1.jpg' : $message->user->profile->avatar}}" width="40px" alt="">
                                         <div class="card-body" style="color: grey; padding: 0.25rem; display: inline-block">
                                             &nbsp; &nbsp; {{$message->user->firstname}} {{$message->user->lastname}} <span class="pull-right"> </span>
                                         </div>
@@ -55,7 +55,7 @@
                                 @foreach($seller_messages as $key => $message)
                                 <div class="card" @click="emitValue({{$message->id}}, '{{$message->seller->firstname}}', '{{$message->seller->lastname}}')" style="padding: 12px 10px 10px;">
                                     <div style="display: inline-block">
-                                        <img class="" src="/img/author/img1.jpg" width="40px" alt="">
+                                        <img class="" src="{{$message->user->profile->avatar == null ? '/img/author/img1.jpg' : $message->user->profile->avatar}}" width="40px" alt="">
                                         <div class="card-body" style="color: grey; padding: 0.25rem; display: inline-block">
                                             &nbsp; &nbsp; {{$message->seller->firstname}} {{$message->seller->lastname}} <span class="pull-right"> </span>
                                         </div>
@@ -71,7 +71,7 @@
                             <div>
                             <div class="card" style="padding: 12px 10px 10px;" >
                                 <div style="display: inline-block" v-show="clicked">
-                                    <img class="" src="/img/author/img1.jpg" width="40px" alt="">
+                                    <img class="" src="{{auth()->user()->profile->avatar == null ? '/img/author/img1.jpg' : auth()->user()->profile->avatar}}" width="40px" alt="">
                                         <div class="card-body" style="color: grey; padding: 0.25rem; display: inline-block">
                                             &nbsp; &nbsp; @{{chatter_name}} <span class="pull-right"></span>
                                         </div>

@@ -7,15 +7,18 @@
                         <div class="sidebar-box">
                             <div class="user">
                                 <figure>
-                                    <a href="#">
-                                        <img src="/img/author/img1.jpg" alt="">
-                                    </a>
+                                   
+                                    <img width="70px" height="70px" src="{{auth()->user()->profile->avatar == null ? '/img/author/img1.jpg' : auth()->user()->profile->avatar}}" id="avatar-display" alt="">
+                                    <br>
+                                    <i class="fa fa-camera" onclick="avatarChange()" id="camera" style="margin-left: 23px; margin-top: 5px; font-size: 20px; color: white; height: 20px;"></i>
+                                    
                                 </figure>
                                 <div class="usercontent">
                                     <h3>User</h3>
                                     <h4>{{auth()->user()->username}}</h4>
                                 </div>
                             </div>
+                            
                             <nav class="navdashboard">
                                 <ul>
                                     <li>
@@ -66,7 +69,7 @@
 
                                     <li>
                                         <a href="/account/adverts/reported">
-                                            <i class="lni-layers"></i>
+                                            <i class="lni-anchor"></i>
                                             <span>Reported Adverts</span>
                                         </a>
                                     </li>
@@ -80,7 +83,7 @@
                                     @if(Auth::user()->verified_seller)
                                     <li>
                                         <a href="/store/{{Auth::user()->store_url}}">
-                                            <i class="lni-layers"></i>
+                                            <i class="lni-apartment"></i>
                                             <span>My Store</span>
                                         </a>
                                     </li>
@@ -131,4 +134,5 @@
                             </div>
                         </div> -->
                     </aside>
+                    <input id="avatar" type="file" style="visibility: hidden;"/>
                 </div>

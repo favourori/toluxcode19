@@ -41,24 +41,14 @@
                 <div class="col-lg-7 col-md-12 col-xs-12">
                     <div class="details-box ads-details-wrapper">
                         <div id="owl-demo" class="owl-carousel owl-theme">
+                        @foreach($advert->image as $key => $image)
                             <div class="item">
                                 <div class="product-img">
-                                    <img class="img-fluid" src="{{asset($advert->image[0]->image)}}" alt="">
+                                    <img class="img-fluid" src="{{asset($image->image)}}" alt="">
                                 </div>
                                 <span class="price">&#8358; {{number_format($advert->price,2)}}</span>
                             </div>
-                            <div class="item">
-                                <div class="product-img">
-                                    <img class="img-fluid" src="{{asset($advert->image[1]->image)}}" alt="">
-                                </div>
-                                <span class="price">&#8358; {{number_format($advert->price,2)}}</span>
-                            </div>
-                            <div class="item">
-                                <div class="product-img">
-                                    <img class="img-fluid" src="{{asset($advert->image[2]->image)}}" alt="">
-                                </div>
-                                <span class="price">&#8358; {{number_format($advert->price,2)}}</span>
-                            </div>
+                        @endforeach    
                         </div>
                     </div>
                 </div>

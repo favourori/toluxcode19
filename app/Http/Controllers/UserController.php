@@ -57,6 +57,33 @@ class UserController extends ApiController
         }
     }
 
+    public function updateAvatar(Request $request){
+        
+        $user = auth()->user();
+        @unlink(public_path().$user->profile->avatar);
+        $user->profile->avatar = $this->processImage($request);
+       
+        if($user->profile->save()){
+            
+            return new GenericResource($user);
+        }else{
+            return $this->actionFailure('Something Went wrong');
+        }
+    }
+
+    protected function processImage($request){
+        $filename = null;
+
+        if($request->has('avatar')){
+            $image = $request->file('avatar'); 
+            $filename = time().".".$image->getClientOriginalExtension();
+            $path = public_path('/img/avatar/');
+            $image->move($path,$filename);
+            $filename = '/img/avatar/'.$filename;
+        }
+        return $filename;
+    }
+
     public function updateContact(Request $request){
         $validate = $this->validateContact($request->all());
 

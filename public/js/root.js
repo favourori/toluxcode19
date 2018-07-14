@@ -4,6 +4,46 @@ function showNumber(num) {
     $("#show-number").text(num);
 }
 
+
+
+function avatarChange() {
+    $("#avatar").trigger('click');
+}
+
+function uploadAvatar() {
+    let file = new FormData();
+    let files = document.querySelector('#avatar').files;
+    let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    $.each(files, function (key, value) {
+        file.append('avatar', value);
+    });
+    file.append('_token', token);
+
+    axios.post('/api/v1/account/avatar/update', file)
+        .then(response => {
+            success('Success', 'Avatar Update Successful');
+            $("#avatar").val("");
+            $("#avatar-display").attr("src", response.data.data.profile.avatar);
+        })
+        .catch(err => {
+            if (err.response.data.response == 422) {
+                error('Oops!', 'Check required fields')
+                this.errors = err.response.data.errors;
+            }
+            if (err.response.data.response == 401) {
+                error('Oops!', 'Not Authorized')
+            }
+            if (err.response.data.response == 404) {
+                error('Oops!', err.response.data.message)
+            }
+        });
+
+}
+
+$("#avatar").change(function () {
+    uploadAvatar();
+});
+
 Vue.component('user-message', {
     mounted() {
         this.getAuthUser();
@@ -132,7 +172,7 @@ var vapp = new Vue({
             this.search.result = false;
             this.search.query = [];
             if (this.param.trim().length == 0) {
-
+                this.search.query = [];
             } else {
                 var self = this;
                 setTimeout(function () { self.searchAdvert() }, 500);
@@ -190,7 +230,13 @@ var vapp = new Vue({
                 this.type_off = true;
             }
 
+        },
+
+        avatar: function (oldval, newval) {
+            this.updateAvatar();
         }
+
+
     },
 
     mounted() {
@@ -275,6 +321,32 @@ var vapp = new Vue({
                 _token: this.csrf
             }
             axios.post('/account/profile/update', data)
+                .then(response => {
+                    success('Success', 'Profile Update Successful');
+                })
+                .catch(err => {
+                    if (err.response.data.response == 422) {
+                        error('Oops!', 'Check required fields')
+                        this.errors = err.response.data.errors;
+                    }
+                    if (err.response.data.response == 401) {
+                        error('Oops!', 'Not Authorized')
+                    }
+                    if (err.response.data.response == 404) {
+                        error('Oops!', err.response.data.message)
+                    }
+                });
+        },
+
+        // Update Profile
+        updateAvatar() {
+            let file = new FormData();
+            let files = document.querySelector('#avatar').files;
+            $.each(files, function (key, value) {
+                file.append('avatar', value);
+            });
+
+            axios.post('/account/avatar/update', file)
                 .then(response => {
                     success('Success', 'Profile Update Successful');
                 })
@@ -507,6 +579,16 @@ var vapp = new Vue({
                 file.append('image4', value);
             });
 
+            files = document.querySelector('#image5').files;
+            $.each(files, function (key, value) {
+                file.append('image5', value);
+            });
+
+            files = document.querySelector('#image6').files;
+            $.each(files, function (key, value) {
+                file.append('image6', value);
+            });
+
             let types = this.types;
             let attributes = {};
             // console.log($("#" + this.replaceSpace(types[0].name)));
@@ -648,3 +730,4 @@ var vapp = new Vue({
     }
 });
 
+vapp.config.productionTip = false;

@@ -21,6 +21,7 @@ class CreateProfilesTable extends Migration
             $table->integer('state_id')->unsigned()->nullable();
             $table->integer('lga_id')->unsigned()->nullable();
             $table->string('website')->nullable();
+            $table->text('avatar')->nullable();
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
             $table->string('address')->nullable();

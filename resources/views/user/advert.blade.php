@@ -50,7 +50,7 @@
                                             <span class="error" v-if="errors.hasOwnProperty('category_id')">@{{errors['category_id'][0]}}</span>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="control-label">SubCategory <span class="error">*</span></label>
+                                            <label class="control-label">SubCategory</label>
                                             <select class="form-control input-md" @focus="errors = {}" :disabled="subcategory_off" v-model="subcategory_id" type="text">
                                                 <option value="0" selected>Select SubCategory</option>
                                                 <option v-for="subcategory in subcategories" :value="subcategory.id">@{{subcategory.name}}</option>
@@ -90,11 +90,6 @@
                                             <span class="error" v-if="errors.hasOwnProperty('title')">@{{errors['title'][0]}}</span>
                                         </div>
 
-                                        <div class="form-group mb-3">
-                                            <label class="control-label">Price<span class="error">*</span></label>
-                                            <input class="form-control input-md" placeholder="Enter the price" @focus="errors = {}" required v-model="price" type="number">
-                                            <span class="error" v-if="errors.hasOwnProperty('price')">@{{errors['price'][0]}}</span>
-                                        </div>
 
                                         <div class="form-group mb-3">
                                             <label class="control-label">Phone<span class="error">*</span></label>
@@ -109,7 +104,13 @@
                                         </div>
                                         
                                         <input type="hidden" name="_token" :value="csrf">
-                                        
+                                        <div class="form-group mb-3">
+                                        <button type="button" class="btn btn-info btn-xs log-btn" @click="addInput">Add Specs</button>
+                                        <div v-for="index,spec in specs">
+                                            <input  class="form-control input-md" placeholder="Describe your product" style="margin-top: 5px; width: 96%; display: inline-block" v-model="specifications[spec]" type="text">
+                                            <span class="cancel" style="display: inline-block" @click="removeInput(index)"><strong>X</strong></span>
+                                        </div>
+                                   </div>
                                 </div>
                                 <div class="col-md-6">
                                     
@@ -138,44 +139,31 @@
                                             </select>
                                             <span class="error" v-if="errors.hasOwnProperty('lga_id')">@{{errors['lga_id'][0]}}</span>
                                         </div>
-          
-                                    <div class="form-group mb-3">
-                                        <label class="control-label">Longitude <span class="error">*</span></label>
-                                        <input class="form-control input-md" disabled class="longitude" id="longitude" type="text">
-                                        <span class="error" v-if="errors.hasOwnProperty('longitude')">@{{errors['longitude'][0]}}</span>
-                                    </div>  
 
-                                    <div class="form-group mb-3">
-                                        <label class="control-label">Latitude <span class="error">*</span></label>
-                                        <input class="form-control input-md" disabled class="latitude" id="latitude" type="text">
-                                        <span class="error" v-if="errors.hasOwnProperty('latitude')">@{{errors['latitude'][0]}}</span>
-                                    </div>
-
-                                    <div class="form-group mb-3">
-                                        <button type="button" class="btn btn-info btn-xs log-btn" @click="addInput">Add Specs</button>
-                                        <div v-for="index,spec in specs">
-                                            <input  class="form-control input-md" placeholder="Describe your product" style="margin-top: 5px; width: 90%; display: inline-block" v-model="specifications[spec]" type="text">
-                                            <span class="cancel" style="display: inline-block" @click="removeInput(index)"><strong>X</strong></span>
+                                        <div class="form-group mb-3">
+                                            <label class="control-label">Price<span class="error">*</span></label>
+                                            <input class="form-control input-md" placeholder="Enter the price" @focus="errors = {}" required v-model="price" type="number">
+                                            <span class="error" v-if="errors.hasOwnProperty('price')">@{{errors['price'][0]}}</span>
                                         </div>
-                                   </div>
-                                    
-                                    <input class="form-control input-md" v-model="latitude" type="hidden">
 
-                                    <input class="form-control input-md" v-model="latitude" type="hidden">
-                                </div>
 
-                                <div class="col-md-12">
+                              
                                     <div class="form-group mb-3">
                                         <label class="control-label">Address</label>
-                                        <textarea class="form-control input-md" placeholder="Enter your address" @focus="errors = {}" v-model="address1"></textarea>
+                                        <textarea class="form-control input-md" rows="6" placeholder="Enter your address" @focus="errors = {}" v-model="address1"></textarea>
                                         <span class="error" v-if="errors.hasOwnProperty('address1')">@{{errors['address1'][0]}}</span>
                                     </div>
+                                    
+                                    
+
                                 </div>
+
+                                
 
                                 <div class="col-md-12">
                                     <div class="row">
                                     <div class="col-md-4">
-                                            <label class="tg-fileuploadlabel" style="position: relative;" @click="triggerFile('image1')" for="tg-photogallery">
+                                            <label class="tg-fileuploadlabel" style="position: relative; height: 200px;" @click="triggerFile('image1')" for="tg-photogallery">
                                                 <div class="overlay-image text-center">
                                                     <img src="" width="100%" id="image-show1">
                                                 </div>
@@ -190,7 +178,7 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label class="tg-fileuploadlabel" style="position: relative;" @click="triggerFile('image2')" for="tg-photogallery">
+                                            <label class="tg-fileuploadlabel" style="position: relative; height: 200px;" @click="triggerFile('image2')" for="tg-photogallery">
                                                 <div class="overlay-image text-center">
                                                     <img src="" width="100%" id="image-show2">
                                                 </div>    
@@ -205,7 +193,7 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label class="tg-fileuploadlabel" style="position: relative;" @click="triggerFile('image3')" for="tg-photogallery">
+                                            <label class="tg-fileuploadlabel" style="position: relative; height: 200px;" @click="triggerFile('image3')" for="tg-photogallery">
                                             <div class="overlay-image text-center">
                                                 <img src="" width="100%" id="image-show3">
                                             </div>    
@@ -220,7 +208,7 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label class="tg-fileuploadlabel" style="position: relative;" @click="triggerFile('image4')" for="tg-photogallery">
+                                            <label class="tg-fileuploadlabel" style="position: relative; height: 200px;" @click="triggerFile('image4')" for="tg-photogallery">
                                             <div class="overlay-image text-center">
                                                 <img src="" width="100%" id="image-show4">
                                             </div>
@@ -233,17 +221,41 @@
                                             <span class="error" v-if="errors.hasOwnProperty('image4')">@{{errors['image4'][0]}}</span>
                                     
                                         </div>
+
+                                        <div class="col-md-4">
+                                            <label class="tg-fileuploadlabel" style="position: relative; height: 200px;" @click="triggerFile('image5')" for="tg-photogallery">
+                                            <div class="overlay-image text-center">
+                                                <img src="" width="100%" id="image-show5">
+                                            </div>
+                                                <span></span>
+                                                <span>Upload Image</span>
+                                                <span><i class="lni-plus" style="font-size: 45px; color: grey"></i></span>
+                                                <span>Maximum upload file size: 500 KB</span>
+                                                <input style="visibility: hidden" @change="readIMG('image5', 'image-show5')" class="tg-fileinput" id="image5" type="file" name="file">
+                                            </label>
+                                            <span class="error" v-if="errors.hasOwnProperty('image5')">@{{errors['image5'][0]}}</span>
+                                    
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="tg-fileuploadlabel" style="position: relative; height: 200px;" @click="triggerFile('image6')" for="tg-photogallery">
+                                            <div class="overlay-image text-center">
+                                                <img src="" width="100%" id="image-show6">
+                                            </div>
+                                                <span></span>
+                                                <span>Upload Image</span>
+                                                <span><i class="lni-plus" style="font-size: 45px; color: grey"></i></span>
+                                                <span>Maximum upload file size: 500 KB</span>
+                                                <input style="visibility: hidden" @change="readIMG('image6', 'image-show6')" class="tg-fileinput" id="image6" type="file" name="file">
+                                            </label>
+                                            <span class="error" v-if="errors.hasOwnProperty('image6')">@{{errors['image6'][0]}}</span>
+                                    
+                                        </div>
+
                                     </div>
                                     
                                 </div>
                         
-                                <div class="col-md-12">
-                                    <label class="control-label">Location</label>
-                                    <input id="pac-input" class="form-control" style="width: 60%; margin-top: 10px; border: 1px solid rgb(66, 176, 219);" type="text"
-                                    placeholder="Select the nearest landmark to your location">
-                                    <div class="" style="height: 250px;" id="map"></div>
-                                    
-                                </div>
                                 <div class="text-right col-md-12">
                                     <br>
                                     <div class="form-group mb-3">

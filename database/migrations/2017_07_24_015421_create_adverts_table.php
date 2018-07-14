@@ -24,7 +24,7 @@ class CreateAdvertsTable extends Migration
             $table->integer('state_id')->unsigned();
             $table->integer('country_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->integer('subcategory_id')->unsigned();
+            $table->integer('subcategory_id')->unsigned()->nullable();
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
             $table->string('address')->nullable();

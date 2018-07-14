@@ -87,6 +87,8 @@ Route::group(['prefix' => 'api/v1/', 'middleware' => ['auth']], function () {
     Route::get('messages/related/{message_id}','MessageController@getRelatedMessages');
     Route::post('chat/{message_id}','MessageController@chat');
     Route::get('auth', 'HomeController@getAuthUser');
+    Route::post('account/avatar/update','UserController@updateAvatar');
+    
 });
 
 //Report route
