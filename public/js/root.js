@@ -12,6 +12,7 @@ function avatarChange() {
 
 function uploadAvatar() {
     let file = new FormData();
+    $("#avatar-display").LoadingOverlay('show');
     let files = document.querySelector('#avatar').files;
     let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     $.each(files, function (key, value) {
@@ -22,10 +23,12 @@ function uploadAvatar() {
     axios.post('/api/v1/account/avatar/update', file)
         .then(response => {
             success('Success', 'Avatar Update Successful');
+            $("#avatar-display").LoadingOverlay('hide');
             $("#avatar").val("");
             $("#avatar-display").attr("src", response.data.data.profile.avatar);
         })
         .catch(err => {
+            $("#avatar-display").LoadingOverlay('hide');
             if (err.response.data.response == 422) {
                 error('Oops!', 'Check required fields')
                 this.errors = err.response.data.errors;
@@ -240,10 +243,12 @@ var vapp = new Vue({
     },
 
     mounted() {
-        this.getUserProfile();
+
         this.getCountries();
         this.getUser();
         this.getCategories();
+        this.getUserProfile();
+
     },
 
     methods: {
@@ -493,6 +498,12 @@ var vapp = new Vue({
 
             axios.get('/account/apiprofile')
                 .then(response => {
+                    this.facebook = response.data.data.facebook;
+                    this.twitter = response.data.data.twitter;
+                    this.instagram = response.data.data.instagram;
+                    this.snapchat = response.data.data.snapchat;
+                    this.google = response.data.data.google;
+                    this.linkedin = response.data.data.linkedin;
                     this.profile = response.data.data;
                     document.getElementById('latitude').value = this.profile.latitude;
                     document.getElementById('longitude').value = this.profile.longitude;
@@ -511,12 +522,7 @@ var vapp = new Vue({
                     this.address = this.profile.address;
                     this.phone = this.profile.phone;
 
-                    this.facebook = this.profile.facebook;
-                    this.twitter = this.profile.twitter;
-                    this.instagram = this.profile.instagram;
-                    this.snapchat = this.profile.snapchat;
-                    this.google = this.profile.google;
-                    this.linkedin = this.profile.linkedin;
+
                 })
                 .catch(err => {
 

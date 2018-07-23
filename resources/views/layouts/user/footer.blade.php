@@ -106,8 +106,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="site-info float-left">
-                    <p>All copyrights reserved &copy; 2018 - Designed by
-                        <a href="#" rel="nofollow">Normal human being</a>
+                    <p>All copyrights reserved &copy; {{date('Y')}} - Designed by
+                        <a href="#" rel="nofollow">Firebrains</a>
                     </p>
                 </div>
                 <div class="float-right">

@@ -18,6 +18,7 @@ class CreateReportAdvertsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('advert_id')->unsigned();
             $table->text('report');
+            
             $table->timestamps();
         });
     }

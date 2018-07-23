@@ -59,6 +59,11 @@
                                 </div>
                                 <a class="forgetpassword" href="/password/reset">Forgot Password?</a>
                             </div>
+                            <div class="form-group mb-3">
+                                No Account yet ?
+                                <a style="color: #00cc67" href="/register">Register</a>
+                            </div>
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-common btn-block log-btn">Submit</button>
                             </div>

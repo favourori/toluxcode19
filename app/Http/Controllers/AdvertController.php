@@ -37,13 +37,6 @@ class AdvertController extends ApiController
         if($advert->user_id != auth()->user()->id){
             return $this->unauthorized('You are not authorized to delete this ad');
         }
-        
-        $advert_images = $advert->image;
-        $advert_images->each(function ($item, $key){
-            @unlink(public_path().$item->image);
-            $item->delete();
-        });
-        AdvertSpecification::where('advert_id',$advert->id)->delete();
         $advert->delete();
         
 

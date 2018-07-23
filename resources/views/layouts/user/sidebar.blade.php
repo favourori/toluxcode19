@@ -8,7 +8,7 @@
                             <div class="user">
                                 <figure>
                                    
-                                    <img width="70px" height="70px" src="{{auth()->user()->profile->avatar == null ? '/img/author/img1.jpg' : auth()->user()->profile->avatar}}" id="avatar-display" alt="">
+                                    <img width="70px" height="70px" src="{{auth()->user()->profile->avatar == null ? '/img/avatar/avatar.png' : auth()->user()->profile->avatar}}" id="avatar-display" alt="">
                                     <br>
                                     <i class="fa fa-camera" onclick="avatarChange()" id="camera" style="margin-left: 23px; margin-top: 5px; font-size: 20px; color: white; height: 20px;"></i>
                                     

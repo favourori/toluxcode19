@@ -4,13 +4,14 @@
 @php($subtype_count = \App\Model\Subtype::count())
 @php($user_count = \App\Model\User::count())
 @php($report_count = \App\Model\ReportAdvert::count())
-
+@php($advert_count = \App\Model\Advert::count())
+@php($seller_application_count = \App\Model\SellerApplication::count())
 
 <div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
 		<div class="user">
 			<div class="photo">
-				<img src="{{asset('assets/img/profile.jpg')}}">
+				<img src="{{auth()->user()->profile->avatar == null ? '/img/avatar/avatar.png' : auth()->user()->profile->avatar}}">
 			</div>
 			<div class="info">
 				<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -36,6 +37,13 @@
 					<i class="la la-users"></i>
 					<p>Manage Users</p>
 					<span class="badge badge-count">{{$user_count}}</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{url('admin/manage/adverts')}}">
+					<i class="la la-bar-chart"></i>
+					<p>Adverts</p>
+					<span class="badge badge-count">{{$advert_count}}</span>
 				</a>
 			</li>
 			<li class="nav-item">
@@ -80,45 +88,20 @@
 				<a href="{{url('admin/manage/sellers/applications')}}">
 					<i class="la la-users"></i>
 					<p>Sellers Application</p>
-					<span class="badge badge-count">{{$user_count}}</span>
+					<span class="badge badge-count">{{$seller_application_count}}</span>
 				</a>
 			</li>
 
-			<li class="nav-item">
-				<a href="{{url('admin/manage/subscriptions')}}">
-					<i class="la la-bar-chart"></i>
-					<p>Subscriptions</p>
-					<span class="badge badge-count">6</span>
-				</a>
-			</li>
+			
 
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 				<a href="{{url('admin/manage/transactions')}}">
 					<i class="la la-bar-chart-o"></i>
 					<p>Transactions</p>
 					<span class="badge badge-count">6</span>
 				</a>
-			</li>
-			<!-- <li class="nav-item">
-				<a href="notifications.html">
-					<i class="la la-bell"></i>
-					<p>Notifications</p>
-					<span class="badge badge-success">3</span>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a href="typography.html">
-					<i class="la la-font"></i>
-					<p>Typography</p>
-					<span class="badge badge-danger">25</span>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a href="icons.html">
-					<i class="la la-fonticons"></i>
-					<p>Icons</p>
-				</a>
 			</li> -->
+		
 			
 		</ul>
 	</div>

@@ -105,6 +105,10 @@
                                     <label>By registering, you accept our Terms & Conditions</label>
                                 </div>
                             </div>
+                            <div class="form-group mb-3">
+                                Already have an account ?
+                                <a style="color: #00cc67" href="/login">Login</a>
+                            </div>
                             <div class="text-center">
                                 <button type="submit" id="register-button" class="btn btn-common btn-block log-btn">Register</button>
                             </div>

@@ -18,12 +18,13 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="user-table">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>S/N</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Ban</th>
+                                    <th>Seller</th>
                                     <th>View User</th>
                                     <th>Delete</th>
                                     
@@ -43,9 +44,18 @@
                                     
                                     @endif
                                     @if(!$user->verified_seller)
-                                    <td><button title="Verify this user" {{$user->deleted_at != null ? 'disabled' : ''}} onclick="verifyUser({{$user->id}})" class="btn btn-success btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> Verify as Seller</button></td>  
+                                        @if($user->application->count() > 0)
+                                        <td><button title="Verify this user" {{$user->deleted_at != null ? 'disabled' : ''}} onclick="verifyUser({{$user->id}})" class="btn btn-success btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> Verify as Seller</button></td>  
+                                        @else
+
+                                            <td><label class="label label-default"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> User hasnt applied</label></td>
+                                        
+                                        @endif
                                     @else
-                                    <td><button title="Demote this seller" {{$user->deleted_at != null ? 'disabled' : ''}} onclick="unverifyUser({{$user->id}})" class="btn btn-primary btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> Cancel Verification</button></td>
+                                        
+                                            <td><button title="Demote this seller" {{$user->deleted_at != null ? 'disabled' : ''}} onclick="unverifyUser({{$user->id}})" class="btn btn-primary btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> Cancel Verification</button></td>
+                                        
+                                            
                                     @endif
                                     <td><a href="{{url('admin/manage/user/view')}}/{{$user->id}}" title="View this user" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> View</a></td>                             
                                     <td><button title="Delete this user" onclick="deleteUser({{$user->id}})" {{$user->id == auth()->user()->id ? 'disabled' : ''}} class="btn btn-danger btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-trash"></i></button></td>
@@ -58,53 +68,7 @@
             </div>
         </div>
    
-    <div class="modal fade" id="create-type">
-        <div class="modal-dialog" style="border-radius: 0em;">
-            <div class="modal-content" style="padding: 15px;">
-                <div class="">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h6 class="modal-title">Create New Subtype</h6>
-                    <hr>
-                </div>
-                <div class="modal-body">
-                    
-                    <form action="{{route('admin.user.create')}}" enctype="multipart/form-data" method="POST" role="form">
-                        @csrf
-                        <div class="form-group">
-                            <label>subType name</label>
-                            <input type="text" class="form-control input-square" value="{{old('name')}}" name="name" required placeholder="Name of Type e.g 3 bedroom">
-                            @if ($errors->has('name'))
-                                <span class="error">
-                                    {{ $errors->first('name') }}
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                           
-                           <select type="text" class="form-control input-square"  name="type_id" required>
-                           <option>Select Type</option> 
-                          
-                            </select>
-                           @if ($errors->has('type'))
-                                <span class="error">
-                                    {{ $errors->first('type') }}
-                                </span>
-                            @endif
-                       </div>
-
-
-
-                       <div class="form-group text-right">
-                            <button type="submit" class="btn btn-info">Create</button>
-                        </div>
-                    </form>
-                    
-                </div>
-                
-            </div>
-        </div>
-    </div>
+    
 </div>
 
 

@@ -27,42 +27,7 @@
                         Categories
                     </a>
                 </li>
-                <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Listings
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="adlistinggrid.html">Ad Grid</a>
-                        <a class="dropdown-item" href="adlistinglist.html">Ad Listing</a>
-                        <a class="dropdown-item" href="ads-details.html">Listing Detail</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Pages
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="about.html">About Us</a>
-                        <a class="dropdown-item" href="services.html">Services</a>
-                        <a class="dropdown-item" href="ads-details.html">Ads Details</a>
-                        <a class="dropdown-item" href="post-ads.html">Ads Post</a>
-                        <a class="dropdown-item" href="pricing.html">Packages</a>
-                        <a class="dropdown-item" href="testimonial.html">Testimonial</a>
-                        <a class="dropdown-item" href="faq.html">FAQ</a>
-                        <a class="dropdown-item" href="404.html">404</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Blog
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="blog.html">Blog - Right Sidebar</a>
-                        <a class="dropdown-item" href="blog-left-sidebar.html">Blog - Left Sidebar</a>
-                        <a class="dropdown-item" href="blog-grid-full-width.html"> Blog full width </a>
-                        <a class="dropdown-item" href="single-post.html">Blog Details</a>
-                    </div>
-                </li> -->
+              
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">
                         Contact
@@ -93,12 +58,18 @@
                 @csrf
             </form>
             @else
-                <a class="tg-btn" href="/login">
-                    <i class="lni-pencil-alt"></i> Login
+                <a class="tg-btn" href="{{url('account/advert')}}">
+                    <i class="lni-pencil-alt"></i> Post An Ad
                 </a>
+
+                <a class="tg-btn" href="/login">
+                    <i class="lni-user"></i> Login
+                </a>
+
+                
                 
                 <a class="tg-btn" href="/register">
-                    <i class="lni-pencil-alt"></i> Signup
+                    <i class="lni-pencil"></i> Signup
                 </a>
             @endif
         </div>

@@ -21,9 +21,7 @@
 			</ul>
 		</nav>
 		<div class="copyright ml-auto">
-			{{date('Y')}}, made with
-			<i class="la la-heart heart text-danger"></i> by
-			Classify
+			&copy; Copyright {{date('Y')}}
 		</div>
 	</div>
 </footer>

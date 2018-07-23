@@ -22,6 +22,10 @@ class Advert extends Model
         return $this->belongsTo(State::class);
     }
 
+    public function report(){
+        return $this->hasMany(ReportAdvert::class);
+    }
+
     public function image(){
         return $this->hasMany(AdvertImage::class);
     }

@@ -197,4 +197,11 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::patch('category/edit/{category_id}','Api\Admin\CategoryController@editCategory');
     Route::delete('category/delete/{category_id}','Api\Admin\CategoryController@deleteCategory');
 
+    // Advert Route
+
+    // Route::patch('skill/edit/{skill_id}','Api\Admin\SkillController@editSkill');
+    Route::get('manage/adverts','Admin\AdvertController@advert');
+    Route::get('manage/advert/{advert_id}','Admin\AdvertController@singleAdvert');
+    Route::delete('manage/advert/delete/{advert_id}','Admin\AdvertController@deleteAdvert');
+
 });

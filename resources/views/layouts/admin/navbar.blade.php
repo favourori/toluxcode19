@@ -25,7 +25,7 @@
 						</div>
 					</form>
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-						<li class="nav-item dropdown hidden-caret">
+						<!-- <li class="nav-item dropdown hidden-caret">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
 							 aria-expanded="false">
 								<i class="la la-envelope"></i>
@@ -36,14 +36,14 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#">Something else here</a>
 							</div>
-						</li>
+						</li> -->
 						<li class="nav-item dropdown hidden-caret">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+							<!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
 							 aria-expanded="false">
 								<i class="la la-bell"></i>
 								<span class="notification">3</span>
-							</a>
-							<ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
+							</a> -->
+							<!-- <ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
 								<li>
 									<div class="dropdown-title">You have 4 new notification</div>
 								</li>
@@ -101,11 +101,11 @@
 										<i class="la la-angle-right"></i>
 									</a>
 								</li>
-							</ul>
+							</ul> -->
 						</li>
 						<li class="nav-item dropdown">
 							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
-								<img src="{{asset('assets/img/profile.jpg')}}" alt="user-img" width="36" class="img-circle">
+								<img src="{{auth()->user()->profile->avatar == null ? '/img/avatar/avatar.png' : auth()->user()->profile->avatar}}" alt="user-img" width="36" class="img-circle">
 								<span>{{auth()->user()->username}}</span>
 								</span>
 							</a>
@@ -113,7 +113,7 @@
 								<li>
 									<div class="user-box">
 										<div class="u-img">
-											<img src="{{asset('assets/img/profile.jpg')}}" alt="user">
+											<img src="{{auth()->user()->profile->avatar == null ? '/img/avatar/avatar.png' : auth()->user()->profile->avatar}}" alt="user">
 										</div>
 										<div class="u-text">
 											<h4>{{auth()->user()->username}}</h4>
@@ -122,16 +122,7 @@
 										</div>
 									</div>
 								</li>
-								<div class="dropdown-divider"></div>
-								<!-- <a class="dropdown-item" href="#">
-									<i class="ti-user"></i> My Profile</a>
-								<a class="dropdown-item" href="#">
-									</i> My Balance</a> -->
-								<a class="dropdown-item" href="#">
-									<i class="ti-email"></i> Inbox</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">
-									<i class="ti-settings"></i> Account Setting</a>
+								
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
