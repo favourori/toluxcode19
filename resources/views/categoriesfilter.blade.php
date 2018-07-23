@@ -118,7 +118,9 @@
                                                 <div class="featured-box">
                                                     <figure>
                                                         <div class="icon">
-                                                            <i class="lni-heart"></i>
+                                                        @if($advert->verified_seller)
+                                                        <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
+                                                        @endif
                                                         </div>
                                                         <a href="#">
                                                             <img class="img-fluid center-block" src="{{asset($advert->image[0]->image)}}" alt="">
@@ -180,7 +182,9 @@
                                             <div class="featured-box">
                                                 <figure>
                                                     <div class="icon">
-                                                        <i class="lni-heart"></i>
+                                                    @if($advert->verified_seller)
+                                                        <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
+                                                        @endif
                                                     </div>
                                                     <a href="#">
                                                         <img class="img-fluid center-block" src="{{asset($advert->image[0]->image)}}" alt="">
@@ -232,7 +236,11 @@
 
                     
                     <div class="pagination-bar">
-                       
+                        <nav>
+                            <ul class="pagination">
+                                {{$adverts->links()}}
+                            </ul>
+                        </nav>
                       
                     </div>
 

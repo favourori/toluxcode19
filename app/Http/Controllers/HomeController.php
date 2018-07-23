@@ -7,6 +7,7 @@ use App\Model\Category;
 use App\Model\SubCategory;
 use App\Model\Advert;
 use App\Model\Subtype;
+use App\Model\User;
 use App\Http\Resources\GenericResource;
 use Auth;
 
@@ -81,9 +82,8 @@ class HomeController extends Controller
         $category = Category::find($category_id);
         $categories = Category::all();
         if(!is_null($category) ){
-            $adverts = $category->advert;
+            $adverts = $category->advert()->paginate(15);
         }
-
         
         $adverts->each(function ($item, $key){
             $item->encoded_id = $this->encode($item->id);
@@ -106,6 +106,7 @@ class HomeController extends Controller
         
         $specification = [];
         $advert->encoded_id = $advert_id;
+        $advert->encoded_user_id = $this->encode($advert->user_id);
         foreach($decoded as $key => $value){
             $temp = Subtype::whereIn('id', $value)->get();
             $specification[$key] = $temp;
@@ -118,5 +119,14 @@ class HomeController extends Controller
 
     public function getAuthUser(){
         return new GenericResource(Auth::user());
+    }
+
+    public function viewSeller(Request $request, $user_id){
+        $seller = User::find($this->decode($user_id));
+
+        if (is_null($seller)){
+            throw(404);
+        }
+        return view('viewuser', compact('seller'));
     }
 }

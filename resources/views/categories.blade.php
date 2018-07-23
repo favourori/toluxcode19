@@ -73,20 +73,7 @@
                         <div class="short-name">
                             <span>Showing (1 - {{$adverts->count() < 12 ? $adverts->count() : 12}} product(s) of {{$adverts->count()}} products)</span>
                         </div>
-                        <!-- <div class="Show-item">
-                            <span>Show Items</span>
-                            <form class="woocommerce-ordering" method="post">
-                                <label>
-                                    <select name="order" class="orderby">
-                                        <option selected="selected" value="menu-order">49 items</option>
-                                        <option value="popularity">popularity</option>
-                                        <option value="popularity">Average ration</option>
-                                        <option value="popularity">newness</option>
-                                        <option value="popularity">price</option>
-                                    </select>
-                                </label>
-                            </form>
-                        </div> -->
+                       
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#grid-view">
@@ -113,7 +100,9 @@
                                             <div class="featured-box">
                                                 <figure>
                                                     <div class="icon">
-                                                        <i class="lni-heart"></i>
+                                                        @if($category->advert[0]->verified_seller)
+                                                        <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
+                                                        @endif
                                                     </div>
                                                     <a href="#">
                                                         <img class="img-fluid center-block" src="{{asset($category->advert[0]->image[0]->image)}}" alt="">
@@ -167,7 +156,9 @@
                                             <div class="featured-box">
                                                 <figure>
                                                     <div class="icon">
-                                                        <i class="lni-heart"></i>
+                                                        @if($category->advert[0]->verified_seller)
+                                                        <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
+                                                        @endif
                                                     </div>
                                                     <a href="#">
                                                         <img class="img-fluid center-block" src="{{asset($category->advert[0]->image[0]->image)}}" alt="">

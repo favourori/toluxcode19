@@ -49,7 +49,7 @@ class LoginController extends ApiController
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role_id' => 2])) {
             return redirect('/admin/dashboard');
         }else{
-            return $this->sendFailedLoginResponse($request); 
+            return back()->with('error', 'Incorrect username or password'); 
         }
     }
 

@@ -103,8 +103,8 @@ class AdvertController extends ApiController
             $img = Image::make($request->file($image_name));
 
             // create a new Image instance for inserting
-            $watermark = Image::make('img/property-logo.png');
-            $img->resize(625, 415);
+            $watermark = Image::make('img/property-logo.png')->opacity(90);
+            $img->resize(625, 425);
             $watermark->resize(199,77);
             $img->insert($watermark);
 

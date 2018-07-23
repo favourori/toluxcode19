@@ -109,7 +109,8 @@
                     <div class="featured-box">
                         <figure>
                             <div class="icon">
-                                <i class="lni-heart"></i>
+                                <!-- <i class="lni-heart"></i> -->
+                                <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
                             </div>
                             <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
                                 <img class="img-fluid center-block" src="{{asset($advert->image->first()->image)}}" alt="">

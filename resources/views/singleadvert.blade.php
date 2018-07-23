@@ -189,14 +189,12 @@
                                     </a>
                                 </li>
                                 @endif
-                                <!-- <li>
-                                    <a href="#">
-                                        <i class="lni-printer"></i> Print this ad</a>
-                                </li> -->
-                                <!-- <li>
-                                    <a href="#">
-                                        <i class="lni-reply"></i> Send to a friend</a>
-                                </li> -->
+                                <li>
+                                    <a href="{{url('seller')}}/{{$advert->encoded_user_id}}">
+                                        <i class="lni-user"></i>
+                                        <span>View Seller Profile</span>
+                                    </a>
+                                </li>
                                 @if(Auth::check())
                                 <li>
                                     <a data-toggle="modal" href='#report-advert'>

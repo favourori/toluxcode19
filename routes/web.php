@@ -68,6 +68,8 @@ Route::get('/advert/search', 'SearchController@searchPage')->name('advert.search
 
 Route::post('/admin/login', 'Auth\LoginController@adminLogin')->name('admin.login');
 
+Route::get('/seller/{user_id}', 'HomeController@viewSeller')->name('seller');
+
 Route::group(['prefix' => 'api/v1/'], function () {
     Route::get('countries','LocationController@getCountries');
     Route::get('states/{country_id}','LocationController@getStates');

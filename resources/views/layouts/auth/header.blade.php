@@ -45,7 +45,9 @@
                             </a>
                         </li>
                     </ul>
-
+                    <a class="tg-btn" href="{{url('account/advert')}}">
+                        <i class="lni-pencil-alt"></i> Post An Ad
+                    </a>
                      <a class="tg-btn" href="/login">
                         <i class="lni-pencil-alt"></i> Login
                     </a>
@@ -63,75 +65,12 @@
                 <li>
                     <a href="/category">Categories</a>
                 </li>
-                <!-- <li>
-                    <a href="#">
-                        Listings
-                    </a>
-                    <ul class="dropdown">
-                        <li>
-                            <a href="adlistinggrid.html">Ad Grid</a>
-                        </li>
-                        <li>
-                            <a href="adlistinglist.html">Ad Listing</a>
-                        </li>
-                        <li>
-                            <a href="ads-details.html">Listing Detail</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Pages</a>
-                    <ul class="dropdown">
-                        <li>
-                            <a href="about.html">About Us</a>
-                        </li>
-                        <li>
-                            <a href="services.html">Services</a>
-                        </li>
-                        <li>
-                            <a href="ads-details.html">Ads Details</a>
-                        </li>
-                        <li>
-                            <a href="post-ads.html">Ads Post</a>
-                        </li>
-                        <li>
-                            <a href="pricing.html">Packages</a>
-                        </li>
-                        <li>
-                            <a href="testimonial.html">Testimonial</a>
-                        </li>
-                        <li>
-                            <a href="faq.html">FAQ</a>
-                        </li>
-                        <li>
-                            <a href="404.html">404</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Blog</a>
-                    <ul class="dropdown">
-                        <li>
-                            <a href="blog.html">Blog - Right Sidebar</a>
-                        </li>
-                        <li>
-                            <a href="blog-left-sidebar.html">Blog - Left Sidebar</a>
-                        </li>
-                        <li>
-                            <a href="blog-grid-full-width.html"> Blog full width </a>
-                        </li>
-                        <li>
-                            <a href="single-post.html">Blog Details</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="contact.html">Contact Us</a>
-                </li> -->
+               
                 <li>
                     <a class="active">My Account</a>
                     <ul class="dropdown">
                         @if(Auth::check())
+
                             <li>
                                 <a href="/account/dashboard">
                                     <i class="lni-home"></i> Account Home</a>
@@ -141,6 +80,7 @@
                                     <i class="lni-wallet"></i> My Ads</a>
                             </li>
                         @else
+                        
                             <li>
                                 <a class="active" href="/login">
                                     <i class="lni-lock"></i> Log In</a>
