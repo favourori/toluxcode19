@@ -71,7 +71,7 @@ class AdvertController extends ApiController
         $advert->verified_seller = auth()->user()->verified_seller;
 
         if($advert->save()){
-            for($i = 1; $i <= 4; $i++){
+            for($i = 1; $i <= 6; $i++){
                 if($request->has("image".$i)){
                     $advert_image = new AdvertImage;
                     $advert_image->image = $this->processImage($request,"image".$i);
@@ -103,7 +103,7 @@ class AdvertController extends ApiController
             $img = Image::make($request->file($image_name));
 
             // create a new Image instance for inserting
-            $watermark = Image::make('img/property-logo.png')->opacity(90);
+            $watermark = Image::make('img/property-logo.png')->opacity(30);
             $img->resize(625, 425);
             $watermark->resize(199,77);
             $img->insert($watermark);

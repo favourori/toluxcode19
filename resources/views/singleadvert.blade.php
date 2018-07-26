@@ -146,23 +146,7 @@
                             </div>
                         </div>
                         <br>
-                        @if(Auth::Check())
-                        <div class="ads-btn mb-4">
-                            
-                            <form method="post" action="{{route('message.seller', ['seller_id' => $advert->user_id])}}" method="POST" role="form">
-                              
-                                <div class="form-group">
-                                    <textarea rows="5" required type="text" class="form-control" name="message" placeholder="Send the seller a message"></textarea>
-                                </div>
-                                <input type="hidden" name="advert_id" value="{{$advert->id}}">
-                                <button type="submit" class="btn btn-common btn-reply">
-                                <i class="lni-envelope"></i> Reply to this Ad</button>
-                                @csrf
-                            </form>
-                            
-                            
-                        </div>
-                        @endif
+                      
                         
                     </div>
                 </div>
@@ -202,6 +186,23 @@
                                 </li>
                                 @endif
                             </ul>
+                            @if(Auth::Check())
+                        <div class="ads-btn mb-4">
+                            
+                            <form method="post" action="{{route('message.seller', ['seller_id' => $advert->user_id])}}" method="POST" role="form">
+                              
+                                <div class="form-group">
+                                    <textarea rows="5" required type="text" class="form-control" name="message" placeholder="Send the seller a message"></textarea>
+                                </div>
+                                <input type="hidden" name="advert_id" value="{{$advert->id}}">
+                                <button type="submit" class="btn btn-common btn-reply">
+                                <i class="lni-envelope"></i> Reply to this Ad</button>
+                                @csrf
+                            </form>
+                            
+                            
+                        </div>
+                        @endif
                         </div>
                     </div>
                 </div>
