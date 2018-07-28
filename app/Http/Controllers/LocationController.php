@@ -17,7 +17,8 @@ class LocationController extends ApiController
     }
 
     public function getStates(Request $request, $country_id){
-        $state = State::where('country_id', $country_id)->get();
+        $state = State::where('country_id', $country_id)
+                        ->where('name', 'Delta')->get();
         return new GenericResource($state);
     }
 

@@ -15,7 +15,7 @@
                     </h1>
                     -->
                     <div class="search-bar">
-                        <fieldset>
+                    <fieldset>
                         <div id="root">
                             <form method="get"  action="{{route('advert.search.page')}}" class="search-form">
                                 <div class="form-group tg-inputwithicon">
@@ -24,10 +24,10 @@
                                 </div>
                                 
                              
-                                <div class="form-group tg-inputwithicon">
+                                <!-- <div class="form-group tg-inputwithicon">
                                     <i class="lni-layers"></i>
                                     <div class="tg-select">
-                                        <select name="category_id" v-model="search.category_id" required>
+                                        <select name="category_id" v-model="search.category_id">
                                             <option value="0">Select a Category</option>
                                             @foreach($categories as $key => $category)
                                             
@@ -35,7 +35,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <button class="btn btn-common" type="submit">
                                     <i class="lni-search"></i>
                                 </button>
@@ -125,7 +125,7 @@
                                                             <a href="#">{{$advert->category->name}} > {{$advert->subcategory->name}}</a>
                                                         </div>
                                                         <h4>
-                                                            <a href="ads-details.html">{{$advert->title}}</a>
+                                                            <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{$advert->title}}</a>
                                                         </h4>
                                                         <span>Last Updated: {{$advert->updated_at->diffForHumans()}}</span>
                                                         <ul class="address">

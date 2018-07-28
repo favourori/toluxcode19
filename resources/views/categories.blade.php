@@ -15,15 +15,16 @@
                     </h1>
                     -->
                     <div class="search-bar">
-                        <fieldset>
+                    <fieldset>
                         <div id="root">
-                            <form method="get" action="{{route('advert.search.page')}}" class="search-form">
+                            <form method="get"  action="{{route('advert.search.page')}}" class="search-form">
                                 <div class="form-group tg-inputwithicon">
                                     <i class="lni-tag"></i>
                                     <input type="text" v-model="param" name="param" class="form-control" placeholder="What are you looking for">
                                 </div>
-                               
-                                <div class="form-group tg-inputwithicon">
+                                
+                             
+                                <!-- <div class="form-group tg-inputwithicon">
                                     <i class="lni-layers"></i>
                                     <div class="tg-select">
                                         <select name="category_id" v-model="search.category_id">
@@ -34,7 +35,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <button class="btn btn-common" type="submit">
                                     <i class="lni-search"></i>
                                 </button>
@@ -113,7 +114,7 @@
                                                         <a href="#">{{$category->name}} > {{$category->advert[0]->subcategory->name}}</a>
                                                     </div>
                                                     <h4>
-                                                        <a href="ads-details.html">Apple iPhone X</a>
+                                                        <a href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">{{$category->advert[0]->title}}</a>
                                                     </h4>
                                                     <span>Last Updated: {{$category->advert[0]->updated_at->diffForHumans()}}</span>
                                                     <ul class="address">
@@ -169,7 +170,7 @@
                                                         <a href="#">{{$category->name}} > {{$category->advert[0]->subcategory->name}}</a>
                                                     </div>
                                                     <h4>
-                                                        <a href="ads-details.html">{{$category->advert[0]->title}}</a>
+                                                        <a href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">{{$category->advert[0]->title}}</a>
                                                     </h4>
                                                     <span>Last Updated: {{$category->advert[0]->updated_at->diffForHumans()}}</span>
                                                     <ul class="address">

@@ -289,12 +289,12 @@ var vapp = new Vue({
         },
 
         searchAdvert() {
-            if (this.search.category_id == 0) {
-                error('Oops!', 'Select a Category');
-                return;
-            }
+            // if (this.search.category_id == 0) {
+            //     error('Oops!', 'Select a Category');
+            //     return;
+            // }
             data = {
-                category_id: this.search.category_id,
+
                 param: this.param,
                 _token: this.csrf
             }
