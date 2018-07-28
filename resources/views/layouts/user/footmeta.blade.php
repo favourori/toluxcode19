@@ -1,5 +1,4 @@
-<script data-cfasync="false" src="../../cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js')}}"></script>
-    <script src="{{asset('js/jquery-min.js')}}"></script>
+   <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/popper.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.5.4/src/loadingoverlay.min.js" type="text/javascript"></script>

@@ -1,6 +1,5 @@
-function showNumber(num) {
-    event.preventDefault();
-    // alert(num);
+function showNumber(event, num) {
+
     $("#show-number").text(num);
 }
 

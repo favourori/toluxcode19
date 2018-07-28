@@ -89,3 +89,7 @@ select.form-control:not([size]):not([multiple]){
     display: inherit;
     text-align: right;
 }
+
+.featured-box .feature-content .btn-list .btn-price {
+    padding: 11px 3px;
+}

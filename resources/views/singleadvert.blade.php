@@ -63,10 +63,10 @@
                                         <i class="lni-alarm-clock"></i> {{$advert->updated_at->format('jS F h:i A')}}</a>
                                 </span>
                                 
-                                <span>
+                                <!-- <span>
                                     <a href="#">
                                         <i class="lni-eye"></i> 299 View</a>
-                                </span>
+                                </span> -->
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -125,7 +125,7 @@
                         <div class="ads-btn mb-4">
                             <a href="#" class="btn btn-common btn-reply">
                                 <i class="lni-envelope"></i> Email</a>
-                            <a href="#" class="btn btn-common" onclick="showNumber('{{substr($advert->phone,4, 40)}}')">
+                            <a style="color: white" class="btn btn-common" onclick="showNumber(this,'{{substr($advert->phone,4, 40)}}')">
                                 <i class="lni-phone-handset"></i> Show Number</a>
                         </div>
                         <div class="share">

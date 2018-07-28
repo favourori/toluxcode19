@@ -111,6 +111,7 @@ class AdvertController extends ApiController
             $image = $request->file($image_name); 
             $path = public_path('/img/adverts/');
             $original = str_replace(' ', '_',$image->getClientOriginalName());
+            $original = str_replace('.', '_',$original);
             $filename = 'img/adverts/'.$image_name.$original.time().".".$image->getClientOriginalExtension();
             
 

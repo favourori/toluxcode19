@@ -105,7 +105,7 @@
             <h1 class="section-title">Ads By Verified Sellers</h1>
             <div class="row">
             @foreach($adverts as $key => $advert)                
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                     <div class="featured-box">
                         <figure>
                             <div class="icon">
@@ -127,11 +127,11 @@
                             <ul class="address">
                                 <li>
                                     <a href="#">
-                                        <i class="lni-map-marker"></i>{{$advert->state->name}} | {{$advert->country->name}}</a>
+                                        <i class="lni-map-marker"></i>{{$advert->state->name}}</a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <i class="lni-alarm-clock"></i> {{$advert->updated_at->format('jS F h:i A')}}</a>
+                                        <i class="lni-alarm-clock"></i> {{$advert->updated_at->format('jS F')}}</a>
                                 </li>
                                 <li>
                                     <a href="#">
@@ -143,10 +143,10 @@
                                 </li>
                             </ul>
                             <div class="btn-list">
-                                <a class="btn-price" href="#">&#8358; {{number_format($advert->price, 2)}}</a>
+                                <a class="btn-price btn-xs" href="#">&#8358; {{number_format($advert->price, 2)}} </a>
                                 <a class="btn btn-common" href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
-                                    <i class="lni-list"></i>
-                                    View Details
+                                    <i class="lni-list" style="font-size: 11px;"></i>
+                                    Details
                                 </a>
                             </div>
                         </div>
