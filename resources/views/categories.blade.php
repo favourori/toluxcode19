@@ -101,8 +101,9 @@
                     <div class="featured-box">
                         <figure style="margin-bottom: 10px;">
                             <div class="icon">
-                                <!-- <i class="lni-heart"></i> -->
+                                 @if($category->advert[0]->verified_seller == 1)
                                 <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
+                                @endif
                             </div>
                             <a href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">
                                 <img class="img-fluid center-block" src="{{asset($category->advert[0]->image->first()->image)}}" alt="">
