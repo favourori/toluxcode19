@@ -107,7 +107,7 @@
             @foreach($adverts as $key => $advert)                
                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                     <div class="featured-box">
-                        <figure>
+                        <figure style="margin-bottom: 10px;">
                             <div class="icon">
                                 <!-- <i class="lni-heart"></i> -->
                                 <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
@@ -115,40 +115,28 @@
                             <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
                                 <img class="img-fluid center-block" src="{{asset($advert->image->first()->image)}}" alt="">
                             </a>
+                            
                         </figure>
                         <div class="feature-content">
-                            <div class="tg-product">
-                                <a href="#">{{$advert->category->name}} > {{$advert->subcategory->name}}</a>
-                            </div>
+                            
                             <h4>
+                            
                                 <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{$advert->title}}</a>
                             </h4>
-                            <span>Last Updated: {{$advert->updated_at->diffForHumans()}}</span>
-                            <ul class="address">
+                            <ul class="address" style="display: block;">
                                 <li>
                                     <a href="#">
+                                       
+                                    &#8358; {{number_format($advert->price, 2)}} 
+                                    </a>
+                                </li>
+                                <li class="text-right">
+                                <a href="#">
                                         <i class="lni-map-marker"></i>{{$advert->state->name}}</a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="lni-alarm-clock"></i> {{$advert->updated_at->format('jS F')}}</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="lni-user"></i> {{$advert->user->username}}</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="lni-tag"></i> {{substr($advert->phone, 0, 4)}} .....</a>
-                                </li>
                             </ul>
-                            <div class="btn-list">
-                                <a class="btn-price btn-xs" href="#">&#8358; {{number_format($advert->price, 2)}} </a>
-                                <a class="btn btn-common" href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
-                                    <i class="lni-list" style="font-size: 11px;"></i>
-                                    Details
-                                </a>
-                            </div>
+                           
+                            
                         </div>
                     </div>
                 </div>

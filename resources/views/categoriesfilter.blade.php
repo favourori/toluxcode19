@@ -78,20 +78,7 @@
                         <div class="short-name">
                             <span>Showing ({{$adverts->count() > 0 ? '1' : '0'}} - {{$adverts->count() < 12 ? $adverts->count() : 12}} product(s) of {{$adverts->count()}} products)</span>
                         </div>
-                        <!-- <div class="Show-item">
-                            <span>Show Items</span>
-                            <form class="woocommerce-ordering" method="post">
-                                <label>
-                                    <select name="order" class="orderby">
-                                        <option selected="selected" value="menu-order">49 items</option>
-                                        <option value="popularity">popularity</option>
-                                        <option value="popularity">Average ration</option>
-                                        <option value="popularity">newness</option>
-                                        <option value="popularity">price</option>
-                                    </select>
-                                </label>
-                            </form>
-                        </div> -->
+                       
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#grid-view">
@@ -114,55 +101,41 @@
                                     @if(count($adverts) > 0)
                                         @foreach($adverts as $key => $advert)
                                            
-                                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                                <div class="featured-box">
-                                                    <figure>
-                                                        <div class="icon">
-                                                        @if($advert->verified_seller)
-                                                        <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
-                                                        @endif
-                                                        </div>
-                                                        <a href="#">
-                                                            <img class="img-fluid center-block" src="{{asset($advert->image[0]->image)}}" alt="">
-                                                        </a>
-                                                    </figure>
-                                                    <div class="feature-content">
-                                                        <div class="tg-product">
-                                                            <a href="#">{{$advert->category->name}} > {{$advert->subcategory->name}}</a>
-                                                        </div>
-                                                        <h4>
-                                                            <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{$advert->title}}</a>
-                                                        </h4>
-                                                        <span>Last Updated: {{$advert->updated_at->diffForHumans()}}</span>
-                                                        <ul class="address">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="lni-map-marker"></i>{{$advert->state->name}} | {{$advert->country->name}}</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="lni-alarm-clock"></i> {{$advert->updated_at->toFormattedDateString()}}</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="lni-user"></i> {{$advert->user->username}}</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="lni-tag"></i> {{$advert->phone}}</a>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="btn-list">
-                                                            <a class="btn-price" href="#">&#8358; {{$advert->price}}</a>
-                                                            <a class="btn btn-common" href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
-                                                                <i class="lni-list"></i>
-                                                                View Details
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
+                                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                    <div class="featured-box">
+                        <figure style="margin-bottom: 10px;">
+                            <div class="icon">
+                                <!-- <i class="lni-heart"></i> -->
+                                <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
+                            </div>
+                            <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
+                                <img class="img-fluid center-block" src="{{asset($advert->image->first()->image)}}" alt="">
+                            </a>
+                            
+                        </figure>
+                        <div class="feature-content">
+                            
+                            <h4>
+                            
+                                <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{$advert->title}}</a>
+                            </h4>
+                            <ul class="address" style="display: block;">
+                                <li>
+                                    <a href="#">
+                                       
+                                    &#8358; {{number_format($advert->price, 2)}} 
+                                    </a>
+                                </li>
+                                <li class="text-right">
+                                <a href="#">
+                                        <i class="lni-map-marker"></i>{{$advert->state->name}}</a>
+                                </li>
+                            </ul>
+                           
+                            
+                        </div>
+                    </div>
+                </div>
                                         @endforeach
                                     @else
                                         <div class="text-center" style="color: grey; width: 100%">
