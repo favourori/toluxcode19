@@ -117,13 +117,13 @@
                                 <a href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">{{$category->advert[0]->title}}</a>
                             </h4>
                             <ul class="address" style="display: block;">
-                                <li>
+                                <li style="font-size: 15px; width: 65%; font-weight: 700">
                                     <a href="#">
                                        
                                     &#8358; {{number_format($category->advert[0]->price, 2)}} 
                                     </a>
                                 </li>
-                                <li class="text-right">
+                                <li style="width: 35%" class="text-right">
                                 <a href="#">
                                         <i class="lni-map-marker"></i>{{$category->advert[0]->state->name}}</a>
                                 </li>

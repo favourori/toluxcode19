@@ -99,10 +99,57 @@
         </div>
     </section>
 
-
+    
     <section class="featured section-padding">
         <div class="container">
             <h1 class="section-title">Ads By Verified Sellers</h1>
+            <div class="row">
+            @foreach($verified_adverts as $key => $advert)                
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                    <div class="featured-box">
+                        <figure style="margin-bottom: 10px;">
+                            <div class="icon">
+                                @if($advert->verified_seller == 1)
+                                <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
+                                @endif
+                            </div>
+                            <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
+                                <img class="img-fluid center-block" src="{{asset($advert->image->first()->image)}}" alt="">
+                            </a>
+                            
+                        </figure>
+                        <div class="feature-content">
+                            
+                            <h4>
+                            
+                                <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{$advert->title}}</a>
+                            </h4>
+                            <ul class="address" style="display: block;">
+                                <li style="font-size: 16px; width: 65%; font-weight: 700">
+                                    <a href="#">
+                                       
+                                    &#8358; {{number_format($advert->price, 2)}} 
+                                    </a>
+                                </li>
+                                <li style="width: 35%" class="text-right">
+                                <a href="#">
+                                        <i class="lni-map-marker"></i>{{$advert->state->name}}</a>
+                                </li>
+                            </ul>
+                           
+                            
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+               
+            </div>
+        </div>
+    </section>
+    @if($adverts->count() > 0)
+    <section class="featured section-padding">
+        <div class="container">
+            <h1 class="section-title">Recommended For You</h1>
             <div class="row">
             @foreach($adverts as $key => $advert)                
                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
@@ -125,13 +172,13 @@
                                 <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{$advert->title}}</a>
                             </h4>
                             <ul class="address" style="display: block;">
-                                <li>
+                                <li style="font-size: 16px; width: 65%; font-weight: 700">
                                     <a href="#">
                                        
                                     &#8358; {{number_format($advert->price, 2)}} 
                                     </a>
                                 </li>
-                                <li class="text-right">
+                                <li style="width: 35%" class="text-right">
                                 <a href="#">
                                         <i class="lni-map-marker"></i>{{$advert->state->name}}</a>
                                 </li>
@@ -146,6 +193,7 @@
             </div>
         </div>
     </section>
+    @endif
 <style>
     .sub{
         color: grey;   

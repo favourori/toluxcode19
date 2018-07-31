@@ -31,14 +31,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $adverts = Advert::all();
+        $adverts = Advert::where('verified_seller', false)->get();
         $adverts->load('image');
+        $verified_adverts = Advert::where('verified_seller', true)->get();
+        $verified_adverts->load('image');
         $categories = Category::all();
         $adverts->each(function ($item, $key){
             $item->encoded_id = $this->encode($item->id);
         });
+        $verified_adverts->each(function ($item, $key){
+            $item->encoded_id = $this->encode($item->id);
+        });
         // dd($adverts);
-        return view('index', compact('adverts', 'categories'));
+        return view('index', compact('adverts', 'categories', 'verified_adverts'));
     }
 
     public function categories()
