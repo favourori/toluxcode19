@@ -98,7 +98,7 @@
                                     @foreach($categories as $key => $category)
                                         @if(count($category->advert) > 0)
                                         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                    <div class="featured-box">
+                    <div class="featured-box" title="{{$category->advert[0]->title}}">
                         <figure style="margin-bottom: 10px;">
                             <div class="icon">
                                  @if($category->advert[0]->verified_seller == 1)
@@ -114,7 +114,7 @@
                             
                             <h4>
                             
-                                <a href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">{{$category->advert[0]->title}}</a>
+                                <a href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">{{substr($category->advert[0]->title, 0, 20)}}</a>
                             </h4>
                             <ul class="address" style="display: block;">
                                 <li style="font-size: 15px; width: 65%; font-weight: 700">
@@ -142,7 +142,7 @@
                                 @foreach($categories as $key => $category)
                                 @if(count($category->advert) > 0)
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <div class="featured-box">
+                                            <div class="featured-box" title="{{$category->advert[0]->title}}">
                                                 <figure>
                                                     <div class="icon">
                                                         @if($category->advert[0]->verified_seller)
@@ -158,7 +158,7 @@
                                                         <a href="#">{{$category->name}} > {{$category->advert[0]->subcategory->name}}</a>
                                                     </div>
                                                     <h4>
-                                                        <a href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">{{$category->advert[0]->title}}</a>
+                                                        <a href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">{{substr($category->advert[0]->title, 0, 20)}}</a>
                                                     </h4>
                                                     <span>Last Updated: {{$category->advert[0]->updated_at->diffForHumans()}}</span>
                                                     <ul class="address">

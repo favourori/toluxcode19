@@ -85,7 +85,7 @@
                                         @foreach($adverts as $key => $advert)
                                            
                                         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                    <div class="featured-box">
+                    <div class="featured-box" title="{{$advert->title}}">
                         <figure style="margin-bottom: 10px;">
                             <div class="icon">
                             @if($advert->verified_seller == 1)
@@ -101,7 +101,7 @@
                             
                             <h4>
                             
-                                <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{$advert->title}}</a>
+                                <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{substr($advert->title,0,20)}}</a>
                             </h4>
                             <ul class="address" style="display: block;">
                                 <li style="font-size: 16px; width: 65%; font-weight: 700">

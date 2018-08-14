@@ -44,9 +44,19 @@
                                 </div>
                             </a>
                         </div>
-
+                        @if(auth()->user()->verified_seller == 1)
+                        <div class="col-md-6">
+                            <a href="#" class="card text-center">
+                                <img class="card-img-top" src="holder.js/100px180/" alt="">
+                                <div class="card-body" style="color: grey">
+                                    <h5 class="card-title">Store details</h5>
+                                    <p class="card-text">URL: {{url('store')}}/{{auth()->user()->store_url}}</p>
+                                    <p class="card-text">Store Name: {{auth()->user()->store_name}}</p>
+                                </div>
+                            </a>
+                        </div>
+                        @endif
                         
-
                        
                     </div>
                 </div>

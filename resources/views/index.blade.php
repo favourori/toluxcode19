@@ -106,7 +106,7 @@
             <div class="row">
             @foreach($verified_adverts as $key => $advert)                
                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                    <div class="featured-box">
+                    <div class="featured-box" title="{{$advert->title}}">
                         <figure style="margin-bottom: 10px;">
                             <div class="icon">
                                 @if($advert->verified_seller == 1)
@@ -122,7 +122,7 @@
                             
                             <h4>
                             
-                                <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{$advert->title}}</a>
+                                <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{substr($advert->title, 0, 20)}}</a>
                             </h4>
                             <ul class="address" style="display: block;">
                                 <li style="font-size: 16px; width: 65%; font-weight: 700">
@@ -154,7 +154,7 @@
             @foreach($adverts as $key => $advert)                
                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                     <div class="featured-box">
-                        <figure style="margin-bottom: 10px;">
+                        <figure style="margin-bottom: 10px;" title="{{$advert->title}}">
                             <div class="icon">
                                 @if($advert->verified_seller == 1)
                                 <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
@@ -169,7 +169,7 @@
                             
                             <h4>
                             
-                                <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{$advert->title}}</a>
+                                <a  href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{substr($advert->title, 0, 20)}}</a>
                             </h4>
                             <ul class="address" style="display: block;">
                                 <li style="font-size: 16px; width: 65%; font-weight: 700">
