@@ -125,13 +125,18 @@
                                 <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{substr($advert->title, 0, 20)}}</a>
                             </h4>
                             <ul class="address" style="display: block;">
-                                <li style="font-size: 16px; width: 65%; font-weight: 700">
-                                    <a href="#">
+                                <li style="font-size: 22px; width: 100%; font-weight: 700">
+                                    <a style="color: #4a4949;" href="#">
                                        
                                     &#8358; {{number_format($advert->price, 2)}} 
                                     </a>
                                 </li>
-                                <li style="width: 35%" class="text-right">
+                               
+                            </ul>
+
+                            <ul class="address" style="display: block;">
+                                
+                                <li style="width: 100%" class="text-left">
                                 <a href="#">
                                         <i class="lni-map-marker"></i>{{$advert->state->name}}</a>
                                 </li>
@@ -172,16 +177,13 @@
                                 <a  href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">{{substr($advert->title, 0, 20)}}</a>
                             </h4>
                             <ul class="address" style="display: block;">
-                                <li style="font-size: 16px; width: 65%; font-weight: 700">
-                                    <a href="#">
+                                <li style="font-size: 20px; width: 100%; font-weight: 700">
+                                    <a href="#" style="color: black;">
                                        
                                     &#8358; {{number_format($advert->price, 2)}} 
                                     </a>
                                 </li>
-                                <li style="width: 35%" class="text-right">
-                                <a href="#">
-                                        <i class="lni-map-marker"></i>{{$advert->state->name}}</a>
-                                </li>
+                              
                             </ul>
                            
                             

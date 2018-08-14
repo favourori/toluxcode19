@@ -117,9 +117,13 @@ class HomeController extends Controller
             $specification[$key] = $temp;
             
         }
-        
+
+        $similar_adverts = Advert::where('category_id', $advert->category_id)->get()->take(2);
+        $similar_adverts->each(function ($item, $key){
+            $item->encoded_id = $this->encode($item->id);
+        });
         $advert->load('image','category','subcategory', 'specifications');
-        return view('singleadvert', compact('advert', 'specification'));
+        return view('singleadvert', compact('advert', 'specification','similar_adverts'));
     }
 
     public function getAuthUser(){

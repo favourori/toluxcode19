@@ -93,3 +93,7 @@ select.form-control:not([size]):not([multiple]){
 .featured-box .feature-content .btn-list .btn-price {
     padding: 11px 3px;
 }
+
+.feature-content{
+    padding-bottom: 30px;
+}
