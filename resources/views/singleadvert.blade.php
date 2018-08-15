@@ -161,7 +161,7 @@
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-5 col-xs-12">
-                        <div class="short-info">
+                        <div class="short-info" style="padding-left: 15px; background-color: white;">
                             <h4>Short Info</h4>
                             <ul>
                                 @if($advert->verified_seller)
