@@ -155,7 +155,7 @@
                     </div>
 
                     <div style="padding: 30px">
-                        <h4>Similar Ads</h4>
+                        <h4 style="font-size: 24px;">Similar Ads</h4>
 
                     </div>
                     <div id="list-view" class="">

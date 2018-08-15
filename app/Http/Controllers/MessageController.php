@@ -38,7 +38,8 @@ class MessageController extends Controller
             $message_stream->save();
             $advert = Advert::find($request->advert_id);
             $advert->load('user', 'image');
-            Mail::to($user)->send(new EMessage($user, $advert, $request->message));
+            $mail = Mail::to($user)->send(new EMessage($user, $advert, $request->message));
+            
                 return back()->with('success', 'Message has been sent to the seller');
             
         }else{
