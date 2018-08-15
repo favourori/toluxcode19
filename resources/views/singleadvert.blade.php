@@ -69,15 +69,16 @@
                                 </span> -->
                             </div>
                             <div class="row">
+                            <h4 class="title-small mb-3 text-center" style="color: grey; font-size: 16px; width: 100%">Specifications</h4>
                                 <div class="col-md-12">
                                     @foreach($specification as $key => $specs)
                                         @if($specs->count() > 0)
-                                        <h4 class="title-small mb-3" style="color: grey; font-size: 16px;">{{str_replace('_', ' ',$key)}}:</h4>
+                                        
                                         <ul class="list-specification">
                                             @foreach($specs as $key1 => $value)
                                             <li>
                                                 <i class="lni-check-mark-circle"></i> 
-                                                {{$value->name}}
+                                                {{str_replace('_', ' ',$key)}} : {{$value->name}}
                                             </li>
                                             @endforeach
                                             
@@ -86,7 +87,7 @@
                                     @endforeach
                                 </div>
                                 <div class="col-md-12">
-                                <h4 class="title-small mb-3" style="color: grey; font-size: 16px;">Specifications</h4>
+                                
                                 <ul class="list-specification">
                                     @foreach($advert->specifications as $key2 => $value3)
                                     <li>
@@ -101,11 +102,11 @@
                         </div>
                         <ul class="advertisement mb-4">
                             <li>
-                                <p>
+                                
                                     <strong>Type:</strong>
                                     <a href="#">{{$advert->category->name}}</a>,
                                     <a href="#">For sale</a>
-                                </p>
+                                
                             </li>
                             <li>
                                 <p>
