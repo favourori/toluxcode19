@@ -69,8 +69,7 @@
                                 </span> -->
                             </div>
                             <div class="row">
-                            @if(count($specification) > 0)
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     @foreach($specification as $key => $specs)
                                         @if($specs->count() > 0)
                                         <h4 class="title-small mb-3" style="color: grey; font-size: 16px;">{{str_replace('_', ' ',$key)}}:</h4>
@@ -86,8 +85,7 @@
                                         @endif
                                     @endforeach
                                 </div>
-                                @endif
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                 <h4 class="title-small mb-3" style="color: grey; font-size: 16px;">Specifications</h4>
                                 <ul class="list-specification">
                                     @foreach($advert->specifications as $key2 => $value3)
