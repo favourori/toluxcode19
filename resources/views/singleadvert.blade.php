@@ -69,7 +69,7 @@
                                 </span> -->
                             </div>
                             <div class="row">
-                            @if($specification->count() > 0)
+                            @if(count($specification) > 0)
                                 <div class="col-md-6">
                                     @foreach($specification as $key => $specs)
                                         @if($specs->count() > 0)
