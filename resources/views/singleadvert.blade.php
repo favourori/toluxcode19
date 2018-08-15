@@ -123,8 +123,7 @@
                         <br>
                         
                         <div class="ads-btn mb-4">
-                            <a href="#" class="btn btn-common btn-reply">
-                                <i class="lni-envelope"></i> Email</a>
+                            
                             <a style="color: white" class="btn btn-common" onclick="showNumber(this,'{{substr($advert->phone,4, 40)}}')">
                                 <i class="lni-phone-handset"></i> Show Number</a>
                         </div>
@@ -155,13 +154,13 @@
 
             <div class="description-info">
                 <div class="row">
-                    <div class="col-lg-8 col-md-6 col-xs-12">
+                    <div class="col-lg-7 col-md-7 col-xs-12">
                         <div class="description">
                             <h4>Description</h4>
                             <p>{{$advert->description}}</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-xs-12">
+                    <div class="col-lg-5 col-md-5 col-xs-12">
                         <div class="short-info">
                             <h4>Short Info</h4>
                             <ul>
@@ -186,15 +185,16 @@
                                 </li>
                                 @endif
                             </ul>
-                            @if(Auth::Check())
+                            
                         <div class="ads-btn mb-4">
                             
                             <form method="post" action="{{route('message.seller', ['seller_id' => $advert->user_id])}}" method="POST" role="form">
-                              
+                              @if(Auth::check())
                                 <div class="form-group">
                                     <textarea rows="5" required type="text" class="form-control" name="message" placeholder="Send the seller a message"></textarea>
                                 </div>
                                 <input type="hidden" name="advert_id" value="{{$advert->id}}">
+                                @endif
                                 <button type="submit" class="btn btn-common btn-reply">
                                 <i class="lni-envelope"></i> Reply to this Ad</button>
                                 @csrf
@@ -202,14 +202,15 @@
                             
                             
                         </div>
-                        @endif
+                        
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     
-                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                    <br><br>
                     <div class="description">
                             <h4>Similar Ads</h4>
                      
