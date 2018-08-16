@@ -42,13 +42,13 @@
                                     <form method="post" action="" @submit.prevent="updateSocial">
                                         <div class="form-group mb-3">
                                             <label class="control-label">Facebook</label>
-                                            <input class="form-control input-md" @focus="errors = {}" v-model="facebook" type="text">
+                                            <input class="form-control input-md" placeholder="https://facebook.com/username" @focus="errors = {}" v-model="facebook" type="text">
                                             <span class="error" v-if="errors.hasOwnProperty('facebook')">@{{errors['facebook'][0]}}</span>
                                         </div>
                                         <input type="hidden" name="_token" :value="csrf">
                                         <div class="form-group mb-3">
                                             <label class="control-label">Twitter</label>
-                                            <input class="form-control input-md" @focus="errors = {}"  v-model="twitter" type="text">
+                                            <input class="form-control input-md" placeholder="https://twitter.com/username" @focus="errors = {}"  v-model="twitter" type="text">
                                             <span class="error" v-if="errors.hasOwnProperty('twitter')">@{{errors['twitter'][0]}}</span>
                                         </div>
                                         <div class="form-group mb-3">
@@ -60,13 +60,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="control-label">Instagram</label>
-                                        <input class="form-control input-md" @focus="errors = {}"  v-model="instagram" type="text">
+                                        <input class="form-control input-md" placeholder="https://instagram.com/username" @focus="errors = {}"  v-model="instagram" type="text">
                                         <span class="error" v-if="errors.hasOwnProperty('instagram')">@{{errors['instagram'][0]}}</span>
                                     </div>
 
                                     <div class="form-group mb-3">
                                         <label class="control-label">Linkedin</label>
-                                        <input class="form-control input-md" @focus="errors = {}"  v-model="linkedin" type="text">
+                                        <input class="form-control input-md" @focus="errors = {}" placeholder="https:://www.linkedin.com/in/usernmae"  v-model="linkedin" type="text">
                                         <span class="error" v-if="errors.hasOwnProperty('linkedin')">@{{errors['linkedin'][0]}}</span>
                                     </div>
 

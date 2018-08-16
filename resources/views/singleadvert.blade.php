@@ -160,47 +160,47 @@
                     </div>
                     <div id="list-view" class="">
                         <div class="row">
-                            @foreach($similar_adverts as $key => $advert) @if(count($advert) > 0)
+                            @foreach($similar_adverts as $key => $advert_similar) @if(count($advert_similar) > 0)
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class="featured-box">
                                     <figure>
                                         <div class="icon">
-                                            @if($advert->verified_seller)
+                                            @if($advert_similar->verified_seller)
                                             <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}"> @endif
                                         </div>
                                         <a href="#">
-                                            <img class="img-fluid center-block" src="{{asset($advert->image[0]->image)}}" alt="">
+                                            <img class="img-fluid center-block" src="{{asset($advert_similar->image[0]->image)}}" alt="">
                                         </a>
                                     </figure>
                                     <div class="feature-content">
                                         <div class="tg-product">
-                                            <a href="#">{{$advert->category->name}} > {{$advert->subcategory->name}}</a>
+                                            <a href="#">{{$advert_similar->category->name}} > {{$advert_similar->subcategory->name}}</a>
                                         </div>
                                         <h4>
-                                            <a href="ads-details.html">{{$advert->title}}</a>
+                                            <a href="ads-details.html">{{$advert_similar->title}}</a>
                                         </h4>
-                                        <span>Last Updated: {{$advert->updated_at->diffForHumans()}}</span>
+                                        <span>Last Updated: {{$advert_similar->updated_at->diffForHumans()}}</span>
                                         <ul class="address">
                                             <li>
                                                 <a href="#">
-                                                    <i class="lni-map-marker"></i>{{$advert->state->name}} | {{$advert->country->name}}</a>
+                                                    <i class="lni-map-marker"></i>{{$advert_similar->state->name}} | {{$advert_similar->country->name}}</a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <i class="lni-alarm-clock"></i> {{$advert->updated_at->toFormattedDateString()}}</a>
+                                                    <i class="lni-alarm-clock"></i> {{$advert_similar->updated_at->toFormattedDateString()}}</a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <i class="lni-user"></i> {{$advert->user->username}}</a>
+                                                    <i class="lni-user"></i> {{$advert_similar->user->username}}</a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <i class="lni-tag"></i> {{$advert->phone}}</a>
+                                                    <i class="lni-tag"></i> {{$advert_similar->phone}}</a>
                                             </li>
                                         </ul>
                                         <div class="btn-list">
-                                            <a class="btn-price" href="#">&#8358; {{$advert->price}}</a>
-                                            <a class="btn btn-common" href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
+                                            <a class="btn-price" href="#">&#8358; {{$advert_similar->price}}</a>
+                                            <a class="btn btn-common" href="{{url('advertdetail')}}/{{$advert_similar->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
                                                 <i class="lni-list"></i>
                                                 View Details
                                             </a>

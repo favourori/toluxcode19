@@ -102,28 +102,37 @@ class HomeController extends Controller
 
     public function advertDetail(Request $request, $advert_id, $name)
     {
-        $advert = Advert::find($this->decode($advert_id));
+        $decoded_id = $this->decode($advert_id);
+        $advert = Advert::find($decoded_id);
         if(is_null($advert)){
-            return "";
+            abort(404);
         }
+        
+        $similar_adverts = Advert::where('category_id', $advert->category_id)
+                                   ->where('id', '!=', $decoded_id)->get()->take(2);
+        
+        
         $raw = str_replace("'","\"",$advert->attributes);
         $decoded = json_decode($raw, true) == null ? [] : json_decode($raw, true);
         
         $specification = [];
+      
         $advert->encoded_id = $advert_id;
         $advert->encoded_user_id = $this->encode($advert->user_id);
+        $advert->load('image','category','subcategory', 'specifications');
+
+        $similar_adverts->each(function ($item, $key){
+            $item->encoded_id = $this->encode($item->id);
+        });
+
         foreach($decoded as $key => $value){
             $temp = Subtype::whereIn('id', $value)->get();
             $specification[$key] = $temp;
             
         }
 
-        $similar_adverts = Advert::where('category_id', $advert->category_id)->get()->take(2);
-        $similar_adverts->each(function ($item, $key){
-            $item->encoded_id = $this->encode($item->id);
-        });
-        $advert->load('image','category','subcategory', 'specifications');
-        return view('singleadvert', compact('advert', 'specification','similar_adverts'));
+        
+        return view('singleadvert', compact(['similar_adverts', 'specification','advert']));
     }
 
     public function getAuthUser(){

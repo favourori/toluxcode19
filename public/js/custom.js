@@ -7,3 +7,15 @@ $(navlinks).each(function (index, element) {
         $(element.parentNode).removeClass('active');
     }
 });
+
+
+var href_user = location.pathname;
+var navlinks = $(".navdashboard > ul > li > a");
+$(navlinks).each(function (index, element) {
+    if ($(element).attr('href') == href_user) {
+        $(element).addClass('active');
+    } else {
+        $(element).removeClass('active');
+    }
+});
+
