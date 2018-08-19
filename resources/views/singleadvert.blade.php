@@ -61,7 +61,7 @@
                                 </span> -->
                         </div>
                         <div class="row">
-                            <h4 class="title-small mb-3 text-center" style="color: grey; font-size: 16px; width: 100%">Specifications</h4>
+                            <h4 class="title-small mb-3" style="color: grey; font-size: 16px; width: 100%">Specifications</h4>
                             <div class="col-md-12">
                                 @foreach($specification as $key => $specs) @if($specs->count() > 0)
 

@@ -177,7 +177,7 @@ var vapp = new Vue({
                 this.search.query = [];
             } else {
                 var self = this;
-                setTimeout(function () { self.searchAdvert() }, 500);
+                // setTimeout(function () { self.searchAdvert() }, 500);
 
             }
 
@@ -371,8 +371,8 @@ var vapp = new Vue({
         // Update contact
         updateContact() {
             let data = {
-                latitude: document.getElementById('latitude').value,
-                longitude: document.getElementById('longitude').value,
+                // latitude: document.getElementById('latitude').value,
+                // longitude: document.getElementById('longitude').value,
                 address: this.address,
                 country_id: this.country_id,
                 state_id: this.state_id,
@@ -504,8 +504,8 @@ var vapp = new Vue({
                     this.google = response.data.data.google;
                     this.linkedin = response.data.data.linkedin;
                     this.profile = response.data.data;
-                    document.getElementById('latitude').value = this.profile.latitude;
-                    document.getElementById('longitude').value = this.profile.longitude;
+                    // document.getElementById('latitude').value = this.profile.latitude;
+                    // document.getElementById('longitude').value = this.profile.longitude;
                     if (this.profile.state_id != null) {
                         this.state_id = this.profile.state_id;
                         this.state_off = false;

@@ -138,17 +138,17 @@ class AdvertController extends ApiController
             'description' => 'required|string',
             'price' => 'required|numeric|min:50',
             'phone1' => 'required|string',
-            'image1' => 'required|image|max:4096',
-            'image2' => 'required|image|max:4096',
-            'image3' => 'nullable|image|max:4096',
-            'image4' => 'nullable|image|max:4096',
-            'image5' => 'nullable|image|max:4096',
-            'image6' => 'nullable|image|max:4096',
+            'image1' => 'required|image',
+            'image2' => 'required|image',
+            'image3' => 'nullable|image',
+            'image4' => 'nullable|image',
+            'image5' => 'nullable|image',
+            'image6' => 'nullable|image',
             'country_id' => 'required|numeric|min:1',
             'state_id' => 'required|numeric|min:1',
             'lga_id' => 'required|numeric|min:1',
             'category_id' => 'required|numeric|min:1',
-            'subcategory_id' => 'nullable|numeric|min:1',
+            // 'subcategory_id' => 'nullable|numeric|min:1',
             
         ],
     [
@@ -159,10 +159,10 @@ class AdvertController extends ApiController
         'image3.required' => 'Image  is required',
         'image4.required' => 'Image  is required',
 
-        'image1.max' => 'Image  must be less than 4MB',
-        'image2.max' => 'Image  must be less than 4MB',
-        'image3.max' => 'Image  must be less than 4MB',
-        'image4.max' => 'Image  must be less than 4MB',
+        // 'image1.max' => 'Image  must be less than 4MB',
+        // 'image2.max' => 'Image  must be less than 4MB',
+        // 'image3.max' => 'Image  must be less than 4MB',
+        // 'image4.max' => 'Image  must be less than 4MB',
 
         'phone.required' => 'Phone number is required',
         'lga_id.min' => 'Lga must be selected',
@@ -170,7 +170,7 @@ class AdvertController extends ApiController
         'state_id.min' => 'State must be selected',
         'category_id.min' => 'Category must be selected',
         'price.min' => 'Price cannot be empty',
-        'subcategory_id.min' => 'Subcategory must be selected',
+        // 'subcategory_id.min' => 'Subcategory must be selected',
     ]);
     }
 

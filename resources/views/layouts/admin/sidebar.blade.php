@@ -92,6 +92,14 @@
 				</a>
 			</li>
 
+			<li class="nav-item">
+				<a href="{{url('admin/manage/mail')}}">
+					<i class="la la-envelope"></i>
+					<p>Mail Users</p>
+					<span class="badge badge-count"></span>
+				</a>
+			</li>
+
 			
 
 			<!-- <li class="nav-item">

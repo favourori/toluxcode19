@@ -150,6 +150,9 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::delete('manage/category/delete/{id}','Admin\CategoryController@deleteCategory')->name('admin.category.delete');
     Route::delete('manage/subcategory/delete/{id}','Admin\CategoryController@deleteSubCategory')->name('admin.subcategory.delete');
 
+    Route::get('manage/mail','Admin\MailController@viewMail');
+    Route::post('manage/mail/send','Admin\MailController@sendMail');
+    
 
     Route::get('manage/types','Admin\TypeController@type');
     Route::get('manage/user/view/{id}','Admin\UserController@viewUser');

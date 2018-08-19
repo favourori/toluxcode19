@@ -92,8 +92,8 @@ class UserController extends ApiController
         }
 
         $profile = auth()->user()->profile;
-        $profile->longitude = $request->longitude;
-        $profile->latitude = $request->latitude;
+        // $profile->longitude = $request->longitude;
+        // $profile->latitude = $request->latitude;
         $profile->address = $request->address;
         $profile->website = $request->website;
         $profile->phone = $request->phone;
@@ -155,8 +155,8 @@ class UserController extends ApiController
     protected function validateContact(array $data)
     {
         return Validator::make($data, [
-            'longitude' => 'required|string',
-            'latitude' => 'required|string',
+            // 'longitude' => 'required|string',
+            // 'latitude' => 'required|string',
             'phone' => 'required|string',
             'country_id' => 'required|numeric|min:1',
             'state_id' => 'required|numeric|min:1',

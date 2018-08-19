@@ -16,5 +16,6 @@
 <!-- <script src="{{asset('assets/js/demo.js')}}"></script> -->
 <script src="{{asset('js/iziToast.js')}}"></script>
 <script src="{{asset('js/iziwrapper.js')}}"></script>
+<script src="{{asset('js/custom.js')}}"></script>
 
 @yield('custom-script')

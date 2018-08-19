@@ -149,7 +149,7 @@
                                                         <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
                                                         @endif
                                                     </div>
-                                                    <a href="#">
+                                                    <a href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">
                                                         <img class="img-fluid center-block" src="{{asset($category->advert[0]->image[0]->image)}}" alt="">
                                                     </a>
                                                 </figure>

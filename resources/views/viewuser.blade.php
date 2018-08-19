@@ -43,6 +43,34 @@
                     <hr>
                     <p><b> Total Adverts:</b>  {{$seller->advert->count()}}</p>
                     <hr>
+                    <p>
+                    
+                    <ul class="footer-social">
+                        <li>
+                        <b> Socials:</b>
+                        </li>
+                        <li>
+                            <a class="facebook" href="{{$seller->profile->facebook}}">
+                                <i class="lni-facebook-filled"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="twitter" href="{{$seller->profile->twitter}}">
+                                <i class="lni-twitter-filled"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="linkedin" href="{{$seller->profile->linkedin}}">
+                                <i class="lni-linkedin-fill"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="google-plus" href="{{$seller->profile->google}}">
+                                <i class="lni-google-plus"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    </p>
                 </div>
             </div>
         </div>

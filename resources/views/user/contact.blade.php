@@ -66,10 +66,7 @@
                                             <span class="error" v-if="errors.hasOwnProperty('lga_id')">@{{errors['lga_id'][0]}}</span>
                                         </div>
 
-                                        <div class="form-group mb-3">
-                                            <label class="control-label">Address</label>
-                                            <textarea class="form-control input-md" v-model="address"></textarea>
-                                        </div>
+                                        
                                         
                                         <input type="hidden" name="_token" :value="csrf">
                                         
@@ -82,41 +79,23 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label class="control-label">Longitude <span class="error">*</span></label>
-                                        <input class="form-control input-md" disabled class="longitude" id="longitude" type="text">
-                                        <span class="error" v-if="errors.hasOwnProperty('longitude')">@{{errors['longitude'][0]}}</span>
-                                    </div>
-
-                                    <div class="form-group mb-3">
-                                        <label class="control-label">Latitude <span class="error">*</span></label>
-                                        <input class="form-control input-md" disabled class="latitude" id="latitude" type="text">
-                                        <span class="error" v-if="errors.hasOwnProperty('latitude')">@{{errors['latitude'][0]}}</span>
-                                    </div>
-
-                                    <div class="form-group mb-3">
                                         <label class="control-label">Phone <span class="error">*</span></label>
                                         <input class="form-control input-md" @focus="errors = {}" v-model="phone" type="number">
                                         <span class="error" v-if="errors.hasOwnProperty('phone')">@{{errors['phone'][0]}}</span>
                                     
                                     </div>
+
+                                    <div class="form-group mb-3">
+                                            <label class="control-label">Address</label>
+                                            <textarea class="form-control input-md" v-model="address"></textarea>
+                                        </div>
                                     
                                     <input class="form-control input-md" v-model="latitude" type="hidden">
 
                                     <input class="form-control input-md" v-model="latitude" type="hidden">
                                 </div>
-                                <!-- <div class="col-md-12">
-                                    <div class="form-group mb-3">
-                                        <label class="control-label">Address</label>
-                                        <textarea class="form-control input-md" v-model="address"></textarea>
-                                    </div>
-                                </div> -->
-                                <div class="col-md-12">
-                                    <label class="control-label">Location</label>
-                                    <input id="pac-input" class="form-control" style="width: 60%; margin-top: 10px; border: 1px solid rgb(66, 176, 219);" type="text"
-                                    placeholder="Select the nearest landmark to your location">
-                                    <div class="" style="height: 250px;" id="map"></div>
-                                    
-                                </div>
+                                
+                               
                                 <div class="text-right col-md-12">
                                     <br>
                                     <div class="form-group mb-3">

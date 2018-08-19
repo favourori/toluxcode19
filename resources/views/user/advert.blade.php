@@ -170,7 +170,7 @@
                                                 <span></span>
                                                 <span>Upload Image</span>
                                                 <span><i class="lni-plus" style="font-size: 45px; color: grey"></i></span>
-                                                <span>Maximum upload file size: 4MB</span>
+                                                <span></span>
                                                 <input style="visibility: hidden" @change="readIMG('image1', 'image-show1')" class="tg-fileinput" id="image1" type="file" name="file">
                                             </label>
                                             <span class="error" v-if="errors.hasOwnProperty('image1')">@{{errors['image1'][0]}}</span>
@@ -185,7 +185,7 @@
                                                 <span></span>
                                                 <span>Upload Image</span>
                                                 <span><i class="lni-plus" style="font-size: 45px; color: grey"></i></span>
-                                                <span>Maximum upload file size: 4MB</span>
+                                                <span></span>
                                                 <input style="visibility: hidden" @change="readIMG('image2', 'image-show2')" class="tg-fileinput" id="image2" type="file" name="file">
                                             </label>
                                             <span class="error" v-if="errors.hasOwnProperty('image2')">@{{errors['image2'][0]}}</span>
@@ -200,7 +200,7 @@
                                             <span></span>
                                                 <span>Upload Image</span>
                                                 <span><i class="lni-plus" style="font-size: 45px; color: grey"></i></span>
-                                                <span>Maximum upload file size: 4MB</span>
+                                                <span></span>
                                                 <input style="visibility: hidden" @change="readIMG('image3', 'image-show3')" class="tg-fileinput" id="image3" type="file" name="file">
                                             </label>
                                             <span class="error" v-if="errors.hasOwnProperty('image3')">@{{errors['image3'][0]}}</span>
@@ -215,7 +215,7 @@
                                                 <span></span>
                                                 <span>Upload Image</span>
                                                 <span><i class="lni-plus" style="font-size: 45px; color: grey"></i></span>
-                                                <span>Maximum upload file size: 4MB</span>
+                                                <span></span>
                                                 <input style="visibility: hidden" @change="readIMG('image4', 'image-show4')" class="tg-fileinput" id="image4" type="file" name="file">
                                             </label>
                                             <span class="error" v-if="errors.hasOwnProperty('image4')">@{{errors['image4'][0]}}</span>
@@ -230,7 +230,7 @@
                                                 <span></span>
                                                 <span>Upload Image</span>
                                                 <span><i class="lni-plus" style="font-size: 45px; color: grey"></i></span>
-                                                <span>Maximum upload file size: 4MB</span>
+                                                <span></span>
                                                 <input style="visibility: hidden" @change="readIMG('image5', 'image-show5')" class="tg-fileinput" id="image5" type="file" name="file">
                                             </label>
                                             <span class="error" v-if="errors.hasOwnProperty('image5')">@{{errors['image5'][0]}}</span>
@@ -245,7 +245,7 @@
                                                 <span></span>
                                                 <span>Upload Image</span>
                                                 <span><i class="lni-plus" style="font-size: 45px; color: grey"></i></span>
-                                                <span>Maximum upload file size: 4MB</span>
+                                                <span></span>
                                                 <input style="visibility: hidden" @change="readIMG('image6', 'image-show6')" class="tg-fileinput" id="image6" type="file" name="file">
                                             </label>
                                             <span class="error" v-if="errors.hasOwnProperty('image6')">@{{errors['image6'][0]}}</span>
