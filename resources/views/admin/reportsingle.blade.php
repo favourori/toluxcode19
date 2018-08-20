@@ -4,25 +4,27 @@
 @section('content')
 <!-- <button type="button" data-toggle="modal" data-target='#create-type' class="btn btn-info">Create Subtype <i style="font-weight: bolder;" class="la la-plus"></i></button>
 <br></br> -->
-<h4 class="page-title">Single Adverts</h4>
+<h4 class="page-title">Single Reported Advert</h4>
 
 <div class="row">
         
         <div class="col-md-8 col-lg-8 col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title text-center" title="{{$advert->title}}">{{$advert->title}}</div>
+                    <div class="card-title text-center" title="{{$report->advert->title}}">{{$report->advert->title}}</div>
                 </div>
                 <div class="card-body text-center">
-                @foreach($advert->image as $key => $image)
-                    <img src="{{$image->image}}" width="230px" class="gallery">
+                @foreach($report->advert->image as $key => $image)
+                    <img src="{{$image->image}}" width="130px" class="gallery">
                 @endforeach
                     <hr>
-                    <p class="text-justify">{{$advert->description}}</p>
+                    <h5>Complaint:</h5>
                     <hr>
-                    <p class="text-left">Reported: {{$advert->report->count()}} time(s)</p>
+                    <p class="text-justify">{{$report->report}}</p>
+                    <hr>
+                    <p class="text-left">Reported: {{$report->advert->report->count()}} time(s)</p>
                 </div>
-              
+                
             </div>
         </div>
         

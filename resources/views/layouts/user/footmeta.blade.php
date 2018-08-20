@@ -21,7 +21,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
     <script src="{{asset('js/root.js')}}?version={{md5(date('H:i:s'))}}"></script>
     <script src="{{asset('js/custom.js')}}?version={{md5(date('H:i:s'))}}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?radius=100&key=AIzaSyBCtk1wRKll07gVjp_AU76DBKts6jbrnyA&libraries=places&callback=initAutocomplete" async defer></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?radius=100&key=AIzaSyBCtk1wRKll07gVjp_AU76DBKts6jbrnyA&libraries=places&callback=initAutocomplete" async defer></script>-->
     
      @if(Session::has('success'))   
             <script>

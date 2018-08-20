@@ -171,12 +171,15 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::post('manage/user/unban/{id}','Admin\UserController@unbanUser')->name('admin.user.unban');
     Route::post('manage/user/verify/{id}','Admin\UserController@verifyUser')->name('admin.user.verify');
     Route::post('manage/user/unverify/{id}','Admin\UserController@unverifyUser')->name('admin.user.unverify');
-    
+    Route::get('manage/advert/user/{id}','Admin\UserController@myAdverts');
+   
+
     Route::delete('manage/user/delete/{id}','Admin\UserController@deleteUser')->name('admin.user.delete');
   
     Route::get('manage/adverts/reports','Admin\ReportController@report');
-    // Route::post('manage/user/create','Admin\UserController@createUser')->name('admin.user.create');
-    // Route::delete('manage/user/delete/{id}','Admin\UserController@deleteUser')->name('admin.user.delete');
+    Route::get('manage/advert/report/{id}','Admin\ReportController@singleReport');
+
+    
 
     Route::get('manage/sellers/applications','Admin\SellerController@application');
     Route::get('manage/seller/application/{id}','Admin\SellerController@viewApplication');
@@ -204,7 +207,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
 
     // Advert Route
 
-    // Route::patch('skill/edit/{skill_id}','Api\Admin\SkillController@editSkill');
+   
     Route::get('manage/adverts','Admin\AdvertController@advert');
     Route::get('manage/advert/{advert_id}','Admin\AdvertController@singleAdvert');
     Route::delete('manage/advert/delete/{advert_id}','Admin\AdvertController@deleteAdvert');

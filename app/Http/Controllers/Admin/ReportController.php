@@ -13,4 +13,10 @@ class ReportController extends Controller
         $reports->load('user','advert');
         return view('admin.advertreport', compact('reports'));
     }
+
+    public function singleReport(Request $request, $id){
+        $report = ReportAdvert::find($id);
+        $report->load('user','advert');
+        return view('admin.reportsingle', compact('report'));
+    }
 }

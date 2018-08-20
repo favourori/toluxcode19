@@ -1,7 +1,9 @@
 var href = location.href;
 var navlinks = $(".nav-item .nav-link");
+// console.log(navlinks);
 $(navlinks).each(function (index, element) {
-    if ($(element).attr('href') == href) {
+    if ($(element).attr('href') == href || $(element).attr('href') == location.pathname) {
+
         $(element.parentNode).addClass('active');
     } else {
         $(element.parentNode).removeClass('active');
@@ -12,7 +14,7 @@ $(navlinks).each(function (index, element) {
 var href_user = location.href;
 var navlinks = $(".navdashboard > ul > li > a");
 $(navlinks).each(function (index, element) {
-    if ($(element).attr('href') == href_user) {
+    if ($(element).attr('href') == href_user || $(element).attr('href') == location.pathname) {
         $(element).addClass('active');
     } else {
         $(element).removeClass('active');

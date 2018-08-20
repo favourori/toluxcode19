@@ -30,6 +30,16 @@ class UserController extends ApiController
         return view('admin.viewuser', compact('user'));
     }
 
+    public function myAdverts(Request $request, $id){
+        $user = User::withTrashed()->where('id', $id)->first();
+        if(is_null($user)){
+            return "Wrong page";
+        }
+
+        $user->load('profile');
+        return view('admin.useradverts', compact('user'));
+    }
+
     
     public function deleteUser(Request $request, $id){
         $user = User::find($id);

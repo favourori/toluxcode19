@@ -43,6 +43,10 @@ class User extends Authenticatable
         return $this->hasMany(Advert::class);
     }
 
+    public function report(){
+        return $this->hasMany(ReportAdvert::class);
+    }
+
     public function subscription(){
         return $this->belongsTo(Subscription::class);
     }

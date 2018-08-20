@@ -18,18 +18,18 @@
         <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">
+                    <a class="nav-link" href="{{url('')}}/">
                         Home
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/categories">
+                    <a class="nav-link" href="{{url('categories')}}">
                         Categories
                     </a>
                 </li>
               
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">
+                    <a class="nav-link" href="{{url('contact')}}">
                         Contact
                     </a>
                 </li>

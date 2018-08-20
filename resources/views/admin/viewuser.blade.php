@@ -26,7 +26,10 @@
                     <div class="card-title text-center">Total Ads By User</div>
                 </div>
                 <div class="card-body text-center">
-                    <p>{{$user->advert->count()}}</p>
+                    <p>
+                    <a href="{{url('admin/manage/advert/user')}}/{{$user->id}}" title="View this user advert" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-bar-chart"></i> View Adverts ({{$user->advert->count()}})</a>    
+                    
+                    </p>
                     
                 </div>
             </div>
@@ -35,10 +38,10 @@
         <div class="col-md-4 col-lg-4 col-sm-6">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title text-center">Subscription</div>
+                    <div class="card-title text-center">Total reports on ads</div>
                 </div>
                 <div class="card-body text-center">
-                    <p>{{$user->subscription->name}}</p>
+                    <p>{{$user->report->count()}}</p>
                     
                 </div>
             </div>

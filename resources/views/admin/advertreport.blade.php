@@ -8,58 +8,67 @@
 
 <div class="row">
 
-        @foreach($reports as $key => $report)
-        <div class="col-md-4 col-lg-4 col-sm-6">
+        <div class="col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Report By  {{$report->user->username}}</div>
+                    <div class="card-title">Reported Adverts</div>
                 </div>
                 <div class="card-body">
                     
-                    <p><span class="badge badge-default">Advert Id</span> :  {{$report->advert->id}}</p>
-                    <p><span class="badge badge-default">Advert Owner</span> : {{$report->advert->user->username}}</p>
-                    <p class="text-center"><strong>Reported Advert</strong></p>
-                    <p class="text-center">{{$report->advert->title}}</p>
-                    <p class="text-center"><strong>Complaint</strong></p>
-                    <p class="text-center">{{$report->report}}</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="user-table">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>S/N</th>
+                                    <th>Title</th>
+                                    <th>Owner</th>
+                                    <th>Phone</th>
+                                    <th>Reported on</th>
+                                    <th>View Advert</th>
+                                    <th>Delete</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($reports as $key => $report)
+                                <tr>
+                                    <th scope="row">{{$loop->index + 1}}</th>
+                                    <td>{{$report->advert->title}}</td>
+                                    <td><span class="badge badge-default">{{$report->user->firstname}} {{$report->user->lastname}}</span></td>
+                                    <td><span class="badge badge-default">{{$report->user->profile->phone}}</span></td>
+                                    <td><span class="badge badge-default">{{$report->created_at}}</span></td>
+                                    
+                                    <td><a href="{{url('admin/manage/advert/report')}}/{{$report->id}}" title="View this user" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> View</a></td>                             
+                                    <td><button title="Delete this user" onclick="deleteAdvert({{$report->advert->id}})" class="btn btn-danger btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-trash"></i></button></td>
+                                </tr>
+                               @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-        @endforeach
+   
+    
 </div>
+
+
+
+
 @endsection
 
 @section('custom-script')
 
 <script>
-    function triggerFile(){
-           $("#image").trigger('click');
-       }
-
-         function readIMG(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#drawimage').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#image").change(function(){
-            readIMG(this);
-        });
-
-        function deleteUser(id){
-            var complete = confirm('Are you sure you want to delete this user?');
-            console.log(complete);
+    $("#user-table").DataTable();
+    function deleteAdvert(id){
+            var complete = confirm('Are you sure you want to delete this advert?');
+            // console.log(complete);
             if(!complete){
                 return;
             }
 
-            axios.post('/admin/manage/user/delete/'+id, {_method: 'delete'})
+            axios.post('/admin/manage/advert/delete/'+id, {_method: 'delete'})
                 .then(response => {
                     success('Success', response.data.message);
                     location.reload();
