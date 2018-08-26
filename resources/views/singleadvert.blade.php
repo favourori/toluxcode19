@@ -48,7 +48,7 @@
                 <div class="details-box">
                     <div class="ads-details-info">
                         <h2>{{$advert->title}}</h2>
-                        <p class="mb-2">{{substr($advert->description, 0, 80)}}</p>
+                        
                         <div class="details-meta">
                             <span>
                                 <a href="#">
@@ -61,7 +61,7 @@
                                 </span> -->
                         </div>
                         <div class="row">
-                            <h4 class="title-small mb-3" style="color: grey; font-size: 16px; width: 100%">Specifications</h4>
+                            <h4 class="title-small mb-3" style="color: grey; font-size: 16px; width: 100%; margin-left: 15px">Specifications</h4>
                             <div class="col-md-12">
                                 @foreach($specification as $key => $specs) @if($specs->count() > 0)
 
@@ -121,6 +121,25 @@
                         <a style="color: white" class="btn btn-common" onclick="showNumber(this,'{{substr($advert->phone,4, 40)}}')">
                             <i class="lni-phone-handset"></i> Show Number</a>
                     </div>
+
+                    <div class="ads-btn mb-4">
+
+                    <form method="post" action="{{route('message.seller', ['seller_id' => $advert->user_id])}}" method="POST" role="form">
+                        @if(Auth::check())
+                        <div class="form-group">
+                            <label style="font-weight: bold; font-size: 18px">Chat With Seller</label>
+                            <textarea rows="5" required type="text" class="form-control" name="message" placeholder="Send the seller a message"></textarea>
+                        </div>
+                        <input type="hidden" name="advert_id" value="{{$advert->id}}"> @endif
+                        <button type="submit" class="btn btn-common btn-reply">
+                            <i class="lni-envelope"></i> Send</button>
+                        @csrf
+                    </form>
+
+
+            </div>
+
+
                     <div class="share">
                         <span>Share: </span>
                         <div class="social-link">
@@ -133,9 +152,7 @@
                             <a class="linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?title={{$advert->title}}&url={{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
                                 <i class="lni-linkedin-fill"></i>
                             </a>
-                            <!-- <a class="google" href="#">
-                                    <i class="lni-google-plus"></i>
-                                </a> -->
+                            
                         </div>
                     </div>
                     <br>
@@ -148,15 +165,16 @@
 
         <div class="description-info">
             <div class="row">
-                <div class="col-lg-7 col-md-7 col-xs-12">
+                <div class="col-lg-7 col-md-7 col-xs-12 description-col">
                     <div class="description">
                         <h4>Description</h4>
                         <p>{{$advert->description}}</p>
                     </div>
 
                     <div style="padding: 30px">
+                        @if($similar_adverts->count() > 0)
                         <h4 style="font-size: 24px;">Similar Ads</h4>
-
+                        @endif
                     </div>
                     <div id="list-view" class="">
                         <div class="row">
@@ -214,14 +232,14 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-5 col-xs-12">
-                    <div class="short-info" style="padding-left: 15px; background-color: white;">
+                    <div class="short-info" style="padding: 0; background-color: white;">
                         <h4>Short Info</h4>
                         <ul>
                             @if($advert->verified_seller)
                             <li>
                                 <a href="{{url('store')}}/{{$advert->user->store_url}}">
-                                    <i class="lni-users"></i> More ads by
-                                    <span>User</span>
+                                    <i class="lni-apartment"></i>
+                                    <span>View Seller's Store</span>
                                 </a>
                             </li>
                             @endif
@@ -239,21 +257,7 @@
                             @endif
                         </ul>
 
-                        <div class="ads-btn mb-4">
-
-                            <form method="post" action="{{route('message.seller', ['seller_id' => $advert->user_id])}}" method="POST" role="form">
-                                @if(Auth::check())
-                                <div class="form-group">
-                                    <textarea rows="5" required type="text" class="form-control" name="message" placeholder="Send the seller a message"></textarea>
-                                </div>
-                                <input type="hidden" name="advert_id" value="{{$advert->id}}"> @endif
-                                <button type="submit" class="btn btn-common btn-reply">
-                                    <i class="lni-envelope"></i> Reply to this Ad</button>
-                                @csrf
-                            </form>
-
-
-                        </div>
+                        
 
                     </div>
                 </div>

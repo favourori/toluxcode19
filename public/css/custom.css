@@ -43,6 +43,10 @@ select.form-control:not([size]):not([multiple]){
     .search-bar .form-group {
         width: 45%;
     }
+
+    .description-col{
+        margin-top: -240px;
+    }
 }
 
 
