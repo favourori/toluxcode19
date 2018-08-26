@@ -35,3 +35,11 @@ $(navlinks).each(function (index, element) {
 });
 
 // console.log(navlinks);
+
+var productHeight = $("#product-info").height();
+
+if (productHeight != undefined || productHeight != null) {
+    // console.log(productHeight);
+    var newHeight = 556 - productHeight;
+    $("#description-col").css('margin-top', newHeight);
+}

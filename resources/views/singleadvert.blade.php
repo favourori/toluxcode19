@@ -29,7 +29,7 @@
 <div class="section-padding">
     <div class="container">
 
-        <div class="product-info row">
+        <div class="product-info row" id="product-info">
             <div class="col-lg-7 col-md-12 col-xs-12">
                 <div class="details-box ads-details-wrapper">
                     <div id="owl-demo" class="owl-carousel owl-theme">
@@ -165,7 +165,7 @@
 
         <div class="description-info">
             <div class="row">
-                <div class="col-lg-7 col-md-7 col-xs-12 description-col">
+                <div class="col-lg-7 col-md-7 col-xs-12" id="description-col">
                     <div class="description">
                         <h4>Description</h4>
                         <p>{{$advert->description}}</p>

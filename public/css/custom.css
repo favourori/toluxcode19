@@ -44,9 +44,7 @@ select.form-control:not([size]):not([multiple]){
         width: 45%;
     }
 
-    .description-col{
-        margin-top: -100px;
-    }
+    
 }
 
 
