@@ -45,7 +45,7 @@ select.form-control:not([size]):not([multiple]){
     }
 
     .description-col{
-        margin-top: -240px;
+        margin-top: -100px;
     }
 }
 
