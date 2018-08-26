@@ -39,7 +39,8 @@ $(navlinks).each(function (index, element) {
 var productHeight = $("#product-info").height();
 
 if (productHeight != undefined || productHeight != null) {
-    // console.log(productHeight);
-    var newHeight = 556 - productHeight;
-    $("#description-col").css('margin-top', newHeight);
+    // console.log($(window).width());
+    var newHeight = 536 - productHeight;
+    if ($(window).width() > 992)
+        $("#description-col").css('margin-top', newHeight);
 }
