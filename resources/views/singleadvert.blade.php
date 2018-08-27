@@ -132,7 +132,7 @@
                         </div>
                         <input type="hidden" name="advert_id" value="{{$advert->id}}"> @endif
                         <button type="submit" class="btn btn-common btn-reply">
-                            <i class="lni-envelope"></i> Send</button>
+                            <i class="lni-envelope"></i> Send Message</button>
                         @csrf
                     </form>
 
