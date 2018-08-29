@@ -168,68 +168,65 @@
                 <div class="col-lg-7 col-md-7 col-xs-12" id="description-col">
                     <div class="description">
                         <h4>Description</h4>
-                        <p>{{$advert->description}}</p>
+                        
                     </div>
-
+                    <div class="text-justify">{{$advert->description}}</div>
                     <div style="padding: 30px">
                         @if($similar_adverts->count() > 0)
                         <h4 style="font-size: 24px;">Similar Ads</h4>
                         @endif
                     </div>
-                    <div id="list-view" class="">
-                        <div class="row">
-                            @foreach($similar_adverts as $key => $advert_similar) @if(count($advert_similar) > 0)
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <div class="featured-box">
-                                    <figure>
-                                        <div class="icon">
-                                            @if($advert_similar->verified_seller)
-                                            <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}"> @endif
-                                        </div>
-                                        <a href="#">
-                                            <img class="img-fluid center-block" src="{{asset($advert_similar->image[0]->image)}}" alt="">
-                                        </a>
-                                    </figure>
-                                    <div class="feature-content">
-                                        <div class="tg-product">
-                                            <a href="#">{{$advert_similar->category->name}} > {{$advert_similar->subcategory->name}}</a>
-                                        </div>
-                                        <h4>
-                                            <a href="ads-details.html">{{$advert_similar->title}}</a>
-                                        </h4>
-                                        <span>Last Updated: {{$advert_similar->updated_at->diffForHumans()}}</span>
-                                        <ul class="address">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="lni-map-marker"></i>{{$advert_similar->state->name}} | {{$advert_similar->country->name}}</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="lni-alarm-clock"></i> {{$advert_similar->updated_at->toFormattedDateString()}}</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="lni-user"></i> {{$advert_similar->user->username}}</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="lni-tag"></i> {{$advert_similar->phone}}</a>
-                                            </li>
-                                        </ul>
-                                        <div class="btn-list">
-                                            <a class="btn-price" href="#">&#8358; {{$advert_similar->price}}</a>
-                                            <a class="btn btn-common" href="{{url('advertdetail')}}/{{$advert_similar->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
-                                                <i class="lni-list"></i>
-                                                View Details
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                    <section class="featured" style="margin-left: 0; padding-left: 0;">
+        <div class="container" style="margin-left: 0; padding-left: 0;">
+            <!-- <h1 class="section-title">Ads By Verified Sellers</h1> -->
+            <div class="row">
+            @foreach($similar_adverts as $key => $advert_similar)                
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="featured-box" title="{{$advert_similar->title}}">
+                        <figure style="margin-bottom: 10px;">
+                            <div class="icon">
+                                @if($advert_similar->verified_seller == 1)
+                                <img width="30px" style="display: inline; position: absolute; right: 0; top: 5px;" src="{{asset('img/badge.svg')}}">
+                                @endif
                             </div>
-                            @endif @endforeach
+                            <a href="{{url('advertdetail')}}/{{$advert_similar->encoded_id}}/{{str_replace(' ', '-', $advert_similar->title)}}">
+                                <img class="img-fluid center-block" src="{{asset($advert_similar->image->first()->image)}}" alt="">
+                            </a>
+                            
+                        </figure>
+                        <div class="feature-content">
+                            
+                            <h4>
+                            
+                                <a href="{{url('advertdetail')}}/{{$advert_similar->encoded_id}}/{{str_replace(' ', '-', $advert_similar->title)}}">{{substr($advert_similar->title, 0, 20)}}</a>
+                            </h4>
+                            <ul class="address" style="display: block;">
+                                <li style="font-size: 22px; width: 100%; font-weight: 700">
+                                    <a style="color: #4a4949;" href="#">
+                                       
+                                    &#8358; {{number_format($advert_similar->price, 2)}} 
+                                    </a>
+                                </li>
+                               
+                            </ul>
 
+                            <ul class="address" style="display: block;">
+                                
+                                <li style="width: 100%" class="text-left">
+                                <a href="#">
+                                        <i class="lni-map-marker"></i>{{$advert_similar->state->name}}</a>
+                                </li>
+                            </ul>
+                           
+                            
                         </div>
                     </div>
+                </div>
+            @endforeach
+               
+            </div>
+        </div>
+    </section>
                 </div>
                 <div class="col-lg-5 col-md-5 col-xs-12">
                     <div class="short-info" style="padding: 0; background-color: white;">
