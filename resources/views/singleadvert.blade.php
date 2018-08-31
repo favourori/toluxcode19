@@ -126,13 +126,19 @@
 
                     <form method="post" action="{{route('message.seller', ['seller_id' => $advert->user_id])}}" method="POST" role="form">
                         @if(Auth::check())
+                        @if(Auth::user()->id != $advert->user_id)
                         <div class="form-group">
                             <label style="font-weight: bold; font-size: 18px">Chat With Seller</label>
                             <textarea rows="5" required type="text" class="form-control" name="message" placeholder="Send the seller a message"></textarea>
                         </div>
-                        <input type="hidden" name="advert_id" value="{{$advert->id}}"> @endif
+                        <input type="hidden" name="advert_id" value="{{$advert->id}}"> 
                         <button type="submit" class="btn btn-common btn-reply">
                             <i class="lni-envelope"></i> Send Message</button>
+                        @endif
+                        @else
+                        <button type="submit" class="btn btn-common btn-reply">
+                            <i class="lni-envelope"></i> Send Message</button>
+                        @endif
                         @csrf
                     </form>
 

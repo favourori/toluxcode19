@@ -35,41 +35,28 @@
                 </div>
                 <div class="dashboard-wrapper">
                     <div id="root">
+                    <user-message inline-template>
                         <div class="row">
-                            <div class="col-md-6">
-                                <p>As User</p>
-                                @foreach($user_messages as $key => $message)
-                                <div class="card" @click="emitValue({{$message->id}}, '{{$message->user->firstname}}', '{{$message->user->lastname}}')"  style="padding: 12px 10px 10px;">
+                            <div class="col-md-4">
+                                
+                                <div class="card" v-for="message in contacts" @click="emitValue(message.id, message.user.firstname, message.user.lastname)"  style="padding: 12px 10px 10px;">
                                     <div style="display: inline-block">
-                                        <img class="img-circle" src="{{$message->user->profile->avatar == null ? '/img/avatar/avatar.png' : $message->user->profile->avatar}}" width="40px" alt="">
+                                        <img class="img-circle" :src="message.user.profile.avatar == null ? '/img/avatar/avatar.png' : message.user.profile.avatar" width="40px" alt="">
                                         <div class="card-body" style="color: grey; padding: 0.25rem; display: inline-block">
-                                            &nbsp; &nbsp; {{$message->user->firstname}} {{$message->user->lastname}} <span class="pull-right"> </span>
+                                            &nbsp; &nbsp; @{{message.user.firstname}} @{{message.user.lastname}} <span class="pull-right" style="margin-left: 15px;">(2)</span>
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
-                                <br>
-                                <hr>
-                                <br>
-                                <p>As Seller</p>
-                                @foreach($seller_messages as $key => $message)
-                                <div class="card" @click="emitValue({{$message->id}}, '{{$message->seller->firstname}}', '{{$message->seller->lastname}}')" style="padding: 12px 10px 10px;">
-                                    <div style="display: inline-block">
-                                        <img class="" src="{{$message->user->profile->avatar == null ? '/img/avatar/avatar.png' : $message->user->profile->avatar}}" width="40px" alt="">
-                                        <div class="card-body" style="color: grey; padding: 0.25rem; display: inline-block">
-                                            &nbsp; &nbsp; {{$message->seller->firstname}} {{$message->seller->lastname}} <span class="pull-right"> </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
+                                
+                                
 
                             </div>
 
-                            <div class="col-md-6" style="background-color: white; padding: 10px; ">
-                                <br>
-                            <user-message inline-template>
+                            <div class="col-md-8" style="background-color: white; padding: 10px; ">
+                            
+                            
                             <div>
-                            <div class="card" style="padding: 12px 10px 10px;" >
+                            <div class="card" v-if="messages.length > 0" style="padding: 12px 10px 10px;" >
                                 <div style="display: inline-block" v-show="clicked">
                                     <img class="" src="{{auth()->user()->profile->avatar == null ? '/img/avatar/avatar.png' : auth()->user()->profile->avatar}}" width="40px" alt="">
                                         <div class="card-body" style="color: grey; padding: 0.25rem; display: inline-block">
@@ -77,18 +64,20 @@
                                         </div>
                                 </div>
                             </div>
-                            <div style="height: 400px; padding: 10px; margin-bottom: 20px; overflow-y: auto; overflow-x: hidden">
-                                <div class="row" style="padding: 10px;" v-for="message in messages" :class="{proper:proper(message.sender_id)}">
-                                    <div class="card" style="padding: 3px 6px 3px; display: inline-block">
+                            <div v-if="messages.length > 0" id="message-scroll" style="height: 400px; padding-left: 10px; padding-right: 10px; margin-bottom: 20px; overflow-y: auto; overflow-x: hidden">
+                                <div class="row" style="padding-left: 10px; padding-right: 10px; margin: 0" v-for="message in messages" :class="{proper:proper(message.sender_id)}">
+                                    <div class="card" style="padding: 3px 6px 3px; display: inline-block; padding-bottom: 0px;">
 
-                                        <div class="card-body text-left" style="color: grey; padding: 0em; display: inline-block">
+                                        <div class="card-body text-left" style="color: grey; padding: 0em; display: inline-block; min-width: 100px; max-width: 300px; line-height: 20px;">
                                                 @{{message.message}}
+                                                <div class="text-right" style="font-size: 10px; line-height: 10px; padding-top: 7px;">@{{formatTime(message.created_at)}}</div>
                                         </div>
 
                                     </div>
                                 </div>
-</div>
-                                    <div class="row" style="margin-left: 10px; margin: 10px; position: absolute; bottom: 0; left: 0; right: 0;">
+                            </div>
+                            <br>
+                                    <div v-if="messages.length > 0" class="row" style="margin-left: 10px; margin-top: 15px; margin: 10px; position: absolute; bottom: 0; left: 0; right: 0;">
                                         
                                         <input type="text" v-model="message" @keypress="chat()" class="form-control" required placeholder="Enter your message">
                                         

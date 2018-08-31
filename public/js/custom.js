@@ -25,7 +25,7 @@ var navlinks = $("ul > li > a");
 var href_user = location.href;
 // console.log(location);
 $(navlinks).each(function (index, element) {
-    console.log(href_user);
+    // console.log(href_user);
     if ($(element).attr('href') == href_user) {
 
         $(element.parentNode).addClass('active');

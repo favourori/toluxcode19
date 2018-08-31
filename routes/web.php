@@ -90,6 +90,7 @@ Route::group(['prefix' => 'api/v1/', 'middleware' => ['auth']], function () {
     Route::post('chat/{message_id}','MessageController@chat');
     Route::get('auth', 'HomeController@getAuthUser');
     Route::post('account/avatar/update','UserController@updateAvatar');
+    Route::get('contacts','MessageController@apiMessages');
     
 });
 
@@ -108,6 +109,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
     Route::get('messages','MessageController@messages');
     Route::get('apiprofile','UserController@apiProfile');
     Route::get('apiuser','UserController@apiUser');
+    
 
     // Skill routes
     Route::get('dashboard','UserController@dashboard');

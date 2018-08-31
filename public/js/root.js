@@ -1,3 +1,116 @@
+
+Vue.component('user-message', {
+    mounted() {
+        this.getAuthUser();
+        this.getContacts();
+        Event.$on('open', (id, firstname, lastname) => {
+            this.chatter_name = firstname + " " + lastname;
+            this.clicked = true;
+            this.getUserMessages(id);
+        });
+    },
+    data() {
+        return {
+            message: "",
+            messages: [],
+            message_id: 0,
+            chatter_name: '',
+            contacts: [],
+            auth: 0,
+            clicked: false
+        }
+    },
+
+    methods: {
+        emitValue(id, firstname, lastname) {
+            this.chatter_name = firstname + " " + lastname;
+            this.clicked = true;
+            this.getUserMessages(id);
+        },
+        listen(id) {
+
+            Echo.channel('message-' + id)
+                .listen('SendMessageSignal', (e) => {
+                    if (this.message_id == e.message_stream.message_id) {
+                        this.getUserMessages(this.message_id);
+                    }
+                });
+        },
+        getAuthUser() {
+            axios.get('/api/v1/auth')
+                .then(response => {
+                    this.auth = response.data.data.id;
+
+                })
+                .catch(err => {
+
+                });
+        },
+        getContacts() {
+            axios.get('/api/v1/contacts')
+                .then(response => {
+                    this.contacts = response.data.data;
+
+                }).then(() => {
+                    let contact_list = this.contacts
+                    for (let i = 0; i < contact_list.length; i++) {
+                        this.listen(contact_list[i].id);
+                    }
+
+                })
+                .catch(err => {
+
+                });
+        },
+        getUserMessages: function (id) {
+            axios.get('/api/v1/messages/related/' + id)
+                .then(response => {
+                    this.messages = response.data.data;
+                    this.message_id = id;
+                }).then(() => {
+                    this.scrollToBottom();
+                }
+
+                )
+                .catch(err => {
+
+                });
+        },
+
+        proper(sender_id) {
+            return sender_id != this.auth;
+        },
+        chat() {
+            if (event.keyCode == '13') {
+                axios.post('/api/v1/chat/' + this.message_id, { message: this.message })
+                    .then(response => {
+                        this.messages.push(response.data.data);
+                        this.message = "";
+                        this.scrollToBottom();
+
+                    })
+                    .catch(err => {
+
+                    });
+            }
+
+        },
+
+        formatTime(time) {
+            return moment(time).format('HH:mm');
+        },
+
+        scrollToBottom() {
+            var messageHeight = parseInt($('#message-scroll').height()) + (30000 * 4);
+
+            $('#message-scroll').animate({ scrollTop: messageHeight }, 1000, 'swing', function () {
+
+            });
+        }
+    }
+});
+
+
 function showNumber(event, num) {
 
     $("#show-number").text(num);
@@ -46,67 +159,7 @@ $("#avatar").change(function () {
     uploadAvatar();
 });
 
-Vue.component('user-message', {
-    mounted() {
-        this.getAuthUser();
-        Event.$on('open', (id, firstname, lastname) => {
-            this.chatter_name = firstname + " " + lastname;
-            this.clicked = true;
-            this.getUserMessages(id);
-        });
-    },
-    data() {
-        return {
-            message: "",
-            messages: [],
-            message_id: 0,
-            chatter_name: '',
 
-            auth: 0,
-            clicked: false
-        }
-    },
-
-    methods: {
-        getAuthUser() {
-            axios.get('/api/v1/auth')
-                .then(response => {
-                    this.auth = response.data.data.id;
-
-                })
-                .catch(err => {
-
-                });
-        },
-        getUserMessages: function (id) {
-            axios.get('/api/v1/messages/related/' + id)
-                .then(response => {
-                    this.messages = response.data.data;
-                    this.message_id = id;
-                })
-                .catch(err => {
-
-                });
-        },
-
-        proper(sender_id) {
-            return sender_id != this.auth;
-        },
-        chat() {
-            if (event.keyCode == '13') {
-                axios.post('/api/v1/chat/' + this.message_id, { message: this.message })
-                    .then(response => {
-                        this.messages.push(response.data.data);
-                        this.message = "";
-                    })
-                    .catch(err => {
-
-                    });
-            }
-
-        }
-    }
-});
 
 window.Event = new Vue();
 

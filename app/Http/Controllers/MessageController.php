@@ -11,6 +11,7 @@ use App\Mail\Message as EMessage;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\GenericResource;
 use App\Model\MessageStream;
+use App\Events\SendMessageSignal;
 use Auth;
 
 class MessageController extends Controller
@@ -25,11 +26,17 @@ class MessageController extends Controller
             return back()->with('error', 'Check required Fields');
 
         }
-
+       
         $message_exists = Message::where('user_id', Auth::user()->id)
                                         ->where('seller_id', $request->seller_id)
                                         ->first();
-        
+        if(is_null($message_exists)){
+            $message_exists = Message::where('seller_id', Auth::user()->id)
+                                        ->where('user_id', $request->seller_id)
+                                        ->first();
+            
+        }
+
         if(!is_null($message_exists)){
             $message_stream = new MessageStream;
             $message_stream->sender_id = Auth::user()->id;
@@ -51,6 +58,11 @@ class MessageController extends Controller
             $advert = Advert::find($request->advert_id);
             $advert->load('user', 'image');
             if($message->save()){
+                $message_stream = new MessageStream;
+                $message_stream->sender_id = Auth::user()->id;
+                $message_stream->message = $request->message;
+                $message_stream->message_id = $message->id;
+                $message_stream->save();
                 Mail::to($user)->send(new EMessage($user, $advert, $request->message));
                 return back()->with('success', 'Message has been sent to the seller');
             }else{
@@ -62,16 +74,28 @@ class MessageController extends Controller
     }
 
     public function messages(){
+        $user_messages = collect([]);
+        
         $user_messages = Message::where('user_id', Auth::user()->id)
-                            ->get();
+                             ->orWhere('seller_id', Auth::user()->id)
+                             ->get();
         $user_messages->load('user');
+   
+        $user_messages = $user_messages->unique();
+        return view('user.message', compact('user_messages'));
+    }
 
-        $seller_messages = Message::where('seller_id', Auth::user()->id)
-                            ->get();
+    public function apiMessages(){
+        $user_messages = collect([]);
+        
+        $user_messages = Message::where('user_id', Auth::user()->id)
+                             ->orWhere('seller_id', Auth::user()->id)
+                             ->get();
 
-        $seller_messages->load('seller');
-        // dd($user_messages);
-        return view('user.message', compact('user_messages', 'seller_messages'));
+        $user_messages->load('user.profile');
+   
+        $user_messages = $user_messages->unique();
+        return new GenericResource($user_messages);
     }
 
     public function chat(Request $request, $message_id){
@@ -80,7 +104,7 @@ class MessageController extends Controller
         $message_stream->message = $request->message;
         $message_stream->message_id = $message_id;
         $message_stream->save();
-
+        event(new SendMessageSignal($message_stream));
         return new GenericResource($message_stream);
     }
 
