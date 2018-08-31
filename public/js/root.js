@@ -80,7 +80,7 @@ Vue.component('user-message', {
         proper(sender_id) {
             return sender_id != this.auth;
         },
-        chat() {
+        chat(event) {
             if (event.keyCode == '13') {
                 axios.post('/api/v1/chat/' + this.message_id, { message: this.message })
                     .then(response => {

@@ -28,7 +28,7 @@
                         <h3>
                             Register
                         </h3>
-                        <form action="{{Route('register')}}" id="register" onsubmit="register()" class="login-form" method="post">
+                        <form action="{{Route('register')}}" id="register" class="login-form" method="post">
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-user"></i>

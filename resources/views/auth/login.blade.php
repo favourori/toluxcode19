@@ -28,7 +28,7 @@
                         <h3>
                             Login Now
                         </h3>
-                        <form  class="login-form" onsubmit="login()" id="login" method="post">
+                        <form  class="login-form" id="login" method="post">
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-user"></i>
@@ -69,7 +69,7 @@
                             </div>
                             <br>
                             <div class="text-center">
-                                <button type="submit" onclick="fbLogin()" class="btn btn-common btn-primary btn-block"><i class="lni-facebook-filled"> </i> Login with facebook</button>
+                                <button type="button" onclick="fbLogin()" class="btn btn-common btn-primary btn-block"><i class="lni-facebook-filled"> </i> Login with facebook</button>
                             </div>
                             
                             

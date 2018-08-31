@@ -79,7 +79,7 @@
                             <br>
                                     <div v-if="messages.length > 0" class="row" style="margin-left: 10px; margin-top: 15px; margin: 10px; position: absolute; bottom: 0; left: 0; right: 0;">
                                         
-                                        <input type="text" v-model="message" @keypress="chat()" class="form-control" required placeholder="Enter your message">
+                                        <input type="text" v-model="message" @keypress="chat" class="form-control" required placeholder="Enter your message">
                                         
                                     </div>
                                 </div>

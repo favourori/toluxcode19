@@ -7,8 +7,17 @@ $("#agree").on('click', function () {
         $("#register-button").prop("disabled", true);
 });
 
-function login() {
+$("#register").submit(function (event) {
     event.preventDefault();
+    register();
+});
+
+$("#login").submit(function (event) {
+    event.preventDefault();
+    login();
+});
+
+function login() {
     $("#login").LoadingOverlay('show');
     var data = $('#login').serialize();
     axios.post('/login', data)
@@ -36,7 +45,7 @@ function login() {
 }
 
 function register() {
-    event.preventDefault();
+
     $("#register").LoadingOverlay('show');
     var data = $('#register').serialize();
     axios.post('/register', data)
