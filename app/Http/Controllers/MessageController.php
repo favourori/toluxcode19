@@ -8,6 +8,7 @@ use App\Model\Message;
 use App\Model\User;
 use App\Model\Advert;
 use App\Mail\Message as EMessage;
+use App\Mail\Chat;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\GenericResource;
 use App\Model\MessageStream;
@@ -100,11 +101,16 @@ class MessageController extends Controller
 
     public function chat(Request $request, $message_id){
         $message_stream = new MessageStream;
-        $message_stream->sender_id = Auth::user()->id;
+        $user = Auth::user();
+        $message_stream->sender_id = $user->id;
         $message_stream->message = $request->message;
         $message_stream->message_id = $message_id;
         $message_stream->save();
         event(new SendMessageSignal($message_stream));
+        $message = Message::find($message_id);
+        $chattee = $message->user_id == $user->id ? User::find($message->seller_id) : User::find($message->user_id); 
+        
+        Mail::to($chattee)->send(new Chat($user));
         return new GenericResource($message_stream);
     }
 

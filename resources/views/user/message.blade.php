@@ -43,7 +43,7 @@
                                     <div style="display: inline-block">
                                         <img class="img-circle" :src="message.user.profile.avatar == null ? '/img/avatar/avatar.png' : message.user.profile.avatar" width="40px" alt="">
                                         <div class="card-body" style="color: grey; padding: 0.25rem; display: inline-block">
-                                            &nbsp; &nbsp; @{{message.user.firstname}} @{{message.user.lastname}} <span class="pull-right" style="margin-left: 15px;">(2)</span>
+                                            &nbsp; &nbsp; @{{message.user.firstname}} @{{message.user.lastname}} <span class="pull-right" style="margin-left: 15px;"></span>
                                         </div>
                                     </div>
                                 </div>

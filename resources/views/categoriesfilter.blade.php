@@ -124,7 +124,7 @@
                                 <li style="font-size: 16px; width: 65%; font-weight: 700">
                                     <a href="#">
                                        
-                                    &#8358; {{number_format($advert->price, 2)}} 
+                                    ₦ {{number_format($advert->price, 2)}} 
                                     </a>
                                 </li>
                                 <li style="width: 35%" class="text-right">
@@ -191,7 +191,7 @@
                                                         </li>
                                                     </ul>
                                                     <div class="btn-list">
-                                                        <a class="btn-price" href="#">&#8358; {{$advert->price}}</a>
+                                                        <a class="btn-price" href="#">₦ {{$advert->price}}</a>
                                                         <a class="btn btn-common" href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
                                                             <i class="lni-list"></i>
                                                             View Details

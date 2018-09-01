@@ -128,7 +128,7 @@
                                 <li style="font-size: 22px; width: 100%; font-weight: 700">
                                     <a style="color: #4a4949;" href="#">
                                        
-                                    &#8358; {{number_format($advert->price, 2)}} 
+                                    ₦ {{number_format($advert->price, 2)}} 
                                     </a>
                                 </li>
                                
@@ -180,7 +180,7 @@
                                 <li style="font-size: 20px; width: 100%; font-weight: 700">
                                     <a href="#" style="color: black;">
                                        
-                                    &#8358; {{number_format($advert->price, 2)}} 
+                                    ₦ {{number_format($advert->price, 2)}} 
                                     </a>
                                 </li>
                               
