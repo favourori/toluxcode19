@@ -126,6 +126,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account'], function () {
     Route::get('contact','UserController@contact');
 
     Route::post('advert/create','AdvertController@createAdvert');
+    Route::get('advert/edit/{id}','AdvertController@editAdvert');
+    Route::get('advert/edit/get/{id}','AdvertController@getSingleAdvert');
+    Route::patch('advert/edit/{id}','AdvertController@postEditAdvert');
+
     Route::delete('advert/delete/{advert_id}','AdvertController@deleteAdvert');
   
     // Seller routes

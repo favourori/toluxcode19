@@ -218,6 +218,7 @@ var vapp = new Vue({
         store_url: '',
         store_description: '',
         specs: [],
+        advert_edit_id: ''
 
     },
 
@@ -301,6 +302,15 @@ var vapp = new Vue({
         this.getCategories();
         this.getUserProfile();
 
+        var href = location.href;
+        var regex = /account\/advert\/edit\/?(.*)/;
+        if (regex.test(href)) {
+            // console.log(href);
+            var match = regex.exec(href);
+            this.getAdvertDetail(match[1]);
+            this.advert_edit_id = match[1];
+        }
+
     },
 
     methods: {
@@ -316,6 +326,44 @@ var vapp = new Vue({
         removeInput(index) {
             this.specs.splice(index - 1, 1);
             this.specifications.splice(index - 1, 1);
+        },
+
+        getAdvertDetail(id) {
+            axios.get('/account/advert/edit/get/' + id)
+                .then(response => {
+                    let info = response.data.data;
+                    this.subcategory_id = info.subcategory_id;
+                    this.category_id = info.category_id;
+                    this.title = info.title;
+                    this.description = info.description;
+                    this.price = info.price;
+                    this.phone1 = info.phone;
+                    this.address1 = info.address;
+                    this.country_id = info.country_id;
+                    this.state_id = info.state_id;
+                    this.lga_id = info.lga_id;
+
+                    for (var i = 0; i < info.specifications.length; i++) {
+                        this.specifications.push(info.specifications[i].specification);
+                    }
+
+                    for (var i = 0; i < info.image.length; i++) {
+
+                        $('#' + 'image-show' + (i + 1)).attr('src', info.image[i].image);
+                    }
+                })
+                .catch(err => {
+                    if (err.response.data.response == 422) {
+                        error('Oops!', 'Check required fields')
+                        this.errors = err.response.data.errors;
+                    }
+                    if (err.response.data.response == 401) {
+                        error('Oops!', 'Not Authorized')
+                    }
+                    if (err.response.data.response == 404) {
+                        error('Oops!', err.response.data.message)
+                    }
+                });
         },
 
         reportAdvert(id) {
@@ -712,6 +760,105 @@ var vapp = new Vue({
 
         },
 
+        editAdvert() {
+            $("#advert-form").LoadingOverlay("show");
+            let file = new FormData();
+            let files = document.querySelector('#image1').files;
+            $.each(files, function (key, value) {
+                file.append('image1', value);
+            });
+
+            files = document.querySelector('#image2').files;
+            $.each(files, function (key, value) {
+                file.append('image2', value);
+            });
+
+            files = document.querySelector('#image3').files;
+            $.each(files, function (key, value) {
+                file.append('image3', value);
+            });
+
+            files = document.querySelector('#image4').files;
+            $.each(files, function (key, value) {
+                file.append('image4', value);
+            });
+
+            files = document.querySelector('#image5').files;
+            $.each(files, function (key, value) {
+                file.append('image5', value);
+            });
+
+            files = document.querySelector('#image6').files;
+            $.each(files, function (key, value) {
+                file.append('image6', value);
+            });
+
+            let types = this.types;
+            let attributes = {};
+            // console.log($("#" + this.replaceSpace(types[0].name)));
+            for (var i = 0; i < types.length; i++) {
+                var name = {};
+                if (types[i].form_type == 'select') {
+                    name['value'] = [$("#" + this.replaceSpace(types[i].name) + " :selected").val()];
+                }
+
+                if (types[i].form_type == 'radio') {
+                    name['value'] = [$("#" + this.replaceSpace(types[i].name) + ":checked").val()];
+                }
+
+                if (types[i].form_type == 'checkbox') {
+                    var temp = $("#" + this.replaceSpace(types[i].name) + ":checked");
+                    secondtemp = [];
+                    temp.each(function (i) {
+                        secondtemp.push($(this).val());
+                    });
+                    name['value'] = secondtemp;
+                }
+                attributes[this.replaceSpace(types[i].name)] = name;
+
+            }
+            attributes = JSON.stringify(attributes).replace(new RegExp("\"", 'g'), '\'');
+            // console.log(attributes);
+
+            file.append('title', this.title);
+            file.append('description', this.description);
+            file.append('phone', this.phone);
+            file.append('state_id', this.state_id);
+            file.append('country_id', this.country_id);
+            file.append('lga_id', this.lga_id);
+            file.append('category_id', this.category_id);
+            file.append('subcategory_id', this.subcategory_id);
+            file.append('latitude', this.latitude);
+            file.append('longitude', this.longitude);
+            file.append('address1', this.address1);
+            file.append('price', this.price);
+            file.append('phone1', this.phone1);
+            file.append('attr', attributes);
+            file.append('specifications', JSON.stringify(this.specifications));
+            file.append('_method', 'PATCH');
+            axios.post('/account/advert/edit/' + this.advert_edit_id, file)
+                .then(response => {
+                    $("#advert-form").LoadingOverlay("hide");
+                    success('Success', 'Advert Edited Successfully');
+                    console.log(response);
+                    // setTimeout(function () { location.href = "/account/dashboard" }, 2000);
+                })
+                .catch(err => {
+                    $("#advert-form").LoadingOverlay("hide");
+                    if (err.response.data.response == 422) {
+                        error('Oops!', 'Check required fields')
+                        this.errors = err.response.data.errors;
+                    }
+                    if (err.response.data.response == 401) {
+                        error('Oops!', err.response.data.message)
+                    }
+                    if (err.response.data.response == 404) {
+                        error('Oops!', err.response.data.message)
+                    }
+                });
+
+        },
+
         apply() {
             let data = new FormData();
             let files = document.querySelector('#image1').files;
@@ -777,7 +924,7 @@ var vapp = new Vue({
 
                 reader.onload = function (e) {
                     $('#' + imgshow).attr('src', e.target.result);
-
+                    $('#' + imgshow).css('max-height', '200px');
                 }
 
                 reader.readAsDataURL(input.files[0]);

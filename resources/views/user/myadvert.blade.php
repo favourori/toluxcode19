@@ -38,21 +38,19 @@
                     <div class="row">
                     @foreach($adverts as $key => $advert)
                     <div class="col-md-6">
-                        <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}" class="card">
+                        <div class="card">
                             <!-- <img class="card-img-top" src="holder.js/100px180/" alt=""> -->
+                            <h5 class="card-title text-center">{{$advert->title}}</h5>
                             <div class="card-body" style="color: grey">
-                                <h5 class="card-title text-center">{{$advert->title}}</h5>
+                                
+                                <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
                                 <img src="{{asset($advert->image[0]->image)}}" class="card-img-top">
-                                <br><br>
-                                <h6 class="card-text text-center">
-                                Description
-                                   
-                                </h6>
-                                <p title="{{$advert->description}}" class="text-center" style="font-size: 16px;">{{substr($advert->description, 0, 80)}}</p>
+                                </a>
+                               
                             </div>
                         </a>
                         <i class="lni-trash clickable-icon" title="Delete this advert" onclick="deleteAdvert({{$advert->id}})" style="font-weight: bold; font-size: 18px; color: red"></i>
-                        <!-- <hr> -->
+                        <a style="margin-top: -15px;" href="{{url('account/advert/edit')}}/{{$advert->encoded_id}}" class="pull-right"><i class="lni-book pull-right clickable-icon" title="Edit this advert" style="font-weight: bold; font-size: 18px;"></i></a>
                     </div>
                     @endforeach
                     </div>
