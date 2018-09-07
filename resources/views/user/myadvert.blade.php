@@ -44,7 +44,7 @@
                             <div class="card-body" style="color: grey">
                                 
                                 <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
-                                <img src="{{asset($advert->image[0]->image)}}" class="card-img-top">
+                                <img src="{{asset($advert->image[0]->image)}}" style="width: 300px; height: 250px;" class="card-img-top">
                                 </a>
                                
                             </div>

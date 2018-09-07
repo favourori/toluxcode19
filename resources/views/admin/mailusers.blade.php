@@ -4,7 +4,7 @@
 @section('content')
 <!-- <button type="button" data-toggle="modal" data-target='#create-type' class="btn btn-info">Create Subtype <i style="font-weight: bolder;" class="la la-plus"></i></button>
 <br></br> -->
-<h4 class="page-title">Reported Adverts</h4>
+<h4 class="page-title">Send Email to Users</h4>
 
 <div class="row">
 

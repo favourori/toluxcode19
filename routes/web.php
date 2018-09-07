@@ -1,5 +1,6 @@
 <?php
 // use Image;
+use Illuminate\Support\Facades\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +11,29 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Check forbidden urls
+function checkForbidden($data){
+    $raw = Config::get('forbidden');
+    $matched = true;
+    for($i = 0; $i < count($raw); $i++){
+        if($raw[$i] == $data){
+            $matched = false;
+        }
+    }
+    return $matched;
+}
+
+$checker = explode('/',$_SERVER['REQUEST_URI']);
+$first = $checker[1];
+
+if(count($checker) <= 2 && checkForbidden($first)){
+    Route::get('{store_url}', 'SellerController@store')->name('store');
+    
+}
+
+//End of store url manipulation
+
+
 
 Route::get('image/upload', function(){
         // create new Intervention Image
@@ -58,9 +82,6 @@ Route::post('/register/facebook', 'Auth\RegisterController@facebookLogin')->name
 
 Route::post('/newsletter/subscribe', 'NewsLetterController@subscribe')->name('newsletter.subscribe');
 Route::get('/newsletter/unsubscribe/{email}/{hash}', 'NewsLetterController@unsubscribe')->name('newsletter.unsubscribe');
-
-// Store url
-Route::get('/store/{store_url}', 'SellerController@store')->name('store');
 
 //Advert route
 Route::post('/advert/search', 'SearchController@search')->name('advert.search');
@@ -219,3 +240,4 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::delete('manage/advert/delete/{advert_id}','Admin\AdvertController@deleteAdvert');
 
 });
+

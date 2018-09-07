@@ -348,8 +348,16 @@ var vapp = new Vue({
                     }
 
                     for (var i = 0; i < info.image.length; i++) {
+                        // this piece of code figures out which image to put on which box
+                        //regex checks for a patten image([1-6])
+                        var regex = /\/image(\d)/;
+                        if (regex.test(info.image[i].image)) {
 
-                        $('#' + 'image-show' + (i + 1)).attr('src', info.image[i].image);
+                            var match = regex.exec(info.image[i].image);
+                            let imageId = match[1];
+                            $('#' + 'image-show' + imageId).attr('src', info.image[i].image)
+                        }
+                        ;
                     }
                 })
                 .catch(err => {
@@ -714,7 +722,12 @@ var vapp = new Vue({
                     temp.each(function (i) {
                         secondtemp.push($(this).val());
                     });
-                    name['value'] = secondtemp;
+
+                    // checks if checkbox array contains any value
+                    if (secondtemp.length > 0) {
+                        name['value'] = secondtemp;
+                    }
+
                 }
                 attributes[this.replaceSpace(types[i].name)] = name;
 
@@ -802,6 +815,7 @@ var vapp = new Vue({
                     name['value'] = [$("#" + this.replaceSpace(types[i].name) + " :selected").val()];
                 }
 
+                // cleans up the name of the type and adds it to object
                 if (types[i].form_type == 'radio') {
                     name['value'] = [$("#" + this.replaceSpace(types[i].name) + ":checked").val()];
                 }
@@ -812,8 +826,13 @@ var vapp = new Vue({
                     temp.each(function (i) {
                         secondtemp.push($(this).val());
                     });
-                    name['value'] = secondtemp;
+                    // checks if checkbox array contains any value
+                    if (secondtemp.length > 0) {
+                        name['value'] = secondtemp;
+                    }
+
                 }
+
                 attributes[this.replaceSpace(types[i].name)] = name;
 
             }

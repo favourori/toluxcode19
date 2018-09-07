@@ -38,7 +38,7 @@
 
                     <p> 
                     @if(!$application->status)
-                        <button class="btn btn-success btn-sm" onclick="verifySeller({{$application->user_id}})">Approve</button>
+                        <button class="btn btn-success btn-sm" onclick="verifySeller({{$application->id}})">Approve</button>
                     @endif
                         <button class="btn btn-danger btn-sm" onclick="deleteApplication({{$application->id}})">Delete</button>
                     </p>
@@ -67,6 +67,7 @@
             let data = {application_id: id};
             axios.post('/admin/manage/seller/verify', data)
                 .then(response => {
+                 
                     success('Success','Seller has been verified');
                     location.reload();
                 })

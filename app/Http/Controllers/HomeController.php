@@ -126,12 +126,11 @@ class HomeController extends Controller
         });
 
         foreach($decoded as $key => $value){
-            $temp = Subtype::whereIn('id', $value)->get();
-            $specification[$key] = $temp;
-            
+
+                $temp = Subtype::whereIn('id', $value)->get();
+                $specification[$key] = $temp; 
         }
 
-        
         return view('singleadvert', compact(['similar_adverts', 'specification','advert']));
     }
 

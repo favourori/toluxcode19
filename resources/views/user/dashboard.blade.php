@@ -50,7 +50,7 @@
                                 <img class="card-img-top" src="holder.js/100px180/" alt="">
                                 <div class="card-body" style="color: grey">
                                     <h5 class="card-title">Store details</h5>
-                                    <p class="card-text">URL: {{url('store')}}/{{auth()->user()->store_url}}</p>
+                                    <p class="card-text">URL: {{url(auth()->user()->store_url)}}</p>
                                     <p class="card-text">Store Name: {{auth()->user()->store_name}}</p>
                                 </div>
                             </a>

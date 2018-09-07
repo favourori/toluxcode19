@@ -39,7 +39,7 @@
                                     <td><span class="badge badge-default">{{$report->created_at}}</span></td>
                                     
                                     <td><a href="{{url('admin/manage/advert/report')}}/{{$report->id}}" title="View this user" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> View</a></td>                             
-                                    <td><button title="Delete this user" onclick="deleteAdvert({{$report->advert->id}})" class="btn btn-danger btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-trash"></i></button></td>
+                                    <td><button title="Delete this Advert" onclick="deleteAdvert({{$report->advert->id}})" class="btn btn-danger btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-trash"></i></button></td>
                                 </tr>
                                @endforeach
                             </tbody>

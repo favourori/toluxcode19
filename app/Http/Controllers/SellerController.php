@@ -70,7 +70,7 @@ class SellerController extends ApiController
     {
         $store = User::where('store_url', $store_url)->first();
         if(is_null($store)){
-            return redirect('/')->with('error', 'Store does not exist');
+            return redirect('/404');
         }
         $adverts = Advert::where('user_id', $store->id)->get();
         $adverts->load('image');

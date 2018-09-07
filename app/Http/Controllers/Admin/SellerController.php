@@ -8,6 +8,7 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Model\User;
 use App\Model\SellerApplication;
+use App\Model\Advert;
 use Auth;
 
 class SellerController extends ApiController
@@ -39,24 +40,28 @@ class SellerController extends ApiController
     }
 
     public function verifySeller(Request $request){
+
         $application = SellerApplication::find($request->application_id);
+        // dd($request);
         if(is_null($application)){
             return back()->with('error', 'Application does not exist');
         }
-
+        // dd($application);
         $user = User::find($application->user_id);
         $user->store_url = $application->store_url;
         $user->store_name = $application->store_name;
         $user->verified_seller = 1;
         
         if($user->save()){
+
             $application->status = true;
             $application->save();
+            Advert::where('user_id', $user->id)->update(['verified_seller' => true]);
             return $this->actionSuccess('Seller has been verified');
+        }else{
+            return $this->actionFailure('Seller could not be verified');
         }
         
-
-        return view('admin.singleapplication', compact('application'));
     }
 
     public function postApply(Request $request){

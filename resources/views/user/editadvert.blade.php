@@ -62,7 +62,7 @@
                                             <label class="control-label">@{{type.name}} <span class="error">*</span></label>
                                                 <div v-if="type.form_type == 'select'">
                                                     <select class="form-control input-md" :id="replaceSpace(type.name)" required @focus="errors = {}" type="text">
-                                                        <option value="0" selected>Select @{{type.name}}</option>
+                                                        <option selected>Select @{{type.name}}</option>
                                                         <option v-for="subtype, index in type.subtype"  :value="subtype.id">@{{subtype.name}}</option>
                                                     </select>
                                                 </div>
@@ -259,7 +259,7 @@
                                 <div class="text-right col-md-12">
                                     <br>
                                     <div class="form-group mb-3">
-                                        <button type="submit" class="btn btn-block btn-common log-btn">Edit Advert</button>
+                                        <button type="submit" class="btn btn-block btn-common log-btn">Save Changes</button>
                                     </div>
                                 </div>  
                             </form>

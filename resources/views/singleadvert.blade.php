@@ -63,7 +63,8 @@
                         <div class="row">
                             <h4 class="title-small mb-3" style="color: grey; font-size: 16px; width: 100%; margin-left: 15px">Specifications</h4>
                             <div class="col-md-12">
-                                @foreach($specification as $key => $specs) @if($specs->count() > 0)
+                                @foreach($specification as $key => $specs) 
+                                @if($specs->count() > 0)
 
                                 <ul class="list-specification">
                                     @foreach($specs as $key1 => $value)
@@ -240,7 +241,7 @@
                         <ul>
                             @if($advert->verified_seller)
                             <li>
-                                <a href="{{url('store')}}/{{$advert->user->store_url}}">
+                                <a href="{{url($advert->user->store_url)}}">
                                     <i class="lni-apartment"></i>
                                     <span>View Seller's Store</span>
                                 </a>

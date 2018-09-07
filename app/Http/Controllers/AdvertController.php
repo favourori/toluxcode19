@@ -40,8 +40,14 @@ class AdvertController extends ApiController
         $decoded = json_decode($raw, true) == null ? [] : json_decode($raw, true);
         $subtypes = [];
         foreach($decoded as $key => $value){
-            $temp = Subtype::whereIn('id', $value)->get();
-            $subtypes[$key] = $temp;
+                try{
+                    $temp = Subtype::whereIn('id', $value)->get();
+                    $subtypes[$key] = $temp;
+                }
+                catch(\Exception $e){
+
+                }
+                
             
         }
         $advert->subtypes = $subtypes;
@@ -142,11 +148,12 @@ class AdvertController extends ApiController
         $advert->user_id = auth()->user()->id;
         $advert->attributes = $request->attr;
         $advert->verified_seller = auth()->user()->verified_seller;
-
+        // dd($request);
         if($advert->save()){
-            AdvertImage::where('advert_id', $advert->id)->delete();
+            
             for($i = 1; $i <= 6; $i++){
                 if($request->has("image".$i)){
+                    AdvertImage::where('advert_id', $advert->id)->where('image', 'like',"%image$i%")->delete();
                     $advert_image = new AdvertImage;
                     $advert_image->image = $this->processImage($request,"image".$i);
                     $advert_image->advert_id = $advert->id;
@@ -155,6 +162,8 @@ class AdvertController extends ApiController
                 
             }
             $specifications = json_decode($request->specifications, true);
+            AdvertSpecification::where('advert_id', $advert->id)->delete();
+            
             foreach($specifications as $key => $specs){
                 $specification = new AdvertSpecification;
                 $specification->specification = $specs;
@@ -265,8 +274,8 @@ class AdvertController extends ApiController
             'description' => 'required|string',
             'price' => 'required|numeric|min:50',
             'phone1' => 'required|string',
-            'image1' => 'required|image',
-            'image2' => 'required|image',
+            // 'image1' => 'required|image',
+            // 'image2' => 'required|image',
             'image3' => 'nullable|image',
             'image4' => 'nullable|image',
             'image5' => 'nullable|image',
@@ -281,8 +290,8 @@ class AdvertController extends ApiController
     [
         'phone1.required' => 'Phone number is required',
         'address1.required' => 'Address  is required',
-        'image1.required' => 'Image  is required',
-        'image2.required' => 'Image  is required',
+        // 'image1.required' => 'Image  is required',
+        // 'image2.required' => 'Image  is required',
 
         'phone.required' => 'Phone number is required',
         'lga_id.min' => 'Lga must be selected',
