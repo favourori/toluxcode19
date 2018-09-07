@@ -38,7 +38,7 @@
                             <div class="product-img">
                                 <img class="img-fluid" src="{{asset($image->image)}}" alt="">
                             </div>
-                            <span class="price">₦ {{number_format($advert->price,2)}}</span>
+                            <span class="price">₦ {{number_format($advert->price)}}</span>
                         </div>
                         @endforeach
                     </div>
@@ -63,8 +63,7 @@
                         <div class="row">
                             <h4 class="title-small mb-3" style="color: grey; font-size: 16px; width: 100%; margin-left: 15px">Specifications</h4>
                             <div class="col-md-12">
-                                @foreach($specification as $key => $specs) 
-                                @if($specs->count() > 0)
+                                @foreach($specification as $key => $specs) @if($specs->count() > 0)
 
                                 <ul class="list-specification">
                                     @foreach($specs as $key1 => $value)
@@ -211,7 +210,7 @@
                                 <li style="font-size: 22px; width: 100%; font-weight: 700">
                                     <a style="color: #4a4949;" href="#">
                                        
-                                    ₦ {{number_format($advert_similar->price, 2)}} 
+                                    ₦ {{number_format($advert_similar->price)}} 
                                     </a>
                                 </li>
                                

@@ -120,7 +120,7 @@
                                 <li style="font-size: 15px; width: 65%; font-weight: 700">
                                     <a href="#">
                                        
-                                    ₦ {{number_format($category->advert[0]->price, 2)}} 
+                                    ₦ {{number_format($category->advert[0]->price)}} 
                                     </a>
                                 </li>
                                 <li style="width: 35%" class="text-right">

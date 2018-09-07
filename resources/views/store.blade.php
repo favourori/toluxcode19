@@ -59,7 +59,7 @@
                                 <li style="font-size: 16px; width: 65%; font-weight: 700">
                                     <a href="#">
                                        
-                                    &#8358; {{number_format($advert->price, 2)}} 
+                                    &#8358; {{number_format($advert->price)}} 
                                     </a>
                                 </li>
                                 <li style="width: 35%" class="text-right">
