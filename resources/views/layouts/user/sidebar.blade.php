@@ -82,7 +82,7 @@
                                     </li>
                                     @if(Auth::user()->verified_seller)
                                     <li>
-                                        <a href="/store/{{Auth::user()->store_url}}">
+                                        <a href="/{{Auth::user()->store_url}}">
                                             <i class="lni-apartment"></i>
                                             <span>My Store</span>
                                         </a>

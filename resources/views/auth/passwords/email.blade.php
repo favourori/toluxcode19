@@ -28,7 +28,7 @@
                         <h3>
                             Password Reset
                         </h3>
-                        <form  class="login-form" action="{{route('password.email')}}" id="login" method="post">
+                        <form  class="login-form" action="{{route('password.email')}}" method="post">
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}

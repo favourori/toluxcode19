@@ -28,7 +28,7 @@
                         <h3>
                             Password Reset
                         </h3>
-                        <form  class="login-form" action="{{route('password.request')}}" id="login" method="post">
+                        <form  class="login-form" action="{{route('password.request')}}" method="post">
                        
                         <input type="hidden" name="token" value="{{ $token }}">
                             <div class="form-group">
@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-lock"></i>
-                                    <input type="text"  class="form-control" name="password_confirmation" required placeholder="password">
+                                    <input type="password"  class="form-control" name="password_confirmation" required placeholder="Confirm password">
                                 </div>
                                 
                             

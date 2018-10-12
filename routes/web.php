@@ -77,7 +77,7 @@ Route::get('/subcategories', 'HomeController@subcategories')->name('categories.f
 Route::get('/advertdetail/{advert_id}/{name}', 'HomeController@advertDetail')->name('advertdetail');
 
 Route::post('/login/facebook', 'Auth\LoginController@facebookLogin')->name('facebook.login');
-Route::post('/register/facebook', 'Auth\RegisterController@facebookLogin')->name('facebook.register');
+Route::post('/register/facebook', 'Auth\RegisterController@facebookRegister')->name('facebook.register');
 
 
 Route::post('/newsletter/subscribe', 'NewsLetterController@subscribe')->name('newsletter.subscribe');

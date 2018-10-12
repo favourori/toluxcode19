@@ -112,6 +112,9 @@ function fbLogin() {
     }, { scope: 'email' });
 }
 
+$("#register-with-facebook").on('click', function () {
+    fbRegister();
+});
 // Facebook login with JavaScript SDK
 function fbRegister() {
     $("#register").LoadingOverlay("show");
@@ -143,8 +146,9 @@ function getFbUserData() {
                 username: email,
 
             }
+
             postData('/login/facebook', data);
-            console.log("facebook user details", firstname + " " + lastname + " " + email + " " + link + " " + avatar);
+            // console.log("facebook user details", firstname + " " + lastname + " " + email + " " + link + " " + avatar);
         });
 }
 
@@ -164,6 +168,7 @@ function getFbUserDataRegister() {
                 username: email,
 
             }
+            // console.log(data);
             postDataRegister('/register/facebook', data);
             // console.log("facebook user details", firstname + " " + lastname + " " + email + " " + link + " " + avatar);
         });

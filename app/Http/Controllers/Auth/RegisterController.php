@@ -87,12 +87,12 @@ class RegisterController extends ApiController
      */
     public function facebookRegister(Request $request)
     {
-        // $validate = $this->validator($request->all());
-        // if($validate->fails()){
-        //     if($validate->fails()){
-        //         return $this->validationFailed('Registration Failed', $validate->errors());
-        //     }
-        // }
+        $validate = $this->validateFacebookRegister($request->all());
+        if($validate->fails()){
+            return $this->validationFailed('Registration Failed', $validate->errors());
+        }
+        
+        // dd($request);
         $data = $request->all();
         $data['password'] = md5(date('Y h:i'));
         event(new Registered($user = $this->create($data)));
@@ -147,6 +147,23 @@ class RegisterController extends ApiController
             'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validateFacebookRegister(array $data)
+    {
+        return Validator::make($data, [
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            
         ]);
     }
 

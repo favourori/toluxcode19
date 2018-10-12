@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 55 55" style="enable-background:new 0 0 55 55;" xml:space="preserve">
 <g>
+	<path style="fill:#D75A4A;" d="M21,0H5v53.444c0,0.495,0.598,0.742,0.948,0.393L21,38.784l15.052,15.052
+		c0.35,0.35,0.948,0.102,0.948-0.393V0H21z"/>
+	<rect x="5" style="fill:#C03B2B;" width="32" height="11"/>
 	<g>
-		<g id="circle_copy_4_3_">
-			<g>
-				<path d="M32,0C14.327,0,0,14.327,0,32c0,17.674,14.327,32,32,32s32-14.326,32-32C64,14.327,49.673,0,32,0z M28.222,41.191      L28,40.971l-0.222,0.223l-8.971-8.971l1.414-1.415L28,38.586l15.777-15.778l1.414,1.414L28.222,41.191z" fill="#006DF0"/>
-			</g>
-		</g>
+		<circle style="fill:#26B999;" cx="38" cy="43" r="12"/>
+		<path style="fill:#FFFFFF;" d="M44.571,37.179c-0.455-0.316-1.077-0.204-1.392,0.25l-5.596,8.04l-3.949-3.242
+			c-0.426-0.351-1.057-0.288-1.407,0.139c-0.351,0.427-0.289,1.057,0.139,1.407l4.786,3.929c0.18,0.147,0.404,0.227,0.634,0.227
+			c0.045,0,0.091-0.003,0.137-0.009c0.276-0.039,0.524-0.19,0.684-0.419l6.214-8.929C45.136,38.118,45.024,37.495,44.571,37.179z"/>
 	</g>
 </g>
 <g>

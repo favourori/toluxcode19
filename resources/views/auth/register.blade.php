@@ -114,7 +114,7 @@
                             </div>
                             <br>
                             <div class="text-center">
-                                <button type="button" onclick="fbRegister()" class="btn btn-common btn-primary btn-block"><i class="lni-facebook-filled"> </i> Login with facebook</button>
+                                <button type="button" id="register-with-facebook" class="btn btn-common btn-primary btn-block"><i class="lni-facebook-filled"> </i> Signup with facebook</button>
                             </div>
                         </form>
                     </div>
