@@ -52,6 +52,13 @@ select.form-control:not([size]):not([multiple]){
     .search-bar .form-group {
         width: 100%;
     }
+    #hero-area{
+        margin-top: 50px;
+    }
+
+    .navbar{
+        background-color: #4e5261;
+    }
 }
 
 

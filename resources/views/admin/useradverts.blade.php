@@ -38,8 +38,8 @@
                                     <td><span class="badge badge-default">{{$advert->user->profile->phone}}</span></td>
                                     <td><span class="badge badge-default">{{$advert->created_at}}</span></td>
                                     
-                                    <td><a href="{{url('admin/manage/advert')}}/{{$advert->id}}" title="View this user" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> View</a></td>                             
-                                    <td><button title="Delete this user" onclick="deleteAdvert({{$advert->id}})" class="btn btn-danger btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-trash"></i></button></td>
+                                    <td><a href="{{url('admin/manage/advert')}}/{{$advert->id}}" title="View this user advert" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> View</a></td>                             
+                                    <td><button title="Delete this user advert" onclick="deleteAdvert({{$advert->id}})" class="btn btn-danger btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-trash"></i></button></td>
                                 </tr>
                                @endforeach
                             </tbody>

@@ -40,11 +40,11 @@
                     <div class="col-md-6">
                         <div class="card">
                             <!-- <img class="card-img-top" src="holder.js/100px180/" alt=""> -->
-                            <h5 class="card-title text-center">{{$advert->title}}</h5>
+                        <h5 class="card-title text-center">{{substr($advert->title, 0, 25)}} {{strlen($advert->title) > 25 ? '...' : ''}}</h5>
                             <div class="card-body" style="color: grey">
                                 
                                 <a href="{{url('advertdetail')}}/{{$advert->encoded_id}}/{{str_replace(' ', '-', $advert->title)}}">
-                                <img src="{{asset($advert->image[0]->image)}}" style="width: 300px; height: 250px;" class="card-img-top">
+                                <img src="{{asset($advert->image[0]->image)}}" style="height: 250px;" class="card-img-top img-responsive">
                                 </a>
                                
                             </div>

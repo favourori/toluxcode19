@@ -36,8 +36,8 @@
                                     <td><span class="badge badge-default">{{$application->user->email}}</span></td>
                                     <td><span class="badge badge-default">{{$application->user->profile->phone}}</span></td>
                                    
-                                    <td><a href="{{url('admin/manage/seller/application')}}/{{$application->id}}" title="View this user" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> View</a></td>                             
-                                    <td><button title="Delete this user" onclick="deleteApplication({{$application->id}})" {{$application->id == auth()->user()->id ? 'disabled' : ''}} class="btn btn-danger btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-trash"></i></button></td>
+                                    <td><a href="{{url('admin/manage/seller/application')}}/{{$application->id}}" title="View this application" class="btn btn-info btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-user"></i> View</a></td>                             
+                                    <td><button title="Delete this spplication" onclick="deleteApplication({{$application->id}})" {{$application->id == auth()->user()->id ? 'disabled' : ''}} class="btn btn-danger btn-xs"><i style="font-size: 16px; font-weight: bold;" class="la la-trash"></i></button></td>
                                 </tr>
                                @endforeach
                             </tbody>
