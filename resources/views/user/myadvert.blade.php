@@ -48,9 +48,13 @@
                                 </a>
                                
                             </div>
-                        </a>
-                        <i class="lni-trash clickable-icon" title="Delete this advert" onclick="deleteAdvert({{$advert->id}})" style="font-weight: bold; font-size: 18px; color: red"></i>
-                        <a style="margin-top: -15px;" href="{{url('account/advert/edit')}}/{{$advert->encoded_id}}" class="pull-right"><i class="lni-book pull-right clickable-icon" title="Edit this advert" style="font-weight: bold; font-size: 18px;"></i></a>
+                       
+                        <div style="display: flex; flex-direction: row; justify-content: space-between">
+                            <i class="lni-trash clickable-icon" title="Delete this advert" onclick="deleteAdvert({{$advert->id}})" style="font-weight: bold; font-size: 18px; color: red"></i>
+                            <a style="" href="{{url('account/advert/edit')}}/{{$advert->encoded_id}}">
+                                <i class="lni-book clickable-icon" title="Edit this advert" style="font-weight: bold; font-size: 18px;"></i>
+                            </a>
+                        </div>
                     </div>
                     </div>
                     @endforeach

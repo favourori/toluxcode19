@@ -11,25 +11,56 @@ use Illuminate\Support\Facades\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Check forbidden urls
-function checkForbidden($data){
-    $raw = Config::get('forbidden');
-    $matched = true;
-    for($i = 0; $i < count($raw); $i++){
-        if($raw[$i] == $data){
-            $matched = false;
-        }
+
+Route::get('/load', function () {
+    return file_get_contents("https://bitinfocharts.com/markets/bittrex/xvg-btc-1m.html");
+});
+
+Route::get('download/{filename}', function($filename)
+{
+    // Check if file exists in app/storage/file folder
+    $file_path = public_path() .'/dataset/'. $filename;
+    if (file_exists($file_path))
+    {
+        // Send Download
+        return Response::download($file_path, $filename, [
+            'Content-Length: '. filesize($file_path)
+        ]);
     }
-    return $matched;
-}
+    else
+    {
+        // Error
+        exit('Requested file does not exist on our server!');
+    }
+})
+->where('filename', '[A-Za-z0-9\-\_\.]+');
 
-$checker = explode('/',$_SERVER['REQUEST_URI']);
-$first = $checker[1];
+Route::get('/artisan', function () {
+    //gets the artisan command from query string passed
+    $data = Request::get('data');
+    //executes the artisan command
+    return shell_exec('php ../artisan '.$data);
+ });
 
-if(count($checker) <= 2 && checkForbidden($first)){
-    Route::get('{store_url}', 'SellerController@store')->name('store');
+// // Check forbidden urls
+// function checkForbidden($data){
+//     $raw = Config::get('forbidden');
+//     $matched = true;
+//     for($i = 0; $i < count($raw); $i++){
+//         if($raw[$i] == $data){
+//             $matched = false;
+//         }
+//     }
+//     return $matched;
+// }
+
+// $checker = explode('/',$_SERVER['REQUEST_URI']);
+// $first = $checker[1];
+
+// if(count($checker) <= 2 && checkForbidden($first)){
+//     Route::get('{store_url}', 'SellerController@store')->name('store');
     
-}
+// }
 
 //End of store url manipulation
 

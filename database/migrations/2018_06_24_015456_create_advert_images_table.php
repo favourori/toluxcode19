@@ -17,10 +17,7 @@ class CreateAdvertImagesTable extends Migration
             $table->increments('id');
             $table->integer('advert_id');
             $table->string('image', 100)->unique();
-            $table->timestamps();
-
-
-            
+            $table->timestamps();  
         });
     }
 

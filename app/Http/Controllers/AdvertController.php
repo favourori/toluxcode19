@@ -124,7 +124,7 @@ class AdvertController extends ApiController
     }
 
     public function postEditAdvert(Request $request, $id){
-        // dd($request->specification);
+        
         $validate = $this->validateEditAdvert($request->all());
        
         if($validate->fails()){
@@ -148,7 +148,7 @@ class AdvertController extends ApiController
         $advert->user_id = auth()->user()->id;
         $advert->attributes = $request->attr;
         $advert->verified_seller = auth()->user()->verified_seller;
-        // dd($request);
+      
         if($advert->save()){
             
             for($i = 1; $i <= 6; $i++){
@@ -182,25 +182,28 @@ class AdvertController extends ApiController
 
     protected function processImage($request, $image_name){
         $filename = null;
+        try{
+            if($request->has($image_name)){
+                $img = Image::make($request->file($image_name));
 
-        if($request->has($image_name)){
-            $img = Image::make($request->file($image_name));
+                // create a new Image instance for inserting
+                $watermark = Image::make('img/property-logo.png')->opacity(30);
+                $img->resize(625, 425);
+                $watermark->resize(199,77);
+                $img->insert($watermark);
 
-            // create a new Image instance for inserting
-            $watermark = Image::make('img/property-logo.png')->opacity(30);
-            $img->resize(625, 425);
-            $watermark->resize(199,77);
-            $img->insert($watermark);
+                $image = $request->file($image_name); 
+                $path = public_path('/img/adverts/');
+                $original = str_replace(' ', '_',$image->getClientOriginalName());
+                $original = str_replace('.', '_',$original);
+                $filename = 'img/adverts/'.$image_name.$original.time().".".$image->getClientOriginalExtension();
+                
 
-            $image = $request->file($image_name); 
-            $path = public_path('/img/adverts/');
-            $original = str_replace(' ', '_',$image->getClientOriginalName());
-            $original = str_replace('.', '_',$original);
-            $filename = 'img/adverts/'.$image_name.$original.time().".".$image->getClientOriginalExtension();
-            
+                $img->save($filename);
 
-            $img->save($filename);
-
+            }
+        }catch(\Exception $e){
+            return $filename;
         }
         return '/'.$filename;
     }

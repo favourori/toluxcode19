@@ -67,8 +67,9 @@
                         <div class="form-group">
                             <label>Select Category</label>
                            <select type="text" class="form-control input-square"  name="category_id" required>
+                           <option>Select Category</option>
                             @foreach($categories as $key => $category)
-                                    <option>Select Category</option>
+                                    
                                     <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                             </select>

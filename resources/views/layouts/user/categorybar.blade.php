@@ -16,7 +16,7 @@
                                 @foreach($categories as $key => $category)
                                 <li>
                                     <a href="{{url('categories/filter')}}?category={{$category->id}}">
-                                        <i class="lni-dinner"></i>
+                                       
                                         {{$category->name}}
                                         <span class="category-counter">({{count($category->advert)}})</span>
                                     </a>
@@ -25,11 +25,6 @@
                                 
                             </ul>
                         </div>
-                        <!-- <div class="widget">
-                            <h4 class="widget-title">Advertisement</h4>
-                            <div class="add-box">
-                                <img class="img-fluid" src="{{asset('img/img1.jpg')}}" alt="">
-                            </div>
-                        </div> -->
+                       
                     </aside>
                 </div>

@@ -151,7 +151,7 @@
                             <div id="list-view" class="tab-pane fade">
                                 <div class="row">
                                 @foreach($adverts as $key => $advert)
-                                @if(count($advert) > 0)
+                                @if(count($adverts) > 0)
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="featured-box">
                                                 <figure>
@@ -166,10 +166,10 @@
                                                 </figure>
                                                 <div class="feature-content">
                                                     <div class="tg-product">
-                                                        <a href="#">{{$advert->category->name}} > {{$advert->subcategory->name}}</a>
+                                                            <a href="#">{{$advert->category->name}} > {{$advert->subcategory ? $advert->subcategory->name : ''}}</a>
                                                     </div>
                                                     <h4>
-                                                        <a href="ads-details.html">{{$advert->title}}</a>
+                                                        <a href="#">{{$advert->title}}</a>
                                                     </h4>
                                                     <span>Last Updated: {{$advert->updated_at->diffForHumans()}}</span>
                                                     <ul class="address">

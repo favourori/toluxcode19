@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('last_login')->nullable();
             $table->boolean('verified_seller')->default(false);
             $table->boolean('verified')->default(false);
-            $table->string('store_url')->unique()->nullable();
+            $table->string('store_url', 150)->unique()->nullable();
             $table->string('store_name')->nullable();
             $table->text('store_description')->nullable();
             $table->softDeletes();

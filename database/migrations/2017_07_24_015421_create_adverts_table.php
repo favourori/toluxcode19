@@ -28,6 +28,7 @@ class CreateAdvertsTable extends Migration
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
             $table->string('address')->nullable();
+            $table->boolean('verified_seller')->default(false);
 
             $table->integer('lga_id')->unsigned()->nullable();
             $table->double('price', 15, 5);

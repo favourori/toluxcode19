@@ -155,7 +155,7 @@
                                                 </figure>
                                                 <div class="feature-content">
                                                     <div class="tg-product">
-                                                        <a href="#">{{$category->name}} > {{$category->advert[0]->subcategory->name}}</a>
+                                                        <a href="#">{{$category->name}} > {{$category->advert[0]->subcategory ? $category->advert[0]->subcategory->name : ''}}</a>
                                                     </div>
                                                     <h4>
                                                         <a href="{{url('advertdetail')}}/{{$category->advert[0]->encoded_id}}/{{str_replace(' ', '-', $category->advert[0]->title)}}">{{substr($category->advert[0]->title, 0, 20)}}</a>
